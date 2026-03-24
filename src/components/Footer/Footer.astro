@@ -4,10 +4,7 @@ import type { MenuLink } from "../../site.config";
 import {
 	footerLegalLinks,
 	footerLinks,
-	pages,
-	socialLinks,
 } from "../../site.config";
-import { getCollectionSortedByOrder } from "../../utils/collection.utils";
 import { getAriaCurrentValue } from "../../utils/string.utils";
 import { Button } from "../Button/Button.tsx";
 import Link from "../Link/Link.astro";
@@ -15,17 +12,9 @@ import LogoLink from "../LogoLink.astro";
 import Stack from "../Stack/Stack.astro";
 import Text from "../Text/Text.astro";
 import VisuallyHidden from "../VisuallyHidden.astro";
+import { socialLinks } from "../../site.config";
 
 const url = new URL(Astro.request.url);
-const articles = await getCollectionSortedByOrder("articles");
-const excludedArticles = ["definition-accessibilite-numerique", "cadre-legal-accessibilite-numerique"];
-const articlesLinks: MenuLink[] = articles
-	.filter(({ id }) => !excludedArticles.includes(id))
-	.map(({ id, data: { title } }) => ({
-		path: `${pages.articles.path}/${id}`,
-		label: title,
-	}));
-
 const year = new Date().getFullYear();
 ---
 <footer class="l-footer" role="contentinfo" aria-label="Pied de page">
@@ -41,7 +30,7 @@ const year = new Date().getFullYear();
     <nav role="navigation" aria-label="Menu secondaire">
       <Stack gap={4} as="ul" class="u-list-reset u-list-style:none">
         {
-          [...footerLinks, ...articlesLinks].map(({ path, label}) =>
+          footerLinks.map(({ path, label}) =>
             <li>
               <Link
                 aria-current={getAriaCurrentValue(url, path)}

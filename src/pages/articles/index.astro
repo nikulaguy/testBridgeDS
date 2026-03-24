@@ -1,8 +1,0 @@
----
-import { pages } from "../../site.config";
-import { getCollectionSortedByOrder } from "../../utils/collection.utils";
-
-const articles = await getCollectionSortedByOrder("articles");
-
-return Astro.redirect(`${pages.articles.path}/${articles[0].id}`);
----

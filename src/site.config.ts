@@ -1,11 +1,6 @@
 import type { FunctionComponent } from "react";
 import LinkedInIcon from "./assets/icons/linkedin.svg?react";
 import YoutubeIcon from "./assets/icons/youtube.svg?react";
-import imgHeroSectionTrainings from "./assets/img/groupe-frontguys-2.jpg";
-import imgHeroSectionExpertise from "./assets/img/groupe-frontguys-4.jpg";
-import imgHeroSectionChallenges from "./assets/img/groupe-frontguys-5.jpg";
-import imgHeroSectionHome from "./assets/img/groupe-frontguys-6.jpg";
-import imgHeroSectionOffer from "./assets/img/groupe-frontguys-9.jpg";
 
 export type Page = {
 	/**
@@ -68,9 +63,6 @@ export const siteName = "Frontguys";
 export const siteDescription =
 	"Conseil, design et développement front pour accélérer votre transformation digitale.";
 
-export const guideBookPath =
-	"/pdf/guide-design-system-frontguys.pdf";
-
 export const contactExpertPath =
 	"https://calendly.com/hamza-frontguys/votre-besoin";
 
@@ -102,17 +94,6 @@ export const pages: Record<string, Page> = {
 			illustration: "HandHero",
 		},
 	},
-	challenges: {
-		path: "/enjeux",
-		label: "Enjeux",
-		header: {
-			title: "Les freins que rencontrent vos équipes au quotidien",
-			surtitle: "Vos enjeux",
-			subtitle:
-				"Des produits qui stagnent, des équipes qui peinent à collaborer, des résultats difficiles à mesurer. Nous connaissons ces enjeux.",
-			img: imgHeroSectionChallenges,
-		},
-	},
 	expertise: {
 		path: "/expertise",
 		label: "Expertises",
@@ -122,51 +103,6 @@ export const pages: Record<string, Page> = {
 			subtitle:
 				"Frontguys intervient sur les leviers qui freinent vraiment vos équipes — produit, collaboration, design system, transformation.\nToujours avec des profils seniors, toujours avec un impact mesurable.",
 			illustration: "PencilHero",
-		},
-	},
-	offer: {
-		path: "/offre",
-		label: "Offre",
-		header: {
-			title: "Un accompagnement calibré à vos besoins",
-			surtitle: "Notre offre",
-			subtitle:
-				"Diagnostic, audit, design system, produit numérique, formation. Chaque mission est construite sur mesure.",
-			img: imgHeroSectionOffer,
-		},
-	},
-	audits: {
-		path: "/offre/audits",
-		label: "Nos audits design & produit",
-		header: {
-			title: "Audits design, produit et organisation",
-			subtitle:
-				"Un état des lieux rigoureux de vos pratiques design, de votre stack front et de vos process de collaboration.",
-			illustration: "illustration-developpement",
-			backLink: {
-				label: "Notre offre",
-				href: "/offre",
-			},
-		},
-	},
-	trainings: {
-		path: "/formations",
-		label: "Formations",
-		header: {
-			title: "Faites monter vos équipes en compétence",
-			surtitle: "Formations",
-			subtitle:
-				"Design system, product design, collaboration design/dev : des formations pensées pour s’intégrer à vos process et vos outils.",
-			img: imgHeroSectionTrainings,
-		},
-	},
-	trainingCustom: {
-		path: "/formations/formation-sur-mesure",
-		label: "Formation sur-mesure",
-		header: {
-			title: "Formation sur-mesure adaptée à votre organisation",
-			subtitle:
-				"Nous créons avec vous un cursus unique qui s'intègre parfaitement à vos flux de travail et à vos contraintes techniques.",
 		},
 	},
 	businessCases: {
@@ -203,29 +139,6 @@ export const pages: Record<string, Page> = {
 			surtitle: "Contactez-nous",
 		},
 	},
-	guideBook: {
-		path: "/guide-design-system",
-		label: "Guide Design System",
-		header: {
-			title: "Le guide pour structurer votre design system",
-			surtitle: "Ressource gratuite",
-			subtitle:
-				"Téléchargez notre guide pour construire un design system modulaire, gouverné et adopté par vos équipes.",
-		},
-	},
-	articles: {
-		path: "/articles",
-		label: "Articles",
-	} as Page,
-	faq: {
-		path: "/faq",
-		label: "Foire aux questions",
-		header: {
-			title: "Nous répondons à vos questions",
-			surtitle: "Foire aux questions",
-			subtitle: "Retrouvez les réponses à vos questions fréquentes.",
-		},
-	},
 	legalNotice: {
 		path: "/mentions-legales",
 		label: "Mentions légales",
@@ -238,31 +151,6 @@ export const pages: Record<string, Page> = {
 		label: "Politique de confidentialité",
 		header: {
 			title: "Politique de confidentialité",
-		},
-	},
-	accessibilityStatement: {
-		path: "/declaration-accessibilite",
-		label: "Déclaration d'accessibilité",
-		meta: {
-			description:
-				"Déclaration d'accessibilité du site obtenue suite à l'audit de conformité.",
-		},
-		header: {
-			title: "Déclaration d'accessibilité",
-		},
-	},
-	siteMap: {
-		path: "/plan-site",
-		label: "Plan du site",
-		header: {
-			title: "Plan du site",
-		},
-	},
-	styleguide: {
-		path: "/styleguide",
-		label: "Styleguide",
-		header: {
-			title: "Styleguide",
 		},
 	},
 	whyFrontguys: {
@@ -412,10 +300,8 @@ export const footerLinks: MenuLink[] = [
 ];
 
 export const footerLegalLinks: MenuLink[] = [
-	pages.siteMap,
 	pages.legalNotice,
 	pages.privacyPolicy,
-	pages.accessibilityStatement,
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -429,18 +315,4 @@ export const socialLinks: SocialLink[] = [
 		icon: YoutubeIcon,
 		label: "YouTube",
 	},
-];
-
-export const siteMap: MenuLink[] = [
-	pages.home,
-	pages.whyFrontguys,
-	pages.expertise,
-	pages.results,
-	pages.resources,
-	pages.challenges,
-	pages.trainings,
-	pages.contact,
-	pages.siteMap,
-	pages.legalNotice,
-	pages.privacyPolicy,
 ];
