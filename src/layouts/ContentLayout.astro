@@ -6,8 +6,9 @@ import Stack from "../components/Stack/Stack.astro";
 import Layout from "../layouts/Layout.astro";
 import { pages } from "../site.config";
 
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const page = Object.values(pages).find(
-	(page) => page.path === Astro.url.pathname,
+	(page) => page.path === pathname,
 );
 
 if (page) {
