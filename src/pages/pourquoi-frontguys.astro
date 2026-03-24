@@ -1,0 +1,285 @@
+---
+import { Button } from "../components/Button/Button.tsx";
+import Card from "../components/Card/Card.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+---
+
+<Layout page={pages.whyFrontguys}>
+	<Fragment slot="page-header-cta">
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/nos-methodes" variant="secondary">Voir nos méthodes</Button>
+		</Stack>
+	</Fragment>
+
+	<!-- Section 2: Notre modèle n'est pas classique (fond light) -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Notre modèle n'est pas classique" titleVariant="heading-2">
+			<Fragment slot="subtitle">Frontguys n'est pas un studio design. Pas une ESN. Pas du conseil abstrait.</Fragment>
+		</SectionHeader>
+		<div class="differentiators-grid">
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Pas seulement du design</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Nous marions design et développement sur chaque mission. Les deux disciplines travaillent ensemble dès le premier jour.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Pas un renfort junior</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Profils seniors uniquement, autonomes et force de proposition. Vous n'avez pas à les manager.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Pas du conseil sans suite</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Nous intervenons, nous produisons, nous livrons. Chaque mission a un livrable concret.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Pas une promesse cosmétique</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Chaque mission vise un impact mesurable et partageable. Pas d'esthétique sans résultat.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section 3: Nos convictions (fond dark) -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Nous avons des convictions profondes" titleVariant="heading-2">
+			<Fragment slot="subtitle">Quatre convictions qui guident toutes nos interventions.</Fragment>
+		</SectionHeader>
+		<div class="convictions-grid">
+			<Card
+				variant="simple"
+				title="Le design et le développement sont un levier business."
+				subtitle="Ce n'est pas un coût, pas un embellissement, c'est une décision stratégique qui accélère la delivery et améliore les résultats."
+				url="/nos-convictions#produits-numeriques"
+			/>
+			<Card
+				variant="simple"
+				title="La collaboration interdisciplinaire crée la qualité."
+				subtitle="Design et développement qui travaillent ensemble réduisent les erreurs, les allers-retours et la dette d'interface."
+				url="/nos-convictions#process-design-dev"
+			/>
+			<Card
+				variant="simple"
+				title="Les outils doivent servir les équipes."
+				subtitle="Un design system ou un process qui ne sont pas adoptés ne valent rien. Nos métiers se centrent sur l'adoption."
+				url="/nos-convictions#design-systems"
+			/>
+			<Card
+				variant="simple"
+				title="L'impact du design est mesurable."
+				subtitle="Vélocité, rétention, cohérence — chaque mission doit produire un résultat chiffrable, partageable et pilotable."
+				url="/nos-convictions#transformation"
+			/>
+		</div>
+		<Button as="a" href="/nos-convictions" variant="secondary">Voir nos convictions en détail</Button>
+	</Section>
+
+	<!-- Section 4: Nous pilotons par la valeur (fond light) -->
+	<Section color="semantic-background-default">
+		<div class="value-section">
+			<div class="value-left">
+				<Text as="h2" variant="heading-2">Nous pilotons par la valeur</Text>
+				<Stack gap={4}>
+					<Text as="p" variant="heading-6">Pas par l'activité.</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Gouvernance claire, objectifs SMART, visibilité totale.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Nous intervenons avec humilité : notre objectif est de monter en autonomie vos équipes, pas de créer une dépendance. Chaque mission se termine avec plus de clarté qu'elle n'en avait au départ.
+					</Text>
+				</Stack>
+				<Button as="a" href="/nos-methodes" variant="secondary">Voir nos méthodes en détail</Button>
+			</div>
+			<div class="value-right">
+				<div class="step-indicator">
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">1</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Diagnostic</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Comprendre le contexte, les enjeux et les contraintes réelles.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">2</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Cadrage</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Définir l'objectif SMART et les critères de succès.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">3</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Priorisation</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Identifier ce qui a le plus d'impact et prioriser.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot"><span>4</span></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Plan d'action</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Structurer l'intervention avec visibilité et gouvernance claire.</Text>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Parlons de vos enjeux, pas d'un besoin générique.">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Un premier échange avec un expert, sans deck de vente.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true}>
+			<Button as="a" href={pages.contact.path}>Parler de mon projet</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir nos expertises</Button>
+		</Stack>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	@use "../assets/styles/01-utils/functions" as *;
+
+	/* Differentiators grid - 2x2 on light background */
+	.differentiators-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-8) var(--base-space-12);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.differentiator-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+
+	.differentiator-separator {
+		width: 100%;
+		height: 1px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+		margin-bottom: var(--base-space-4);
+	}
+
+	/* Convictions grid - 2x2 on dark background */
+	.convictions-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-6);
+		width: 100%;
+		margin-bottom: var(--base-space-6);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Value section - 2 columns */
+	.value-section {
+		display: flex;
+		gap: var(--base-space-12, 48px);
+		width: 100%;
+		align-items: flex-start;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.value-left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-6, 24px);
+	}
+
+	.value-right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Step indicator */
+	.step-indicator {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-3, 12px);
+		width: 100%;
+		max-width: 480px;
+	}
+
+	.step {
+		display: flex;
+		gap: var(--base-space-4, 16px);
+		align-items: flex-start;
+	}
+
+	.step-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 20px;
+		flex-shrink: 0;
+	}
+
+	.step-dot {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		border-radius: var(--radius-full, 9999px);
+		background-color: var(--semantic-background-accent, #004c61);
+		color: var(--core-rythm-grey-00, white);
+		font-family: "Reddit Sans", sans-serif;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1.4;
+		flex-shrink: 0;
+	}
+
+	.step-connector {
+		width: 2px;
+		height: 37px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+	}
+
+	.step-content {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-1, 4px);
+		flex: 1;
+		min-width: 0;
+	}
+
+</style>

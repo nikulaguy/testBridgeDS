@@ -11,22 +11,18 @@ type Props = {
 };
 
 const { altColor = false, ...attrs } = Astro.props;
-
-const url = new URL(Astro.url);
-const isOfferPage = url.pathname.includes(pages.offer.path);
 ---
 
 <Section
 	verticallyCentered={true}
 	gap="static"
-	color={altColor ? "semantic-background-default-alt" : "semantic-background-default"}
+	color={altColor ? "semantic-background-default-alt" : "semantic-background-subtle"}
 	{...attrs}>
-	<SectionHeader title="Nous transformons l'accessibilité en opportunité">
-		<Fragment slot="subtitle">Profitez d'un premier échange gratuit. Nous identifions vos besoins immédiats pour vous orienter vers la solution la plus efficace.</Fragment>
+	<SectionHeader title="Un premier échange pour identifier vos enjeux">
+		<Fragment slot="subtitle">Gratuit. Sans engagement. On identifie vos besoins en 30 minutes.</Fragment>
 	</SectionHeader>
 	<Stack gap={4} axis="x" wrap={true}>
-		{!isOfferPage && <Button as="a" href={pages.offer.path} variant="secondary">Découvrez notre offre</Button>}
-		{isOfferPage && <Button as="a" href={pages.expertise.path} variant="secondary">Découvrez notre expertise</Button>}
-		<Button as="a" href={pages.contact.path} >Contactez-nous</Button>
+		<Button as="a" href={pages.contact.path} variant="secondary">Parler à un expert</Button>
+		<Button as="a" href={pages.contact.path}>Demandez un diagnostic</Button>
 	</Stack>
 </Section>

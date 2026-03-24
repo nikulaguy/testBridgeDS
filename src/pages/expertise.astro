@@ -1,113 +1,181 @@
 ---
-import { getCollection } from "astro:content";
-import { Icon } from "astro-icon/components";
 import { Button } from "../components/Button/Button.tsx";
+import BusinessCases from "../components/BusinessCases.astro";
 import Card from "../components/Card/Card.astro";
-import CreateOpportunity from "../components/CreateOpportunity.astro";
-import List from "../components/List/List.astro";
-import MediaObject from "../components/MediaObject/MediaObject.astro";
+import ProfileBanner from "../components/ProfileBanner/ProfileBanner.astro";
+import KeyFigures from "../components/KeyFigures.astro";
+import Link from "../components/Link/Link.astro";
 import Section from "../components/Section/Section.astro";
 import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
 import Stack from "../components/Stack/Stack.astro";
 import Text from "../components/Text/Text.astro";
 import Layout from "../layouts/Layout.astro";
 import { pages } from "../site.config";
-import { getCollectionSortedByOrder } from "../utils/collection.utils";
-
-const trainings = await getCollectionSortedByOrder("trainings");
-const expertiseArguments = await getCollection("expertiseArguments");
 ---
 
 <Layout page={pages.expertise}>
 	<Fragment slot="page-header-cta">
-		<Button as="a" href={pages.guideBook.path} variant="primary">Découvrez notre guide gratuit</Button>
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/nos-resultats" variant="secondary">Voir nos cas clients</Button>
+		</Stack>
 	</Fragment>
-	
-  <Section>
-    <MediaObject illustration="illustration-benchmark" reversed={true}>
-			<Stack gap={4}>
-				<SectionHeader title="Nous accompagnons votre transformation" />
-				<Text>Nous avons construit une expertise capable de vous épauler, pas de vous remplacer.</Text>
-				<List
-					title="Nous vous aidons à :"
-					items={[
-						"Faire évoluer votre culture.",
-						"Fluidifier vos processus.",
-						"Valoriser vos talents.",
-					]}
-				/>
-			</Stack>
-			<Button as="a" href={pages.offer.path} variant="secondary">Découvrez notre offre</Button>
-    </MediaObject>
-  </Section>
 
-	<Section color="semantic-background-default-alt" verticallyCentered={true}>
-		<SectionHeader title="Nous simplifions votre quotidien" />
-		<ul class="grid u-list-reset u-list-style:none expertise-arguments">
-			{
-				expertiseArguments.map(({ data: { icon, title, text } }) => (
-					<Stack as="li" gap={4} align="center">
-						<Icon aria-hidden="true" name={icon} size={24} />
-						<Text
-								as="h3"
-								variant="heading-5"
-								class="u-text-align:center u-text-wrap:balance"
-							>
-							{title}
-						</Text>
-						<Text
-							variant="subtitle"
-							class="u-text-align:center u-text-wrap:balance"
-							set:html={text}
-						/>
-					</Stack>
-				))
-			}
-		</ul>
-	</Section>
-
-	<Section>
-    <MediaObject illustration="illustration-audit" reversed={true}>
-			<Stack gap={4}>
-				<SectionHeader title="Nous mobilisons vos décideurs" />
-				<Text>
-					Ne portez plus le sujet seul face à la hiérarchie. Obtenez le soutien inconditionnel de votre direction grâce à une stratégie rodée.
-				</Text>
-				<List
-					title="Nous vous aidons à :"
-					items={[
-						"Structurer un discours clair et défendable.",
-						"Former vos équipes avec les bons arguments.",
-						"Installer des rituels concrets et pérennes.",
-					]}
-				/>
-			</Stack>
-			<Button as="a" href={pages.challenges.path} variant="secondary">Découvrez les enjeux</Button>
-    </MediaObject>
-  </Section>
-
-  <Section color="semantic-background-default-alt">
-		<SectionHeader title="Nous formons vos équipes">
-			<Fragment slot="subtitle">
-				Intégrez l'accessibilité numérique dans votre quotidien. 
-				<a href={pages.trainings.path}>Découvrez nos formations</a>
-				adaptées à vos besoins.
-			</Fragment>
+	<!-- Section: Nos expertises — fond blanc, grille 2×2 de cards -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Nos expertises">
+			<Fragment slot="subtitle">Chaque expertise est une réponse à un problème précis.</Fragment>
 		</SectionHeader>
 
-    <div class="grid" style="--row-gap: var(--col-gap);">
-			{
-				trainings.map(({ id, data: { title, shortDescription } }) => (
-					<Card
-						variant="simple"
-						title={title}
-						subtitle={shortDescription}
-						url={`${pages.trainings.path}/${id}`}
-					/>
-				))
-			}
+		<div class="grid expertise-grid">
+			<Card
+				variant="simple"
+				title="Transformation & accompagnement"
+				subtitle="Montée en compétences, conduite du changement, culture produit. Les transformations qui durent."
+				url="/expertise/transformation"
+				illustration="illustration-equipe"
+			/>
+			<Card
+				variant="simple"
+				title="Produits numériques performants"
+				subtitle="Alignez besoins utilisateurs, stratégie et qualité technique. Du cadrage à la stabilisation continue."
+				url="/expertise/produits-numeriques"
+				illustration="illustration-target"
+			/>
+			<Card
+				variant="simple"
+				title="Design systems modulaires"
+				subtitle="Fondations solides, gouvernance claire, adoption réelle. Un design system qui accélère vraiment la production."
+				url="/expertise/design-systems"
+				illustration="illustration-composants"
+			/>
+			<Card
+				variant="simple"
+				title="Process de collaboration design/dev"
+				subtitle="Réduisez la friction, les allers-retours et la dette d'interface. Le design system ne suffit pas sans le bon process."
+				url="/expertise/process-design-dev"
+				illustration="illustration-developpement"
+			/>
 		</div>
-  </Section>
+	</Section>
 
-	<CreateOpportunity />
+	<!-- Section: Bannière accessibilité -->
+	<Section color="semantic-background-default">
+		<ProfileBanner
+			as="aside"
+			avatarSrc="/src/assets/img/hamza-300x300.png"
+			title="Notre site dédié à l'accessibilité"
+			titleTag="h3"
+			name="a11y.frontguys.fr"
+			description="Ressources, audits, référentiels et bonnes pratiques pour concevoir des interfaces inclusives."
+		>
+			<Button slot="cta" as="a" href="https://a11y.frontguys.fr" target="_blank" variant="secondary" title="Découvrez le site a11y.frontguys.fr">
+				Découvrez le site
+			</Button>
+		</ProfileBanner>
+	</Section>
+
+	<!-- Section: Trouvez l'expertise — fond alt -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Trouvez l'expertise qui correspond à votre situation">
+			<Fragment slot="subtitle">Vous n'avez pas à connaître le nom de l'expertise — décrivez votre problème.</Fragment>
+		</SectionHeader>
+
+		<div class="problem-grid">
+			<div class="problem-item">
+				<Text variant="body-1">Nos interfaces manquent de cohérence</Text>
+				<Link href="/expertise/design-systems" label="→ Design systems" variant="standalone" />
+			</div>
+			<div class="problem-item">
+				<Text variant="body-1">Nos équipes peinent à collaborer</Text>
+				<Link href="/expertise/transformation" label="→ Transformation" variant="standalone" />
+			</div>
+			<div class="problem-item">
+				<Text variant="body-1">Nos sites ne correspondent pas aux maquettes</Text>
+				<Link href="/expertise/process-design-dev" label="→ Process design/dev" variant="standalone" />
+			</div>
+			<div class="problem-item">
+				<Text variant="body-1">Nous avons une dette UI croissante</Text>
+				<Link href="/expertise/process-design-dev" label="→ Process design/dev" variant="standalone" />
+			</div>
+			<div class="problem-item">
+				<Text variant="body-1">Notre produit est peu adopté</Text>
+				<Link href="/expertise/produits-numeriques" label="→ Produits numériques" variant="standalone" />
+			</div>
+			<div class="problem-item">
+				<Text variant="body-1">Nous voulons accélérer notre delivery</Text>
+				<Link href="/expertise/produits-numeriques" label="→ Produits numériques" variant="standalone" />
+			</div>
+			<div class="problem-item">
+				<Text variant="body-1">Notre design system n'est pas utilisé</Text>
+				<Link href="/expertise/design-systems" label="→ Design systems" variant="standalone" />
+			</div>
+			<div class="problem-item">
+				<Text variant="body-1">Nous avons besoin de structurer notre équipe design</Text>
+				<Link href="/expertise/transformation" label="→ Transformation" variant="standalone" />
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Cas réels — fond blanc -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Découvrez nos expertises à travers des cas réels">
+			<Fragment slot="subtitle">Des projets ambitieux, des équipes exigeantes, des résultats mesurables.</Fragment>
+		</SectionHeader>
+
+		<BusinessCases />
+	</Section>
+
+	<!-- Section: Chiffres clés -->
+	<Section color="semantic-background-default-alt">
+		<KeyFigures
+			items={[
+				{ value: "82", text: "missions" },
+				{ value: "35+", text: "clients accompagnés" },
+				{ value: "98%", text: "satisfaction client" },
+			]}
+		/>
+	</Section>
+
+	<!-- CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Pas sûr de l'expertise qui vous correspond ? Parlons-en.">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Un premier échange suffit pour identifier l'enjeu principal et la bonne entrée.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true}>
+			<Button as="a" href={pages.contact.path}>Parler à un expert</Button>
+			<Button as="a" href={pages.contact.path} variant="secondary">Demandez un diagnostic</Button>
+		</Stack>
+	</Section>
 </Layout>
+
+<style lang="scss">
+	@use "../assets/styles/01-utils/functions" as *;
+
+	/* Grille 2×2 des expertises */
+	.expertise-grid {
+		grid-template-columns: repeat(2, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Grille problème → expertise */
+	.problem-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-6, 24px);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.problem-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2, 8px);
+	}
+</style>

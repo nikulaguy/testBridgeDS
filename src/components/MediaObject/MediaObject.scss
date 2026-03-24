@@ -3,7 +3,7 @@
 	--media-object-content-order: auto;
 	display: flex;
 	flex-direction: var(--media-object-direction);
-	align-items: flex-start;
+	align-items: stretch;
 	gap: var(--section-gap);
 	inline-size: 100%;
 
@@ -32,12 +32,32 @@
 	border-radius: var(--radius-medium);
 	width: 100%;
 
-  :is(img, picture, svg) {
+  :is(img, picture) {
     aspect-ratio: var(--media-aspect-ratio);
     object-fit: cover;
   }
 
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
 	:is(img, picture) {
 		border-radius: var(--radius-medium);
+  }
+
+  &:has(svg) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+
+    svg {
+      display: block;
+      width: auto;
+      height: 115%;
+      max-height: none;
+    }
   }
 }

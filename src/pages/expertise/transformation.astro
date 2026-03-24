@@ -1,0 +1,251 @@
+---
+import { Button } from "../../components/Button/Button.tsx";
+import BusinessCases from "../../components/BusinessCases.astro";
+import List from "../../components/List/List.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { pages } from "../../site.config";
+---
+
+<Layout page={pages.expertiseTransformation}>
+	<Fragment slot="page-header-cta">
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir toutes nos expertises</Button>
+		</Stack>
+	</Fragment>
+
+	<!-- Section: Symptômes (fond blanc) -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Vous reconnaissez ces symptômes ?" titleVariant="heading-2">
+			<Fragment slot="subtitle">Si l'un de ces signaux vous parle, cette expertise est faite pour vous.</Fragment>
+		</SectionHeader>
+		<div class="differentiators-grid">
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Les équipes ne comprennent pas le pourquoi</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					La transformation est décidée en haut mais pas comprise en bas. Les équipes exécutent sans adhérer.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Les outils passent avant les usages</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					On déploie des outils avant de comprendre les workflows existants. Résultat : adoption faible et résistance passive.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Les silos résistent</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Design, développement, produit et business travaillent chacun dans leur coin. Les initiatives transverses échouent.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">La transformation s'arrête à la direction</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Les décisions sont prises au niveau stratégique mais ne se traduisent pas en changements concrets sur le terrain.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Ce que nous observons (fond default-alt) -->
+	<Section color="semantic-background-default-alt">
+		<div class="two-col-section">
+			<div class="two-col-left">
+				<Text as="h2" variant="heading-2">Ce que nous observons le plus souvent</Text>
+				<Stack gap={4}>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Les transformations qui échouent ne manquent pas de vision — elles manquent de traduction opérationnelle. L'ambition est là, mais les équipes ne savent pas comment changer concrètement leur façon de travailler.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Les outils sont déployés sans accompagnement, les formations sont déconnectées du quotidien, et la culture produit reste un mot dans un deck.
+					</Text>
+				</Stack>
+			</div>
+			<div class="two-col-right">
+				<List items={[
+					"La vision stratégique ne se traduit pas en actions concrètes",
+					"Les équipes manquent de compétences pour opérer la transformation",
+					"Les rituels de collaboration n'existent pas ou ne sont pas adaptés",
+					"Le transfert de compétences n'est pas structuré",
+					"La conduite du changement est traitée comme un lot séparé",
+				]} />
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Notre approche (fond blanc) -->
+	<Section color="semantic-background-default">
+		<div class="two-col-section">
+			<div class="two-col-left">
+				<Text as="h2" variant="heading-2">Notre approche</Text>
+				<Stack gap={4}>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Nous intervenons sur les leviers humains et organisationnels de la transformation — pas uniquement sur les outils. Chaque intervention vise l'autonomie des équipes.
+					</Text>
+				</Stack>
+				<Button as="a" href="/nos-methodes" variant="secondary">Voir nos méthodes</Button>
+			</div>
+			<div class="two-col-right">
+				<div class="posture-list">
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Montée en compétences</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Former les équipes sur les pratiques design, produit et collaboration — dans leur contexte réel, pas dans un cadre théorique.</Text>
+					</div>
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Rituels et culture produit</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Installer les rituels de collaboration, les boucles de feedback et la culture du test qui rendent les équipes autonomes.</Text>
+					</div>
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Transfert de compétences</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Chaque intervention se termine avec des équipes plus compétentes qu'au début. La documentation et les process survivent à la mission.</Text>
+					</div>
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Conduite du changement</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Accompagner les résistances, embarquer les parties prenantes et ancrer les changements dans la durée.</Text>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Ce que nous visons (fond default-alt) -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Les résultats que nous visons" titleVariant="heading-2">
+			<Fragment slot="subtitle">Chaque mission est pilotée par des indicateurs concrets, définis dès le cadrage.</Fragment>
+		</SectionHeader>
+		<div class="three-col-grid">
+			<div class="result-item">
+				<Text as="h3" variant="heading-6">Productivité</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Des équipes qui produisent plus vite parce qu'elles comprennent mieux — pas parce qu'elles travaillent plus.
+				</Text>
+			</div>
+			<div class="result-item">
+				<Text as="h3" variant="heading-6">Créativité</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Des équipes qui osent proposer, tester et itérer — parce que la culture le permet et que les rituels le soutiennent.
+				</Text>
+			</div>
+			<div class="result-item">
+				<Text as="h3" variant="heading-6">Fluidité organisationnelle</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Des silos qui s'ouvrent, des décisions qui circulent et des équipes qui collaborent naturellement.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Missions récentes -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Missions récentes">
+			<Fragment slot="subtitle">Des projets ambitieux, des équipes exigeantes, des résultats mesurables.</Fragment>
+		</SectionHeader>
+		<BusinessCases />
+	</Section>
+
+	<!-- CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Décrivez votre contexte de transformation.">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Un premier échange pour comprendre vos enjeux humains et organisationnels, et voir comment nous pouvons accompagner vos équipes.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true}>
+			<Button as="a" href={pages.contact.path}>Parler de ma transformation</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir toutes nos expertises</Button>
+		</Stack>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	@use "../../assets/styles/01-utils/functions" as *;
+
+	/* Differentiators grid - 2x2 */
+	.differentiators-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-8) var(--base-space-12);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.differentiator-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+
+	.differentiator-separator {
+		width: 100%;
+		height: 1px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+		margin-bottom: var(--base-space-4);
+	}
+
+	/* Two columns layout */
+	.two-col-section {
+		display: flex;
+		gap: var(--base-space-12, 48px);
+		width: 100%;
+		align-items: flex-start;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.two-col-left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-6, 24px);
+	}
+
+	.two-col-right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Posture list */
+	.posture-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-6, 24px);
+		width: 100%;
+	}
+
+	.posture-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-1, 4px);
+	}
+
+	/* Three columns grid */
+	.three-col-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-8);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.result-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+</style>

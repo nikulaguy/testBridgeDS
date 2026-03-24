@@ -37,7 +37,7 @@ const { frontmatter, page, usePageHeader = true, ...attrs } = Astro.props;
 					<MediaObject img={page.header.img} illustration={page.header.illustration}>
 						<PageHeader page={page} />
 						{ Astro.slots.has("page-header-cta") && (
-							<Stack axis="x" gap={4} wrap={true}>
+							<Stack axis="y" gap={4}>
 								<slot name="page-header-cta" />
 							</Stack>
 						)}

@@ -11,6 +11,7 @@ interface Props extends HTMLAttributes<"a"> {
 	label: string;
 	complementaryLabel?: string;
 	variant?: "inline" | "standalone" | "back";
+	indicator?: "none" | "right" | "left";
 	textStyle?: "body-1" | "body-2" | "subtitle" | "caption-1" | "caption-2";
 	href: string;
 	class?: string;
@@ -21,10 +22,14 @@ const {
 	complementaryLabel = "",
 	class: className,
 	variant = "inline",
+	indicator = "none",
 	textStyle = "body-1",
 	href,
 	...attrs
 } = Astro.props;
+
+const showRightIndicator = indicator === "right";
+const showLeftIndicator = indicator === "left";
 
 const isExternal = href.includes("https://") || attrs.target === "_blank";
 const computedLabel = `${label} ${complementaryLabel}`.trim();
@@ -39,8 +44,14 @@ const title = isExternal ? getExternalLinkLabel(computedLabel) : undefined;
 	{complementaryLabel && (
 		<VisuallyHidden label={complementaryLabel} />
 	)}
+  {showLeftIndicator && (
+    <Icon aria-hidden="true" name="arrow-left" color="currentColor" size="1.5em" />
+  )}
   {isExternal && (
     <VisuallyHidden label={externalLinkLabel} />
+    <Icon aria-hidden="true" name="link-arrow" color="currentColor" size="1.5em" />
+  )}
+  {showRightIndicator && !isExternal && (
     <Icon aria-hidden="true" name="link-arrow" color="currentColor" size="1.5em" />
   )}
 </a>

@@ -43,18 +43,18 @@ const services = await getCollectionSortedByOrder("services");
 					</Stack>
 
 					{service.id === "audit-conformite" && (
-						<Button as="a" href={pages.audits.path} variant="secondary">Découvrez nos audits</Button>
+						<Button as="a" href={pages.audits.path} variant="secondary">En savoir plus</Button>
 					)}
 				</MediaObject>
 			</Section>
 		);
 	})}
-	
+
   <Section color="semantic-background-default-alt">
 		<SectionHeader title="Questions fréquentes">
-			<Fragment slot="subtitle">Consultez les interrogations les plus courantes pour préparer sereinement votre transition vers un numérique inclusif.</Fragment>
+			<Fragment slot="subtitle">Les questions les plus courantes sur notre accompagnement.</Fragment>
 		</SectionHeader>
-		
+
     <Accordion sections={offerPageFaq} />
   </Section>
 

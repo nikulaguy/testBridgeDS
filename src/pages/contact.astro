@@ -9,24 +9,24 @@ import ContactForm from "../layouts/ContactForm.astro";
 import Layout from "../layouts/Layout.astro";
 import { pages } from "../site.config";
 
-const contactAnswserEngagements = [
+const commitments = [
 	"Nous vous recontactons sous 48h",
-	"Premier échange sans engagement",
-	"Vos données sont protégées",
+	"Premier échange gratuit et sans engagement",
+	"Un diagnostic personnalisé de vos enjeux",
 ];
 ---
 
 <Layout page={pages.contact}>
 	<Section condensed>
 		<Stack gap={4} class="u-full-width">
-			<Text as="h2" variant="heading-6">Échangez avec l'un de nos experts</Text>
+			<Text as="h2" variant="heading-6">Échangez avec un expert</Text>
 			<ContactExpertBanner />
-		</Stack>	
+		</Stack>
 	</Section>
 
 	<Section condensed color="semantic-background-default-alt">
 		<Stack gap={4}>
-			<Text as="h2" variant="heading-6" id="contact-form-title">Nous envoyer un message</Text>
+			<Text as="h2" variant="heading-6">Envoyez-nous un message</Text>
 			<ContactForm />
 		</Stack>
 	</Section>
@@ -34,18 +34,18 @@ const contactAnswserEngagements = [
 	<Section condensed>
 		<Stack gap={4}>
 			<Text as="h2" variant="heading-6">
-				Nos engagements pour vous répondre
+				Nos engagements
 			</Text>
 			<ul class="u-list-reset u-list-style:none">
-				{contactAnswserEngagements.map((engagement) => (
+				{commitments.map((commitment) => (
 					<Stack as="li" axis="x" gap={1}>
-						<Icon name="arrow-right" size="24" aria-hidden="true" />
-						<Text as="span" variant="body-2">{engagement}</Text>
+						<Icon name="arrow-right" size="24" />
+						<Text as="span" variant="body-2">{commitment}</Text>
 					</Stack>
 				))}
 				</ul>
 		</Stack>
-	
+
 		<Stack gap={4}>
 			<Text as="h2" variant="heading-6">Où nous trouver</Text>
 			<address>
@@ -56,7 +56,7 @@ const contactAnswserEngagements = [
 					target="_blank"
 					variant="standalone"
 					textStyle="body-2"
-				/>	
+				/>
 			</address>
 		</Stack>
 	</Section>

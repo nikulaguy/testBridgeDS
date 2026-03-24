@@ -18,10 +18,13 @@ import VisuallyHidden from "../VisuallyHidden.astro";
 
 const url = new URL(Astro.request.url);
 const articles = await getCollectionSortedByOrder("articles");
-const articlesLinks: MenuLink[] = articles.map(({ id, data: { title } }) => ({
-	path: `${pages.articles.path}/${id}`,
-	label: title,
-}));
+const excludedArticles = ["definition-accessibilite-numerique", "cadre-legal-accessibilite-numerique"];
+const articlesLinks: MenuLink[] = articles
+	.filter(({ id }) => !excludedArticles.includes(id))
+	.map(({ id, data: { title } }) => ({
+		path: `${pages.articles.path}/${id}`,
+		label: title,
+	}));
 
 const year = new Date().getFullYear();
 ---
@@ -32,7 +35,7 @@ const year = new Date().getFullYear();
     </div>
 
     <Text as="blockquote" variant="heading-5" class="l-footer__blockquote">
-      Nous rendons le numérique accessible à tous.
+      Love. Design. Dev.
     </Text>
 
     <nav role="navigation" aria-label="Menu secondaire">
@@ -51,15 +54,6 @@ const year = new Date().getFullYear();
             </li>
 					)
         }
-				<li class="l-footer__frontguys">
-					<Link
-						href="https://frontguys.fr"
-						label="Découvrez frontguys.fr"
-						target="_blank"
-						variant="standalone"
-						textStyle="caption-1"
-					/>
-				</li>
       </Stack>
     </nav>
 

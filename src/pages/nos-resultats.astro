@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+import imgTestimonialPhoto from "../assets/img/image-2034.png";
+
+import { Button } from "../components/Button/Button.tsx";
+import Card from "../components/Card/Card.astro";
+import CreateOpportunity from "../components/CreateOpportunity.astro";
+import List from "../components/List/List.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+
+const stats = [
+	{ value: "82", label: "missions" },
+	{ value: "35+", label: "clients accompagnés" },
+	{ value: "98%", label: "satisfaction client" },
+];
+
+const caseStudies = [
+	{
+		title: "Lefebvre Dalloz",
+		subtitle: "Refonte de l'expérience produit — Design system + composants React",
+		imgPath: "/src/assets/img/aspectRatio.png",
+		url: "/nos-resultats",
+	},
+	{
+		title: "Accor Groupe",
+		subtitle: "Audit & accompagnement design — Revue UX + guidelines",
+		imgPath: "/src/assets/img/aspectRatio-1.png",
+		url: "/nos-resultats",
+	},
+	{
+		title: "ODDO BHF",
+		subtitle: "Intégration design-code — Composants accessibles et scalables",
+		imgPath: "/src/assets/img/aspectRatio-2.png",
+		url: "/nos-resultats",
+	},
+];
+
+const sectorsData = [
+	{
+		title: "Finance & Assurance",
+		text: "ODDO BHF, Ardian, Generali — Design system, intégration front, produit.",
+		url: "/contact",
+	},
+	{
+		title: "Médias & Édition",
+		text: "Lefebvre Dalloz, Prisma Media — Product design, transformation, design ops.",
+		url: "/contact",
+	},
+	{
+		title: "Services & Industrie",
+		text: "Accor, Manutan, Scaleway — UX strategy, collaboration design/dev.",
+		url: "/contact",
+	},
+];
+---
+
+<Layout page={pages.results}>
+	<Fragment slot="page-header-cta">
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Parler à un expert</Button>
+		</Stack>
+	</Fragment>
+
+	<!-- Section 1: Stats Row -->
+	<Section>
+		<div class="stats-grid">
+			{stats.map(({ value, label }) => (
+				<Stack as="figure" role="figure" gap={2} align="center">
+					<Text as="span" variant="heading-2">{value}</Text>
+					<Text as="figcaption" variant="body-1" class="u-text-align:center">{label}</Text>
+				</Stack>
+			))}
+		</div>
+	</Section>
+
+	<!-- Section 2: Case Studies Grid -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Nos dernières collaborations" titleVariant="heading-2" />
+		<div class="grid grid--3col">
+			{caseStudies.map(({ title, subtitle, imgPath, url }) => (
+				<Card
+					variant="photo"
+					title={title}
+					subtitle={subtitle}
+					imgPath={imgPath}
+					url={url}
+				/>
+			))}
+		</div>
+	</Section>
+
+	<!-- Section 3: Testimonial Block -->
+	<Section>
+		<div class="testimonial">
+			<Stack gap={6}>
+				<Text as="p" variant="heading-6">Lefebvre Dalloz</Text>
+				<Text as="blockquote" variant="body-1" class="testimonial__quote">
+					"Frontguys a joué un rôle clé dans la transformation digitale de Lefebvre Dalloz. Leurs consultants ont su structurer une fonction Product Design solide, aligner des équipes très diverses et apporter une vraie vision produit à l'échelle du groupe.
+					Leur leadership, leur capacité à embarquer et leur exigence sur l'UX, le design system et l'accessibilité ont eu un impact concret, rapide et durable. Ils sont à la fois stratégique, opérationnel et profondément orienté utilisateurs."
+				</Text>
+				<Stack gap={4} axis="x" align="center">
+					<Image
+						src={imgTestimonialPhoto}
+						alt="Pauline De Certeau"
+						class="testimonial__avatar"
+						width={88}
+						height={88}
+					/>
+					<Stack gap={1}>
+						<Text as="cite" variant="heading-6">Pauline De Certeau</Text>
+						<Text variant="body-2">Directrice des produits digitaux</Text>
+						<Text variant="caption-1" color="semantic-foreground-subtle">Lefebvre Dalloz</Text>
+					</Stack>
+				</Stack>
+			</Stack>
+		</div>
+	</Section>
+
+	<!-- Section 4: Sectors of Intervention -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Secteurs d'intervention" titleVariant="heading-2" />
+		<div class="grid grid--3col">
+			{sectorsData.map(({ title, text, url }) => (
+				<Card variant="simple" title={title} subtitle={text} url={url} />
+			))}
+		</div>
+	</Section>
+
+	<!-- CTA Section -->
+	<CreateOpportunity />
+</Layout>
+
+<style lang="scss">
+	@use "../assets/styles/01-utils/functions" as *;
+
+	/* Grid layouts */
+	.grid {
+		display: grid;
+		width: 100%;
+		gap: var(--base-space-6);
+	}
+
+	.grid--3col {
+		grid-template-columns: repeat(3, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Stats grid */
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-8);
+		width: 100%;
+		text-align: center;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Testimonial */
+	.testimonial {
+		max-width: 100%;
+		width: 100%;
+		padding: var(--base-space-8);
+		border: 1px solid var(--semantic-border-subtle);
+		border-radius: var(--radius-medium);
+		background-color: var(--semantic-background-default);
+	}
+
+	.testimonial__quote {
+		font-style: normal;
+		line-height: 1.6;
+	}
+
+	.testimonial__avatar {
+		border-radius: var(--radius-circular);
+		object-fit: cover;
+		flex-shrink: 0;
+		width: 88px !important;
+		height: 88px !important;
+		max-width: 88px;
+		max-height: 88px;
+	}
+</style>

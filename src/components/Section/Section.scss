@@ -28,6 +28,20 @@
   }
 }
 
+.l-section--dark {
+	color: var(--fg-color, var(--core-rythm-grey-00));
+
+	// Override semantic foreground for all children
+	--semantic-foreground-default: var(--fg-color, var(--core-rythm-grey-00));
+	--semantic-foreground-subtle: var(--fg-muted, var(--core-rythm-grey-50));
+	--semantic-border-default: var(--core-rythm-grey-70);
+
+	// Card overrides on dark
+	.o-card {
+		border-color: var(--core-rythm-grey-70);
+	}
+}
+
 .l-section--condensed {
   --padding-inline: var(--page-padding-x);
 	display: flex;

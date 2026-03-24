@@ -1,0 +1,236 @@
+---
+import { Button } from "../components/Button/Button.tsx";
+import Badge from "../components/Badge/Badge.astro";
+import Link from "../components/Link/Link.astro";
+import List from "../components/List/List.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+---
+
+<Layout page={pages.convictions}>
+
+	<!-- Conviction 01 -->
+	<Section color="semantic-background-default" id="produits-numeriques">
+		<div class="conviction-block">
+			<div class="conviction-header">
+				<Text as="span" class="conviction-num">01</Text>
+				<Badge label="Produits numériques" class="badge-borderless" />
+			</div>
+			<div class="conviction-content">
+				<Text as="h3" variant="heading-3">Le design et le développement sont un levier business, pas une couche esthétique.</Text>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Notre lecture</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Trop d'organisations traitent le design comme une étape de finition — on produit d'abord, on embellit ensuite. Ce cadre produit des interfaces qui ne performent pas, des équipes frustrées et une dette d'interface qui ralentit tout le cycle.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Notre conviction est l'inverse : les décisions de design ont une dimension économique directe. Un parcours mal conçu coûte en conversion. Un composant mal pensé coûte en maintenance.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						C'est pourquoi chaque mission Frontguys est pilotée par des indicateurs partagés dès le cadrage.
+					</Text>
+				</Stack>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Ce que cela implique dans nos missions</Text>
+					<List
+						items={[
+							"Chaque mission démarre avec des critères de succès business",
+							"Nous rendons visibles les coûts des mauvaises décisions de design",
+							"Les résultats sont formulés en langage business, pas en langage design",
+							"Nous rendons chaque livraison défendable devant les équipes et le COMEX",
+						]}
+					/>
+				</Stack>
+
+				<Link href="/expertise" label="Voir l'expertise Produits numériques" variant="standalone" indicator="right" />
+			</div>
+		</div>
+	</Section>
+
+	<!-- Conviction 02 -->
+	<Section color="semantic-background-default-alt" id="process-design-dev">
+		<div class="conviction-block">
+			<div class="conviction-header">
+				<Text as="span" class="conviction-num">02</Text>
+				<Badge label="Process design/dev" class="badge-borderless" />
+			</div>
+			<div class="conviction-content">
+				<Text as="h3" variant="heading-3">La collaboration interdisciplinaire crée la qualité et accélère la production.</Text>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Notre lecture</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Les frictions entre design et développement ne sont pas des problèmes techniques. Ce sont des problèmes organisationnels — de langage, de synchronisation, de décisions prises trop tôt ou trop tard dans le cycle.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Quand designers et développeurs partagent les mêmes définitions (tokens, standards, artefacts de handoff), le nombre d'allers-retours s'effondre.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Frontguys intervient toujours sur cette interface entre design et développement. Jamais d'un seul côté.
+					</Text>
+				</Stack>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Ce que cela implique dans nos missions</Text>
+					<List
+						items={[
+							"Nous réunissons toujours designers et développeurs dans le périmètre de mission",
+							"Nous commençons par aligner les définitions communes avant de produire",
+							"Les allers-retours sont traités comme des symptômes organisationnels",
+							"Nous documentons les conventions de collaboration pour qu'elles survivent à la mission",
+						]}
+					/>
+				</Stack>
+
+				<Link href="/expertise" label="Voir l'expertise Process Design/Dev" variant="standalone" indicator="right" />
+			</div>
+		</div>
+	</Section>
+
+	<!-- Conviction 03 -->
+	<Section color="semantic-background-default" id="design-systems">
+		<div class="conviction-block">
+			<div class="conviction-header">
+				<Text as="span" class="conviction-num">03</Text>
+				<Badge label="Design systems" class="badge-borderless" />
+			</div>
+			<div class="conviction-content">
+				<Text as="h3" variant="heading-3">Les outils et les process doivent servir les équipes qui les utilisent.</Text>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Notre lecture</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Un design system non adopté ne vaut rien. L'adoption n'est pas un problème de communication ou de formation, c'est un problème de conception.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Si un outil n'est pas utilisé, c'est qu'il n'a pas été conçu avec ceux qui vont l'utiliser. Notre conviction est que l'adoption se prépare dès la conception, pas après la livraison.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Cela change radicalement notre façon de construire les design systems : on part des workflows existants, pas d'une architecture idéale.
+					</Text>
+				</Stack>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Ce que cela implique dans nos missions</Text>
+					<List
+						items={[
+							"Nous co-concevons tous les outils avec les équipes qui vont les utiliser",
+							"L'adoption fait partie du périmètre de la mission, pas d'un lot suivant",
+							"Nous mesurons le succès d'un design system à son taux d'utilisation réel",
+							"La gouvernance est aussi importante que les fondations",
+						]}
+					/>
+				</Stack>
+
+				<Link href="/expertise" label="Voir l'expertise Design System" variant="standalone" indicator="right" />
+			</div>
+		</div>
+	</Section>
+
+	<!-- Conviction 04 -->
+	<Section color="semantic-background-default-alt" id="transformation">
+		<div class="conviction-block">
+			<div class="conviction-header">
+				<Text as="span" class="conviction-num">04</Text>
+				<Badge label="Transformation" class="badge-borderless" />
+			</div>
+			<div class="conviction-content">
+				<Text as="h3" variant="heading-3">L'impact du design se mesure, se partage et se pilote.</Text>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Notre lecture</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						L'impact du design n'est pas abstrait. Vélocité de delivery, taux de rétention, cohérence perçue, ces indicateurs existent. Ils peuvent être définis en amont, mesurés en cours de mission, partagés en COMEX.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Notre conviction est que cette visibilité n'est pas un luxe. C'est une condition pour que le design soit traité comme un levier stratégique et non comme un poste de coût.
+					</Text>
+				</Stack>
+
+				<Stack gap={4}>
+					<Text as="h3" variant="subtitle" class="conviction-subtitle">Ce que cela implique dans nos missions</Text>
+					<List
+						items={[
+							"Chaque mission définit des indicateurs de succès avant de commencer",
+							"Nous construisons des tableaux de bord partagés — lisibles pour les équipes et la direction",
+							"Nous mesurons l'impact avec les indicateurs de vos équipes produit",
+							"La dette d'interface est traitée comme une dette technique",
+						]}
+					/>
+				</Stack>
+
+				<Link href="/expertise" label="Voir l'expertise Transformation" variant="standalone" indicator="right" />
+			</div>
+		</div>
+	</Section>
+
+	<!-- CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Ces convictions résonnent avec votre contexte ?">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Parlons de la façon dont elles se traduiraient concrètement dans votre organisation.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir nos expertises</Button>
+		</Stack>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	@use "../assets/styles/01-utils/functions" as *;
+
+	/* Conviction block layout — 2 columns */
+	.conviction-block {
+		display: flex;
+		flex-direction: row;
+		gap: var(--base-space-10, 40px);
+		width: 100%;
+		align-items: flex-start;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.conviction-header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--base-space-2, 8px);
+		flex-shrink: 0;
+		width: 160px;
+	}
+
+	.conviction-num {
+		font-family: "Reddit Sans", sans-serif;
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 1;
+		color: var(--semantic-foreground-alternative, #00b5c0);
+	}
+
+	.conviction-content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-8, 32px);
+		min-width: 0;
+	}
+
+	.conviction-subtitle {
+		text-transform: uppercase;
+		color: var(--semantic-brand-primary, #004c61);
+	}
+
+	.badge-borderless {
+		border: none;
+		padding-inline: 0;
+	}
+</style>

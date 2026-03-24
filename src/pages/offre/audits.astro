@@ -13,18 +13,16 @@ import { getCollectionSortedByOrder } from "../../utils/collection.utils";
 
 const auditMethods = await getCollectionSortedByOrder("auditsMethod");
 const audits = await getCollectionSortedByOrder("audits");
-const auditsWithCompliance = audits.filter((audit) => audit.data.compliance);
-const auditsWithoutCompliance = audits.filter(
-	(audit) => !audit.data.compliance,
-);
+const auditsDesign = audits.filter((audit) => audit.data.type === "design");
+const auditsProduct = audits.filter((audit) => audit.data.type === "product");
 ---
 
 <Layout page={pages.audits}>
-	<Section aria-label="Nos audits d'accessibilité">
-		<Text as="h2" variant="heading-3">Audits de conformité RGAA</Text>
+	<Section aria-label="Nos audits design et produit">
+		<Text as="h2" variant="heading-3">Audits design & système de design</Text>
 
 		<div class="grid" style="--max-cols-per-row: 2;">
-			{ auditsWithCompliance.map((audit) => (
+			{ auditsDesign.map((audit) => (
 				<Card variant="freeform" title={audit.data.title}>
 					<Stack set:html={audit.rendered?.html} gap={4} class="text-body-1" />
 					<List title="Idéal pour :" items={audit.data.arguments} />
@@ -32,10 +30,10 @@ const auditsWithoutCompliance = audits.filter(
 			))}
 		</div>
 
-		<Text as="h2" variant="heading-3">Audits complémentaires</Text>
+		<Text as="h2" variant="heading-3">Audits produit & UX</Text>
 
 		<div class="grid">
-			{ auditsWithoutCompliance.map((audit) => (
+			{ auditsProduct.map((audit) => (
 				<Card variant="freeform" title={audit.data.title}>
 					<Stack set:html={audit.rendered?.html} gap={4} class="text-body-1" />
 					<List title="Idéal pour :" items={audit.data.arguments} />
@@ -43,14 +41,14 @@ const auditsWithoutCompliance = audits.filter(
 			))}
 		</div>
 
-		<Text as="h2" variant="heading-3">Demandez conseil à notre expert en accessibilité</Text>
+		<Text as="h2" variant="heading-3">Rencontrez notre expert en design & produit</Text>
 
 		<ContactExpertBanner />
 	</Section>
 
 	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Comment se déroule un audit d'accessibilité ?">
-			<Fragment slot="subtitle">L’audit d’accessibilité, qu’il soit pour une mise en conformité ou pour une évaluation de surface, se déroule toujours de la même manière.</Fragment>
+		<SectionHeader title="Comment se déroule un audit design & produit ?">
+			<Fragment slot="subtitle">Nos audits design et produit suivent une méthodologie structurée pour évaluer la cohérence, l’efficacité et la scalabilité de votre interface utilisateur.</Fragment>
 		</SectionHeader>
 
 		<ol class="grid">

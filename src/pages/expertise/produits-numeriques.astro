@@ -1,0 +1,324 @@
+---
+import { Button } from "../../components/Button/Button.tsx";
+import BusinessCases from "../../components/BusinessCases.astro";
+import Link from "../../components/Link/Link.astro";
+import List from "../../components/List/List.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { pages } from "../../site.config";
+---
+
+<Layout page={pages.expertiseProduitsNumeriques}>
+	<Fragment slot="page-header-cta">
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir toutes nos expertises</Button>
+		</Stack>
+	</Fragment>
+
+	<!-- Section: Symptômes (fond blanc) -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Vous reconnaissez ces symptômes ?" titleVariant="heading-2">
+			<Fragment slot="subtitle">Si l'un de ces signaux vous parle, cette expertise est faite pour vous.</Fragment>
+		</SectionHeader>
+		<div class="differentiators-grid">
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Votre produit est peu adopté</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Les utilisateurs ne reviennent pas, les métriques stagnent et les équipes ne comprennent pas pourquoi.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Vos parcours sous-performent</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Les taux de conversion, de rétention ou d'engagement sont en dessous des objectifs — sans diagnostic clair.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Les arbitrages sont fragiles</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Les décisions produit se prennent au feeling, sans données ni critères partagés entre les parties prenantes.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">La qualité perçue déçoit</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					L'interface ne reflète pas la valeur réelle du produit. Les utilisateurs jugent avant même d'essayer.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Ce que nous observons (fond default-alt) -->
+	<Section color="semantic-background-default-alt">
+		<div class="two-col-section">
+			<div class="two-col-left">
+				<Text as="h2" variant="heading-2">Ce que nous observons le plus souvent</Text>
+				<Stack gap={4}>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						La plupart des produits numériques qui stagnent ne souffrent pas d'un manque de fonctionnalités — mais d'un manque de cadrage, d'alignement ou de qualité d'exécution.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Le design est traité comme une couche esthétique, les décisions produit manquent de données, et les équipes avancent sans critères de succès partagés.
+					</Text>
+				</Stack>
+			</div>
+			<div class="two-col-right">
+				<List items={[
+					"Les besoins utilisateurs ne sont pas validés — ils sont supposés",
+					"Le cadrage stratégique est absent ou insuffisant",
+					"Les décisions de design n'ont pas d'impact mesurable",
+					"Les parcours critiques ne sont pas optimisés",
+					"La qualité d'interface n'est pas au niveau de la promesse produit",
+				]} />
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Comment nous intervenons (fond blanc) -->
+	<Section color="semantic-background-default">
+		<div class="two-col-section">
+			<div class="two-col-left">
+				<Text as="h2" variant="heading-2">Comment nous intervenons</Text>
+				<Stack gap={4}>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Nous intervenons sur tout le cycle produit — du cadrage à l'amélioration continue. Chaque étape est pilotée par un objectif SMART défini en amont.
+					</Text>
+				</Stack>
+				<Button as="a" href="/nos-methodes" variant="secondary">Voir nos méthodes</Button>
+			</div>
+			<div class="two-col-right">
+				<div class="step-indicator">
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">1</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Cadrage</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Comprendre le contexte, les enjeux business et définir les critères de succès.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">2</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Research & priorisation</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Valider les besoins utilisateurs, identifier les leviers à fort impact et prioriser.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">3</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Conception</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Designer les parcours, les interfaces et les interactions avec les équipes.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">4</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Mise en qualité</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Intégrer, tester, mesurer et itérer jusqu'à atteindre les objectifs définis.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot"><span>5</span></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Amélioration continue</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Analyser les résultats, ajuster et transférer les compétences aux équipes.</Text>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Ce que nous visons (fond default-alt) -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Les résultats que nous visons" titleVariant="heading-2">
+			<Fragment slot="subtitle">Chaque mission est pilotée par des indicateurs concrets, définis dès le cadrage.</Fragment>
+		</SectionHeader>
+		<div class="three-col-grid">
+			<div class="result-item">
+				<Text as="h3" variant="heading-6">Adoption</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Des parcours qui répondent aux vrais besoins utilisateurs — mesurés par les taux d'activation, de rétention et de satisfaction.
+				</Text>
+			</div>
+			<div class="result-item">
+				<Text as="h3" variant="heading-6">Performance</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Des interfaces qui convertissent, engagent et performent — avec des indicateurs partagés entre design, produit et business.
+				</Text>
+			</div>
+			<div class="result-item">
+				<Text as="h3" variant="heading-6">Vélocité</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Des cycles de conception et de livraison plus courts — grâce à un cadrage solide et des process de collaboration efficaces.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Missions récentes -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Missions récentes">
+			<Fragment slot="subtitle">Des projets ambitieux, des équipes exigeantes, des résultats mesurables.</Fragment>
+		</SectionHeader>
+		<BusinessCases />
+	</Section>
+
+	<!-- CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Parlons de votre produit et de ce qui le freine.">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Un premier échange pour poser le problème, comprendre votre contexte et voir comment nous pouvons intervenir.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true}>
+			<Button as="a" href={pages.contact.path}>Parler de mon produit</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir toutes nos expertises</Button>
+		</Stack>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	@use "../../assets/styles/01-utils/functions" as *;
+
+	/* Differentiators grid - 2x2 */
+	.differentiators-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-8) var(--base-space-12);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.differentiator-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+
+	.differentiator-separator {
+		width: 100%;
+		height: 1px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+		margin-bottom: var(--base-space-4);
+	}
+
+	/* Two columns layout */
+	.two-col-section {
+		display: flex;
+		gap: var(--base-space-12, 48px);
+		width: 100%;
+		align-items: flex-start;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.two-col-left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-6, 24px);
+	}
+
+	.two-col-right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Step indicator */
+	.step-indicator {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-3, 12px);
+		width: 100%;
+		max-width: 480px;
+	}
+
+	.step {
+		display: flex;
+		gap: var(--base-space-4, 16px);
+		align-items: flex-start;
+	}
+
+	.step-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 20px;
+		flex-shrink: 0;
+	}
+
+	.step-dot {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		border-radius: var(--radius-full, 9999px);
+		background-color: var(--semantic-background-accent, #004c61);
+		color: var(--core-rythm-grey-00, white);
+		font-family: "Reddit Sans", sans-serif;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1.4;
+		flex-shrink: 0;
+	}
+
+	.step-connector {
+		width: 2px;
+		height: 37px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+	}
+
+	.step-content {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-1, 4px);
+		flex: 1;
+		min-width: 0;
+	}
+
+	/* Three columns grid */
+	.three-col-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-8);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.result-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+</style>

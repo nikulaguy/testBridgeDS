@@ -1,0 +1,332 @@
+---
+import { Button } from "../components/Button/Button.tsx";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+---
+
+<Layout page={pages.methods}>
+	<Fragment slot="page-header-cta">
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/pourquoi-frontguys" variant="secondary">Voir nos convictions</Button>
+		</Stack>
+	</Fragment>
+
+	<!-- Section: Nos principes de pilotage (fond blanc) -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Nos principes de pilotage" titleVariant="heading-2">
+			<Fragment slot="subtitle">Ces 4 principes s'appliquent à chaque mission, quel que soit le contexte.</Fragment>
+		</SectionHeader>
+		<div class="differentiators-grid">
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Objectif SMART défini en amont</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Pas de mission sans critères de succès partagés — ce qui se mesure s'améliore.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Gouvernance claire dès le premier jour</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Rôles, fréquences de synchro, points de décision définis avant de produire.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Visibilité totale sur l'avancement</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Vous savez à tout moment où en est la mission, ce qui a été produit et ce qui reste.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Pilotage par l'impact, pas par les livrables</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Les livrables sont des moyens — l'objectif est toujours le résultat mesurable.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Les 4 premières étapes (fond default-alt) -->
+	<Section color="semantic-background-default-alt">
+		<div class="two-col-section">
+			<div class="two-col-left">
+				<Text as="h2" variant="heading-2">Les 4 premières étapes de chaque mission</Text>
+				<Stack gap={4}>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Avant d'intervenir, nous prenons le temps de comprendre votre contexte réel — pas seulement ce qui est demandé, mais pourquoi c'est demandé et ce qui a déjà été essayé.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Ce cadrage initial est la fondation de tout. Une mission mal cadrée produit des livrables corrects qui ne résolvent pas le vrai problème.
+					</Text>
+				</Stack>
+			</div>
+			<div class="two-col-right">
+				<div class="step-indicator">
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">1</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Comprendre le contexte, les enjeux et les contraintes réelles. Rencontrer les équipes concernées.</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Description étape 1</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">2</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Définir l'objectif SMART, les critères de succès et le périmètre exact de la mission.</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Description étape 2</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">3</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Identifier les leviers à fort impact. Décider ce qu'on fait d'abord et pourquoi.</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Description étape 3</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">4</div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Structurer l'intervention avec des jalons clairs, une gouvernance définie et une visibilité partagée.</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Description étape 4</Text>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Notre posture dans vos équipes (fond blanc) -->
+	<Section color="semantic-background-default">
+		<div class="two-col-section">
+			<div class="two-col-left">
+				<Text as="h2" variant="heading-2">Notre posture dans vos équipes</Text>
+				<Stack gap={4}>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Frontguys n'arrive pas avec une solution préfabriquée. Nous partons de votre contexte, de vos contraintes et de vos équipes telles qu'elles sont.
+					</Text>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Notre objectif n'est pas de rester — c'est de rendre vos équipes plus autonomes à la fin de la mission qu'elles ne l'étaient au début.
+					</Text>
+				</Stack>
+			</div>
+			<div class="two-col-right">
+				<div class="posture-list">
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Intégration rapide</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Opérationnel dans les équipes dès la première semaine.</Text>
+					</div>
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Humilité</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Nous ne venons pas en experts qui savent déjà — nous co-construisons avec vos équipes.</Text>
+					</div>
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Transparence</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Nous partageons chaque chose que nous trouvons, même si c'est inconfortable.</Text>
+					</div>
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Transfert systématique</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Chaque décision est documentée, chaque outil formé, chaque process expliqué.</Text>
+					</div>
+					<div class="posture-item">
+						<Text as="h3" variant="heading-6">Standard adaptatif</Text>
+						<Text variant="body-2" color="semantic-foreground-subtle">Notre méthode est une base, pas un carcan — elle s'adapte à votre culture.</Text>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Ce que le pilotage par la valeur change (fond default-alt) -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Ce que le pilotage par la valeur change" titleVariant="heading-2" />
+		<div class="three-col-grid">
+			<div class="value-change-item">
+				<Text as="h3" variant="heading-6">Clarté</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Vous savez à tout moment ce qui est produit, ce qui a changé et ce qui reste. Pas de zone grise entre les sprints.
+				</Text>
+			</div>
+			<div class="value-change-item">
+				<Text as="h3" variant="heading-6">Confiance</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Les décisions sont prises avec vous, pas pour vous. Vous gardez la main sur les arbitrages stratégiques.
+				</Text>
+			</div>
+			<div class="value-change-item">
+				<Text as="h3" variant="heading-6">Impact mesurable</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					La valeur produite est visible, partageable et défendable — devant vos équipes, votre direction ou votre COMEX.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Commençons par un cadrage — pas par une proposition commerciale.">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Un premier échange pour poser le problème, le contexte et voir si notre méthode correspond à votre situation.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true}>
+			<Button as="a" href={pages.contact.path} variant="secondary">Parler à un expert</Button>
+			<Button as="a" href={pages.contact.path}>Demandez un diagnostic</Button>
+		</Stack>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	@use "../assets/styles/01-utils/functions" as *;
+
+	/* Differentiators grid - 2x2 */
+	.differentiators-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-8) var(--base-space-12);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.differentiator-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+
+	.differentiator-separator {
+		width: 100%;
+		height: 1px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+		margin-bottom: var(--base-space-4);
+	}
+
+	/* Two columns layout */
+	.two-col-section {
+		display: flex;
+		gap: var(--base-space-12, 48px);
+		width: 100%;
+		align-items: flex-start;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.two-col-left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-6, 24px);
+	}
+
+	.two-col-right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Step indicator */
+	.step-indicator {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-3, 12px);
+		width: 100%;
+		max-width: 480px;
+	}
+
+	.step {
+		display: flex;
+		gap: var(--base-space-4, 16px);
+		align-items: flex-start;
+	}
+
+	.step-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 20px;
+		flex-shrink: 0;
+	}
+
+	.step-dot {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		border-radius: var(--radius-full, 9999px);
+		background-color: var(--semantic-background-accent, #004c61);
+		color: var(--core-rythm-grey-00, white);
+		font-family: "Reddit Sans", sans-serif;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1.4;
+		flex-shrink: 0;
+	}
+
+	.step-connector {
+		width: 2px;
+		height: 37px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+	}
+
+	.step-content {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-1, 4px);
+		flex: 1;
+		min-width: 0;
+	}
+
+	/* Posture list */
+	.posture-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-6, 24px);
+		width: 100%;
+	}
+
+	.posture-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-1, 4px);
+	}
+
+	/* Three columns grid */
+	.three-col-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-8);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.value-change-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+</style>

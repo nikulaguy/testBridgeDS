@@ -1,0 +1,85 @@
+---
+import Card from "../components/Card/Card.astro";
+import CreateOpportunity from "../components/CreateOpportunity.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+---
+
+<Layout page={pages.resources}>
+	<!-- Section 1: Guides & ressources -->
+	<Section>
+		<SectionHeader title="Guides & ressources">
+			<Fragment slot="subtitle">Des contenus pour accélérer votre transformation.</Fragment>
+		</SectionHeader>
+		<div class="grid grid--3col">
+			<Card
+				variant="simple"
+				title="Structurer un design system"
+				subtitle="Guide complet pour poser les fondations d'un design system modulaire et gouverné."
+				url="/guide-design-system"
+			/>
+			<Card
+				variant="simple"
+				title="Collaboration design/dev"
+				subtitle="Les rituels, outils et bonnes pratiques pour fluidifier le handoff."
+				url="/ressources"
+			/>
+			<Card
+				variant="simple"
+				title="Product design & impact"
+				subtitle="Comment mesurer l'impact du design sur les résultats business."
+				url="/ressources"
+			/>
+		</div>
+	</Section>
+
+	<!-- Section 2: Formations -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Formations">
+			<Fragment slot="subtitle">Montez en compétence avec nos parcours certifiés.</Fragment>
+		</SectionHeader>
+		<div class="grid grid--2x2">
+			<Card
+				variant="simple"
+				title="Design system"
+				subtitle="Construire, gouverner et faire adopter un design system."
+				url="/formations"
+			/>
+			<Card
+				variant="simple"
+				title="Product design"
+				subtitle="Cadrage, conception et amélioration continue de vos produits numériques."
+				url="/formations"
+			/>
+		</div>
+	</Section>
+
+	<!-- CTA Section -->
+	<CreateOpportunity />
+</Layout>
+
+<style lang="scss">
+	.grid {
+		display: grid;
+		width: 100%;
+		gap: var(--base-space-6);
+	}
+
+	.grid--3col {
+		grid-template-columns: repeat(3, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.grid--2x2 {
+		grid-template-columns: repeat(2, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

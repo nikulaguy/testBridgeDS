@@ -64,12 +64,12 @@ type SocialLink = Pick<Page, "path" | "label"> & {
 	icon: FunctionComponent;
 };
 
-export const siteName = "Frontguys - Accessibilité numérique";
+export const siteName = "Frontguys";
 export const siteDescription =
-	"Expertise, conseil et accompagnement pour créer des expériences numériques accessibles.";
+	"Conseil, design et développement front pour accélérer votre transformation digitale.";
 
 export const guideBookPath =
-	"/pdf/guide-gratuit-accessibilite-numerique-frontguys.pdf";
+	"/pdf/guide-design-system-frontguys.pdf";
 
 export const contactExpertPath =
 	"https://calendly.com/hamza-frontguys/votre-besoin";
@@ -92,56 +92,56 @@ export const pages: Record<string, Page> = {
 		path: "/",
 		label: "Accueil",
 		meta: {
-			description: siteDescription,
+			description: "Frontguys réunit des experts stratégiques, design et développement front pour résoudre ce qui freine vraiment vos équipes.",
 		},
 		header: {
-			title: "Nous intégrons l'accessibilité dans votre quotidien",
-			surtitle: "Conseil & formation",
+			title: "Des objectifs clairs.\nDes organisations fluides.\nDes produits robustes.",
+			surtitle: "Conseil & accompagnement",
 			subtitle:
-				"Profitez de nos méthodes et ressources pour concevoir des expériences utilisables par tous et toutes.",
-			img: imgHeroSectionHome,
+				"Frontguys réunit des experts stratégiques, design et développement front pour résoudre ce qui freine vraiment vos équipes : cadrage stratégique, alignement, innovation et industrialisation.",
+			illustration: "HandHero",
 		},
 	},
 	challenges: {
 		path: "/enjeux",
 		label: "Enjeux",
 		header: {
-			title: "Nous donnons du sens grâce à l'accessibilité",
-			surtitle: "Enjeux de l’accessibilité",
+			title: "Les freins que rencontrent vos équipes au quotidien",
+			surtitle: "Vos enjeux",
 			subtitle:
-				"Améliorez l'expérience de tous vos utilisateurs, sans exception.",
+				"Des produits qui stagnent, des équipes qui peinent à collaborer, des résultats difficiles à mesurer. Nous connaissons ces enjeux.",
 			img: imgHeroSectionChallenges,
 		},
 	},
 	expertise: {
 		path: "/expertise",
-		label: "Expertise",
+		label: "Expertises",
 		header: {
-			title: "Nous structurons votre démarche d'accessibilité numérique",
-			surtitle: "Expertise",
+			title: "Quatre expertises\nau service de la clarté,\nla qualité, la fluidité\net l'impact.",
+			surtitle: "Nos expertises",
 			subtitle:
-				"Sécurisez la conformité de vos produits. Nous vous accompagnons à chaque étape stratégique.",
-			img: imgHeroSectionExpertise,
+				"Frontguys intervient sur les leviers qui freinent vraiment vos équipes — produit, collaboration, design system, transformation.\nToujours avec des profils seniors, toujours avec un impact mesurable.",
+			illustration: "PencilHero",
 		},
 	},
 	offer: {
 		path: "/offre",
 		label: "Offre",
 		header: {
-			title: "Nous calibrons l'accompagnement idéal",
-			surtitle: "Offre",
+			title: "Un accompagnement calibré à vos besoins",
+			surtitle: "Notre offre",
 			subtitle:
-				"Avancez à votre rythme. Quel que soit votre niveau de maturité, accédez à des offres concrètes ou bâtissons ensemble un programme 100 % sur mesure.",
+				"Diagnostic, audit, design system, produit numérique, formation. Chaque mission est construite sur mesure.",
 			img: imgHeroSectionOffer,
 		},
 	},
 	audits: {
 		path: "/offre/audits",
-		label: "Nos audits d'accessibilité",
+		label: "Nos audits design & produit",
 		header: {
-			title: "Nos audits d’accessibilité et de conformité",
+			title: "Audits design, produit et organisation",
 			subtitle:
-				"Mettez vos services en conformité avec le RGAA en les auditant et en créant une stratégie de remédiation réaliste et efficace.",
+				"Un état des lieux rigoureux de vos pratiques design, de votre stack front et de vos process de collaboration.",
 			illustration: "illustration-developpement",
 			backLink: {
 				label: "Notre offre",
@@ -153,10 +153,10 @@ export const pages: Record<string, Page> = {
 		path: "/formations",
 		label: "Formations",
 		header: {
-			title: "Nous accompagnons votre montée en compétence",
+			title: "Faites monter vos équipes en compétence",
 			surtitle: "Formations",
 			subtitle:
-				"Accélérez votre montée en compétence avec notre organisme certifié Qualiopi. Bénéficiez d'un accompagnement sur mesure, pensé pour s'intégrer naturellement à vos process de production, vos outils et vos contextes métiers.",
+				"Design system, product design, collaboration design/dev : des formations pensées pour s’intégrer à vos process et vos outils.",
 			img: imgHeroSectionTrainings,
 		},
 	},
@@ -166,17 +166,17 @@ export const pages: Record<string, Page> = {
 		header: {
 			title: "Formation sur-mesure adaptée à votre organisation",
 			subtitle:
-				"Chez vous ou dans nos locaux, nous créons avec vous un cursus unique qui s'intègre parfaitement à vos flux de travail et à vos contraintes techniques.",
+				"Nous créons avec vous un cursus unique qui s'intègre parfaitement à vos flux de travail et à vos contraintes techniques.",
 		},
 	},
 	businessCases: {
 		path: "/cas-clients",
 		label: "Cas clients",
 		header: {
-			title: "Nous rendons l'accessibilité opérationnelle",
-			surtitle: "Cas clients",
+			title: "Ce que nous faisons ensemble",
+			surtitle: "Cas & preuves",
 			subtitle:
-				"Visualisez l'impact de notre accompagnement. De l'audit stratégique à la mise en conformité technique, découvrez comment nous apportons des réponses précises aux problématiques de nos clients.",
+				"Des projets ambitieux, des équipes exigeantes, des résultats mesurables. Découvrez nos dernières collaborations.",
 			illustration: "illustration-design",
 		},
 	},
@@ -184,9 +184,9 @@ export const pages: Record<string, Page> = {
 		path: "/contact",
 		label: "Contactez-nous",
 		header: {
-			title: "Envoyez-nous un message",
+			title: "Parlons de votre projet",
 			surtitle: "Contactez-nous",
-			subtitle: "Nous diagnostiquons gratuitement vos enjeux d'accessibilité.",
+			subtitle: "Un premier échange gratuit pour identifier vos enjeux et vous orienter.",
 		},
 		skipLinks: [
 			{
@@ -204,13 +204,13 @@ export const pages: Record<string, Page> = {
 		},
 	},
 	guideBook: {
-		path: "/guide-gratuit-accessibilite-numerique",
-		label: "Guide gratuit de l'accessibilité numérique",
+		path: "/guide-design-system",
+		label: "Guide Design System",
 		header: {
-			title: "Nous transformons l'accessibilité en levier de performance",
-			surtitle: "Guide de l’accessibilité numérique",
+			title: "Le guide pour structurer votre design system",
+			surtitle: "Ressource gratuite",
 			subtitle:
-				"Faites de la mise en conformité une opportunité. Téléchargez notre guide pour découvrir comment transformer vos obligations réglementaires en véritables avantages concurrentiels et structurer une démarche durable.",
+				"Téléchargez notre guide pour construire un design system modulaire, gouverné et adopté par vos équipes.",
 		},
 	},
 	articles: {
@@ -265,6 +265,117 @@ export const pages: Record<string, Page> = {
 			title: "Styleguide",
 		},
 	},
+	whyFrontguys: {
+		path: "/pourquoi-frontguys",
+		label: "Pourquoi Frontguys",
+		header: {
+			title: "Pour plus de clarté, plus de confiance, plus d'efficacité, plus de d'impact.",
+			surtitle: "Pourquoi Frontguys",
+			subtitle:
+				"Frontguys réunit stratégie, design et développement pour renforcer la maturité de vos équipes, industrialiser la cohérence de vos interfaces et créer des expériences durables.",
+			illustration: "ScreenHero",
+		},
+	},
+	convictions: {
+		path: "/nos-convictions",
+		label: "Nos convictions",
+		header: {
+			title: "Ce en quoi nous croyons — et pourquoi cela change nos missions.",
+			surtitle: "Nos convictions",
+			subtitle:
+				"Ces quatre convictions ne sont pas des principes posés sur une slide. Elles guident chaque arbitrage dans nos missions — de la première réunion de cadrage à la dernière livraison.",
+		},
+	},
+	methods: {
+		path: "/nos-methodes",
+		label: "Nos méthodes",
+		header: {
+			title: "Nous pilotons par la valeur, pas par l'activité.",
+			surtitle: "Nos méthodes",
+			subtitle:
+				"Chaque mission Frontguys démarre par un objectif SMART défini ensemble, se pilote avec une gouvernance claire et se mesure avec des indicateurs partagés. Vous voyez ce qui est produit, pas seulement ce qui est livré.",
+			illustration: "ScreenHero",
+		},
+	},
+	results: {
+		path: "/nos-resultats",
+		label: "Nos résultats",
+		header: {
+			title: "Nos résultats",
+			surtitle: "Cas & preuves",
+			subtitle:
+				"Des projets ambitieux, des équipes exigeantes, des résultats mesurables.",
+		},
+	},
+	resources: {
+		path: "/ressources",
+		label: "Ressources",
+		header: {
+			title: "Ressources",
+			subtitle:
+				"Articles, guides et outils pour accélérer votre transformation.",
+		},
+	},
+	expertiseProduitsNumeriques: {
+		path: "/expertise/produits-numeriques",
+		label: "Produits numériques performants",
+		header: {
+			title: "Aligner besoins utilisateurs, stratégie d'entreprise et impact mesurable.",
+			surtitle: "Expertise — Produits numériques",
+			subtitle:
+				"Nous intervenons sur les produits numériques qui stagnent, sous-performent ou peinent à trouver leur marché. Cadrage, conception, mise en qualité, amélioration continue.",
+			illustration: "PencilHero",
+			backLink: {
+				label: "Nos expertises",
+				href: "/expertise",
+			},
+		},
+	},
+	expertiseProcessDesignDev: {
+		path: "/expertise/process-design-dev",
+		label: "Process de collaboration design/dev",
+		header: {
+			title: "La qualité et la vitesse se jouent dans la collaboration entre design et développement.",
+			surtitle: "Expertise — Process design/dev",
+			subtitle:
+				"Nous identifions et éliminons les frictions entre vos équipes design et développement. Rituels, flux de handoff, standards partagés, gouvernance.",
+			illustration: "PencilHero",
+			backLink: {
+				label: "Nos expertises",
+				href: "/expertise",
+			},
+		},
+	},
+	expertiseDesignSystems: {
+		path: "/expertise/design-systems",
+		label: "Design systems modulaires",
+		header: {
+			title: "Un design system modulaire et accessible qui accélère vraiment la production.",
+			surtitle: "Expertise — Design systems",
+			subtitle:
+				"Nous construisons, consolidons ou relançons votre design system — avec une obsession : qu'il soit réellement adopté par vos équipes.",
+			illustration: "PencilHero",
+			backLink: {
+				label: "Nos expertises",
+				href: "/expertise",
+			},
+		},
+	},
+	expertiseTransformation: {
+		path: "/expertise/transformation",
+		label: "Transformation & accompagnement",
+		header: {
+			title: "Renforcer la collaboration humaine pour rendre les transformations durables.",
+			surtitle: "Expertise — Transformation",
+			subtitle:
+				"Les outils ne suffisent pas. Nous accompagnons les équipes dans leur montée en compétences, leurs rituels et leur culture produit.",
+			illustration: "PencilHero",
+			backLink: {
+				label: "Nos expertises",
+				href: "/expertise",
+			},
+		},
+	},
 	notFound: {
 		path: "/404",
 		label: "Erreur 404",
@@ -284,15 +395,21 @@ export const skipLinks: MenuLink[] = [
 ];
 
 export const headerLinks: MenuLink[] = [
-	pages.challenges,
+	pages.whyFrontguys,
 	pages.expertise,
-	pages.offer,
-	pages.trainings,
-	pages.businessCases,
+	pages.results,
+	pages.resources,
 	pages.contact,
 ];
 
-export const footerLinks: MenuLink[] = [pages.audits, pages.guideBook];
+export const footerLinks: MenuLink[] = [
+	pages.whyFrontguys,
+	pages.expertise,
+	pages.results,
+	pages.resources,
+	{ path: "https://accessibilite.frontguys.fr", label: "Découvrez notre offre Accessibilité", external: true },
+	pages.contact,
+];
 
 export const footerLegalLinks: MenuLink[] = [
 	pages.siteMap,
@@ -316,16 +433,13 @@ export const socialLinks: SocialLink[] = [
 
 export const siteMap: MenuLink[] = [
 	pages.home,
-	pages.challenges,
+	pages.whyFrontguys,
 	pages.expertise,
-	pages.offer,
-	pages.audits,
+	pages.results,
+	pages.resources,
+	pages.challenges,
 	pages.trainings,
-	pages.businessCases,
 	pages.contact,
-	pages.guideBook,
-	pages.articles,
-	pages.accessibilityStatement,
 	pages.siteMap,
 	pages.legalNotice,
 	pages.privacyPolicy,

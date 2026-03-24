@@ -1,0 +1,310 @@
+---
+import { Button } from "../../components/Button/Button.tsx";
+import BusinessCases from "../../components/BusinessCases.astro";
+import Card from "../../components/Card/Card.astro";
+import List from "../../components/List/List.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { pages } from "../../site.config";
+---
+
+<Layout page={pages.expertiseDesignSystems}>
+	<Fragment slot="page-header-cta">
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir toutes nos expertises</Button>
+		</Stack>
+	</Fragment>
+
+	<!-- Section: Quel est votre scénario ? (fond blanc) -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Quel est votre scénario ?" titleVariant="heading-2">
+			<Fragment slot="subtitle">Chaque situation design system est différente. Nous intervenons en fonction de votre maturité.</Fragment>
+		</SectionHeader>
+		<div class="differentiators-grid">
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Votre DS n'existe pas encore</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Vous partez de zéro et avez besoin de fondations solides — tokens, composants, documentation et gouvernance.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Votre DS est bloqué</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Le projet a démarré mais stagne — manque de ressources, de priorisation ou de vision claire sur la suite.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Votre DS existe mais n'est pas utilisé</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Les composants sont là mais les équipes ne les adoptent pas. Le problème est dans la conception, pas dans la communication.
+				</Text>
+			</div>
+			<div class="differentiator-item">
+				<div class="differentiator-separator"></div>
+				<Text as="h3" variant="heading-6">Vous n'avez pas de gouvernance</Text>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Votre DS évolue sans règles claires — pas de versionning, pas de process de contribution, pas de responsable identifié.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Nos piliers d'intervention (fond default-alt) -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Nos piliers d'intervention" titleVariant="heading-2">
+			<Fragment slot="subtitle">Six piliers qui couvrent l'ensemble du cycle de vie d'un design system.</Fragment>
+		</SectionHeader>
+		<div class="pillars-grid">
+			<div class="pillar-item">
+				<Text as="span" class="pillar-num">01</Text>
+				<Text as="h3" variant="heading-6">Fondations</Text>
+				<Text variant="body-2" color="semantic-foreground-subtle">
+					Tokens, couleurs, typographie, spacing, radius — les briques de base qui garantissent la cohérence.
+				</Text>
+			</div>
+			<div class="pillar-item">
+				<Text as="span" class="pillar-num">02</Text>
+				<Text as="h3" variant="heading-6">Modularité</Text>
+				<Text variant="body-2" color="semantic-foreground-subtle">
+					Des composants pensés pour être composables, extensibles et maintenables dans le temps.
+				</Text>
+			</div>
+			<div class="pillar-item">
+				<Text as="span" class="pillar-num">03</Text>
+				<Text as="h3" variant="heading-6">Accessibilité</Text>
+				<Text variant="body-2" color="semantic-foreground-subtle">
+					Chaque composant est conçu pour être accessible dès la conception — pas en correction après coup.
+				</Text>
+			</div>
+			<div class="pillar-item">
+				<Text as="span" class="pillar-num">04</Text>
+				<Text as="h3" variant="heading-6">Gouvernance</Text>
+				<Text variant="body-2" color="semantic-foreground-subtle">
+					Versionning, contribution, validation, communication — les règles qui font vivre le DS dans la durée.
+				</Text>
+			</div>
+			<div class="pillar-item">
+				<Text as="span" class="pillar-num">05</Text>
+				<Text as="h3" variant="heading-6">Adoption</Text>
+				<Text variant="body-2" color="semantic-foreground-subtle">
+					L'adoption fait partie du périmètre de la mission. Un DS non adopté ne vaut rien.
+				</Text>
+			</div>
+			<div class="pillar-item">
+				<Text as="span" class="pillar-num">06</Text>
+				<Text as="h3" variant="heading-6">Collaboration design/dev</Text>
+				<Text variant="body-2" color="semantic-foreground-subtle">
+					Le DS est le trait d'union entre design et développement. Nous alignons les deux côtés.
+				</Text>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Nos niveaux d'intervention (fond blanc) -->
+	<Section color="semantic-background-default">
+		<div class="two-col-section">
+			<div class="two-col-left">
+				<Text as="h2" variant="heading-2">Nos niveaux d'intervention</Text>
+				<Stack gap={4}>
+					<Text variant="body-1" color="semantic-foreground-subtle">
+						Nous adaptons notre intervention à votre niveau de maturité design system. Chaque niveau a ses propres enjeux et ses propres livrables.
+					</Text>
+				</Stack>
+				<Button as="a" href="/nos-methodes" variant="secondary">Voir nos méthodes</Button>
+			</div>
+			<div class="two-col-right">
+				<div class="step-indicator">
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">1</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Initiation</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Poser les fondations : tokens, premiers composants, documentation de base et gouvernance initiale.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot">2</div>
+							<div class="step-connector"></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Consolidation</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Enrichir la bibliothèque, structurer la contribution, mesurer l'adoption et corriger ce qui freine.</Text>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-left">
+							<div class="step-dot"><span>3</span></div>
+						</div>
+						<div class="step-content">
+							<Text as="h3" variant="heading-6">Optimisation</Text>
+							<Text variant="body-2" color="semantic-foreground-subtle">Automatiser, scaler, transférer la gouvernance aux équipes et garantir l'évolutivité.</Text>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Missions récentes -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Missions récentes">
+			<Fragment slot="subtitle">Des projets ambitieux, des équipes exigeantes, des résultats mesurables.</Fragment>
+		</SectionHeader>
+		<BusinessCases />
+	</Section>
+
+	<!-- CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Décrivez votre situation DS — nous verrons si notre approche correspond.">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Un premier échange pour comprendre votre maturité design system et identifier les leviers prioritaires.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true}>
+			<Button as="a" href={pages.contact.path}>Parler de mon design system</Button>
+			<Button as="a" href="/expertise" variant="secondary">Voir toutes nos expertises</Button>
+		</Stack>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	@use "../../assets/styles/01-utils/functions" as *;
+
+	/* Differentiators grid - 2x2 */
+	.differentiators-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-8) var(--base-space-12);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.differentiator-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+
+	.differentiator-separator {
+		width: 100%;
+		height: 1px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+		margin-bottom: var(--base-space-4);
+	}
+
+	/* Pillars grid - 3x2 */
+	.pillars-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-8) var(--base-space-6);
+		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.pillar-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-2);
+	}
+
+	.pillar-num {
+		font-family: "Reddit Sans", sans-serif;
+		font-size: 32px;
+		font-weight: 500;
+		line-height: 1;
+		color: var(--semantic-foreground-alternative, #00b5c0);
+	}
+
+	/* Two columns layout */
+	.two-col-section {
+		display: flex;
+		gap: var(--base-space-12, 48px);
+		width: 100%;
+		align-items: flex-start;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.two-col-left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-6, 24px);
+	}
+
+	.two-col-right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Step indicator */
+	.step-indicator {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-3, 12px);
+		width: 100%;
+		max-width: 480px;
+	}
+
+	.step {
+		display: flex;
+		gap: var(--base-space-4, 16px);
+		align-items: flex-start;
+	}
+
+	.step-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 20px;
+		flex-shrink: 0;
+	}
+
+	.step-dot {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		border-radius: var(--radius-full, 9999px);
+		background-color: var(--semantic-background-accent, #004c61);
+		color: var(--core-rythm-grey-00, white);
+		font-family: "Reddit Sans", sans-serif;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1.4;
+		flex-shrink: 0;
+	}
+
+	.step-connector {
+		width: 2px;
+		height: 37px;
+		background-color: var(--semantic-border-subtle, #ccccdb);
+	}
+
+	.step-content {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-1, 4px);
+		flex: 1;
+		min-width: 0;
+	}
+</style>

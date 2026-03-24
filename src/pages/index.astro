@@ -1,92 +1,400 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import imgGroupFG from "../assets/img/groupe-frontguys-1.jpg";
-import BusinessCases from "../components/BusinessCases.astro";
+import CalendarIcon from "../assets/icons/calendar.svg?react";
+import imgHand1 from "../assets/img/Hand-1.svg";
+import imgHand2 from "../assets/img/Hand-2.svg";
+import imgTestimonialPhoto from "../assets/img/image-2034.png";
+import imgCasLefebvre from "../assets/img/aspectRatio.png";
+import imgCasAccor from "../assets/img/aspectRatio-1.png";
+import imgCasOddo from "../assets/img/aspectRatio-2.png";
+// Client logos
+import logoAccor from "../assets/img/Accor_Logo-1536x1315.png";
+import logoFranceTv from "../assets/img/France.tv_-_logo_2022.svg.png";
+import logoBpifrance from "../assets/img/Logo_Bpifrance.svg.png";
+import logoLfp from "../assets/img/Logo_Ligue_Football_Professionnel_2019.svg-1067x1536.png";
+import logoScaleway from "../assets/img/640px-Scaleway_logo_2018.svg.png";
+import logoPrisma from "../assets/img/PM-1-1536x544.png";
+import logoArdian from "../assets/img/LogoArdian.png";
+import logoManutan from "../assets/img/logo_Manutan-1.jpg";
+import logoLoreal from "../assets/img/logo2.png";
+import logoVinci from "../assets/img/logo3.png";
+import logoWk from "../assets/img/logo5.png";
+import logoUlys from "../assets/img/logo6.png";
+import logoHitachi from "../assets/img/HitachiRailSTS.svg-1536x227.png";
+
 import { Button } from "../components/Button/Button.tsx";
 import Card from "../components/Card/Card.astro";
-import ContactExpertBanner from "../components/ContactExpertBanner.astro";
-import CreateOpportunity from "../components/CreateOpportunity.astro";
-import MediaObject from "../components/MediaObject/MediaObject.astro";
+import ProfileBanner from "../components/ProfileBanner/ProfileBanner.astro";
 import Section from "../components/Section/Section.astro";
 import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
 import Stack from "../components/Stack/Stack.astro";
 import Text from "../components/Text/Text.astro";
 import Layout from "../layouts/Layout.astro";
-import { pages } from "../site.config";
-import { getCollectionSortedByOrder } from "../utils/collection.utils";
+import { pages, contactExpertPath } from "../site.config";
 
-const services = await getCollectionSortedByOrder("services");
+const enjeuxCards = [
+	{
+		title: "Vos produits numériques manquent d'impact",
+		text: "Interfaces incohérentes, dette UI qui s'accumule, expérience dégradée à chaque release.",
+		url: "/enjeux",
+	},
+	{
+		title: "Vos équipes travaillent en silo",
+		text: "Double travail, incompréhensions, production ralentie, décisions dispersées.",
+		url: "/enjeux",
+	},
+	{
+		title: "Vous voulez augmentez votre vélocité",
+		text: "Problème de réactivité, retard de livraison, dette technique, manque d'innovation.",
+		url: "/enjeux",
+	},
+	{
+		title: "Vous avez besoin de résultats mesurables",
+		text: "Le design n'est pas une couche esthétique, mais un levier business.",
+		url: "/enjeux",
+	},
+];
+
+const stats = [
+	{ value: "82", label: "missions" },
+	{ value: "35+", label: "clients accompagnés" },
+	{ value: "98%", label: "satisfaction client" },
+];
+
+const expertises = [
+	{
+		title: "Transformation & accompagnement",
+		text: "Renforcer la collaboration humaine et l'alignement pour rendre les changements durables.",
+		url: "/expertise",
+	},
+	{
+		title: "Produits numériques performants",
+		text: "Cadrage, conception, mise en qualité et amélioration continue de vos produits.",
+		url: "/expertise",
+	},
+	{
+		title: "Design systems modulaires et accessibles",
+		text: "Fondations solides, gouvernance claire, adoption réelle par vos équipes.",
+		url: "/expertise",
+	},
+	{
+		title: "Process de collaboration design/dev",
+		text: "Structurer les rituels, les outils et les flux pour accélérer sans perdre en qualité.",
+		url: "/expertise",
+	},
+];
+
+const parcours = [
+	{
+		title: "J'ai un besoin produit ou design",
+		text: "Design system, produit numérique, collaboration design/dev.",
+		url: "/expertise",
+	},
+	{
+		title: "Je veux former mon équipe",
+		text: "Formations intra, ateliers, accompagnement montée en compétences.",
+		url: "/formations",
+	},
+	{
+		title: "Je pilote une transformation",
+		text: "Cadrage stratégique, audit, accompagnement du changement.",
+		url: "/contact",
+	},
+];
+
+const logosRow1 = [
+	{ src: logoLoreal, alt: "L'Oréal" },
+	{ src: logoAccor, alt: "Accor" },
+	{ src: logoFranceTv, alt: "france.tv" },
+	{ src: logoBpifrance, alt: "bpifrance" },
+	{ src: logoVinci, alt: "Vinci" },
+	{ src: logoLfp, alt: "LFP" },
+];
+
+const logosRow2 = [
+	{ src: logoScaleway, alt: "Scaleway" },
+	{ src: logoWk, alt: "Wolters Kluwer" },
+	{ src: logoPrisma, alt: "Prisma Media" },
+	{ src: logoUlys, alt: "Ulys" },
+	{ src: logoManutan, alt: "TheFork" },
+	{ src: logoArdian, alt: "Ardian" },
+];
 ---
 
 <Layout page={pages.home}>
 	<Fragment slot="page-header-cta">
-		<Button as="a" href={pages.guideBook.path} variant="secondary">Découvrez notre guide gratuit</Button>
-		<Button as="a" href={pages.offer.path}>Découvrez notre offre</Button>
+		<Text variant="caption-1"><strong>82 missions.</strong> Des résultats chiffrés.</Text>
+		<Stack axis="x" gap={4} wrap={true}>
+			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
+			<Button as="a" href="/pourquoi-frontguys" variant="secondary">Pourquoi Frontguys</Button>
+		</Stack>
 	</Fragment>
 
+	<!-- Section: Enjeux — "Nous connaissons vos principaux enjeux" -->
 	<Section>
-		<SectionHeader title="Nous rendons l'accessibilité concrète" />
-		<Stack gap={8} axis="y" class="u-full-width">
-			<div class="grid" style="--row-gap: var(--col-gap);">
-				{
-					services.map(({ data: { title, shortDescription }, id }) => {
-						const url = id === "audit-conformite" ? pages.audits.path : `${pages.offer.path}#${id}`;
-						return (
-						<Card
-							variant="simple"
-							title={title}
-							subtitle={shortDescription}
-								url={url}
-							/>
-						)
-					})
-				}
-			</div>
-			<ContactExpertBanner as="aside" />
-		</Stack>
-	</Section>
-
-	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Cas client, ce que nous faisons ensemble">
-			<Fragment slot="subtitle">Nous accompagnons vos équipes avec la même exigence : rendre le numérique utile à tous.</Fragment>
+		<SectionHeader title="Nous connaissons vos principaux enjeux" titleVariant="heading-2">
+			<Fragment slot="subtitle">Ces enjeux reviennent dans presque toutes nos missions.</Fragment>
 		</SectionHeader>
-		<BusinessCases />
+		<div class="grid grid--2x2">
+			{enjeuxCards.map(({ title, text, url }) => (
+				<Card variant="simple" title={title} subtitle={text} url={url} />
+			))}
+		</div>
 	</Section>
 
-	<CreateOpportunity />
+	<!-- Section: Stats — illustration + résultats + témoignage + logos -->
+	<Section color="semantic-background-default-alt" verticallyCentered={true}>
+		<!-- Illustration centrée -->
+		<div class="section-illustration">
+			<img src={imgHand1.src ?? imgHand1} alt="" class="section-illustration__img" />
+		</div>
 
-  <Section color="semantic-background-default-alt" verticallyCentered={true}>
-		<Stack gap={8}>
-			<div class="our-vision_illustration">
-				<Icon name="illustration-check" aria-hidden="true" size="100%" />
-			</div>
+		<!-- Titre + chiffres -->
+		<SectionHeader title="Nos résultats" titleVariant="heading-2" />
+		<div class="stats-grid">
+			{stats.map(({ value, label }) => (
+				<Stack as="figure" role="figure" gap={2} align="center">
+					<Text as="span" variant="heading-2">{value}</Text>
+					<Text as="figcaption" variant="body-1" class="u-text-align:center">{label}</Text>
+				</Stack>
+			))}
+		</div>
 
-			<Stack as="blockquote" gap={4} align="center">
-				<Text as="cite" variant="heading-6">Notre vision</Text>
-				<Text variant="heading-4" class="u-text-align:center u-text-wrap:balance">
-					“L'accessibilité n'est pas qu’une obligation légale,<span class="u-display:block:md"></span> c'est l’opportunité de créer de meilleures expériences pour tous.”
+		<!-- Témoignage Lefebvre Dalloz -->
+		<div class="testimonial">
+			<Stack gap={6}>
+				<Text as="p" variant="heading-6">Lefebvre Dalloz</Text>
+				<Text as="blockquote" variant="body-1" class="testimonial__quote">
+					"Frontguys a joué un rôle clé dans la transformation digitale de Lefebvre Dalloz. Leurs consultants ont su structurer une fonction Product Design solide, aligner des équipes très diverses et apporter une vraie vision produit à l'échelle du groupe.
+					Leur leadership, leur capacité à embarquer et leur exigence sur l'UX, le design system et l'accessibilité ont eu un impact concret, rapide et durable. Ils sont à la fois stratégique, opérationnel et profondément orienté utilisateurs."
 				</Text>
+				<Stack gap={4} axis="x" align="center">
+					<Image src={imgTestimonialPhoto} alt="Pauline De Certeau" class="testimonial__avatar" width={88} height={88} />
+					<Stack gap={1}>
+						<Text as="cite" variant="heading-6">Pauline De Certeau</Text>
+						<Text variant="body-2">Directrice des produits digitaux</Text>
+						<Text variant="caption-1" color="semantic-foreground-subtle">Lefebvre Dalloz</Text>
+					</Stack>
+				</Stack>
+			</Stack>
+		</div>
+
+		<!-- Logos clients -->
+		<div class="clients-strip">
+			<div class="clients-row">
+				{logosRow1.map(({ src, alt }) => (
+					<div class="client-logo">
+						<Image src={src} alt={alt} height={40} class="client-logo__img" />
+					</div>
+				))}
+			</div>
+			<div class="clients-row">
+				{logosRow2.map(({ src, alt }) => (
+					<div class="client-logo">
+						<Image src={src} alt={alt} height={40} class="client-logo__img" />
+					</div>
+				))}
+			</div>
+		</div>
+	</Section>
+
+	<!-- Section: Expertises — "Nos 4 expertises, un même objectif" -->
+	<Section verticallyCentered={true}>
+		<!-- Illustration centrée -->
+		<div class="section-illustration">
+			<img src={imgHand2.src ?? imgHand2} alt="" class="section-illustration__img" />
+		</div>
+
+		<SectionHeader title="Nos 4 expertises, un même objectif" titleVariant="heading-2">
+			<Fragment slot="subtitle">Impact, fluidité, qualité, durabilité.</Fragment>
+		</SectionHeader>
+		<div class="grid grid--2x2">
+			{expertises.map(({ title, text, url }) => (
+				<Card variant="simple" title={title} subtitle={text} url={url} />
+			))}
+		</div>
+
+		<!-- Expert card -->
+		<ProfileBanner
+			as="aside"
+			avatarSrc="/src/assets/img/hamza-300x300.png"
+			title="Contactez un expert"
+			name="Nicolas Guy"
+			description="Co-fondateur & Lead Design"
+		>
+			<Button
+				slot="cta"
+				as="a"
+				href={contactExpertPath}
+				target="_blank"
+				variant="secondary"
+				title="Planifiez un échange"
+			>
+				<CalendarIcon/>Planifiez un échange
+			</Button>
+		</ProfileBanner>
+	</Section>
+
+	<!-- Section: Cas clients — "Ce que nous faisons ensemble" -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Ce que nous faisons ensemble" titleVariant="heading-2">
+			<Fragment slot="subtitle">Des projets ambitieux, des équipes exigeantes, des résultats mesurables.</Fragment>
+		</SectionHeader>
+		<div class="grid grid--3col">
+			<Card variant="photo" title="Lefebvre Dalloz" subtitle="Refonte de l'expérience produit — Design system + composants React" imgPath="/src/assets/img/aspectRatio.png" url="/nos-resultats" />
+			<Card variant="photo" title="Accor Groupe" subtitle="Audit & accompagnement design — Revue UX + guidelines équipe" imgPath="/src/assets/img/aspectRatio-1.png" url="/nos-resultats" />
+			<Card variant="photo" title="ODDO BHF" subtitle="Intégration design-code — Composants accessibles et scalables" imgPath="/src/assets/img/aspectRatio-2.png" url="/nos-resultats" />
+		</div>
+	</Section>
+
+	<!-- Section: Parcours — "Par où commencer ?" -->
+	<Section verticallyCentered={true}>
+		<SectionHeader title="Par où commencer ?" titleVariant="heading-2">
+			<Fragment slot="subtitle">Choisissez l'entrée qui correspond à votre contexte.</Fragment>
+		</SectionHeader>
+		<div class="grid grid--3col">
+			{parcours.map(({ title, text, url }) => (
+				<Card variant="simple" title={title} subtitle={text} url={url} />
+			))}
+		</div>
+	</Section>
+
+	<!-- Section: CTA Banner — "Démarrons ensemble" -->
+	<Section color="semantic-background-subtle" verticallyCentered={true}>
+		<Stack gap={6} align="center" class="u-text-align:center cta-content">
+			<Text as="span" variant="surtitle">DÉMARRONS ENSEMBLE</Text>
+			<Text as="h2" variant="heading-2">Un premier échange pour identifier <strong>vos enjeux</strong></Text>
+			<Text as="p" variant="body-1">Gratuit. Sans engagement. On identifie vos besoins en 30 minutes.</Text>
+			<Stack axis="x" gap={4} wrap={true} justify="center">
+				<Button as="a" href={pages.contact.path} variant="secondary">Parler à un expert</Button>
+				<Button as="a" href={pages.contact.path}>Demandez un diagnostic</Button>
 			</Stack>
 		</Stack>
-  </Section>
-
-  <Section>
-    <MediaObject img={imgGroupFG} reversed={true}>
-			<SectionHeader titleVariant="heading-2" title="Nous mettons la technologie au service de l'humain">
-				<Fragment slot="subtitle">Mettez vos utilisateurs au cœur de chaque décision. Nous transformons la complexité technique en expériences simples, fluides et accessibles à tous.</Fragment>
-			</SectionHeader>
-			<Button as="a" href={pages.expertise.path}>Découvrez notre expertise</Button>
-    </MediaObject>
-  </Section>
+	</Section>
 </Layout>
 
 
 <style lang="scss">
 	@use "../assets/styles/01-utils/functions" as *;
-	.our-vision_illustration {
-		aspect-ratio: 120/206;
+
+	/* Grid layouts */
+	.grid {
+		display: grid;
+		width: 100%;
+		gap: var(--base-space-6);
+	}
+
+	.grid--2x2 {
+		grid-template-columns: repeat(2, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.grid--3col {
+		grid-template-columns: repeat(3, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Section illustration (Hand) */
+	.section-illustration {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.section-illustration__img {
+		width: clamp(160px, 18vw, 280px);
+		height: auto;
+		object-fit: contain;
+	}
+
+	/* Stats grid */
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-8);
+		width: 100%;
 		text-align: center;
-		width: clamp-value(120px, 187px);
-		place-self: center;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Testimonial */
+	.testimonial {
+		max-width: 100%;
+		width: 100%;
+		padding: var(--base-space-8);
+		border: 1px solid var(--semantic-border-subtle);
+		border-radius: var(--radius-medium);
+		background-color: var(--semantic-background-default);
+	}
+
+	.testimonial__quote {
+		font-style: normal;
+		line-height: 1.6;
+	}
+
+	.testimonial__avatar {
+		border-radius: var(--radius-circular);
+		object-fit: cover;
+		flex-shrink: 0;
+		width: 88px !important;
+		height: 88px !important;
+		max-width: 88px;
+		max-height: 88px;
+	}
+
+	/* Clients logos */
+	.clients-strip {
+		display: flex;
+		flex-direction: column;
+		gap: var(--base-space-8);
+		align-items: center;
+		width: 100%;
+		padding: var(--base-space-2) 0;
+	}
+
+	.clients-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: 64px;
+		overflow: hidden;
+	}
+
+	.client-logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.5;
+		filter: grayscale(100%);
+		transition: opacity 0.2s, filter 0.2s;
+
+		&:hover {
+			opacity: 1;
+			filter: grayscale(0%);
+		}
+	}
+
+	.client-logo__img {
+		height: 40px;
+		width: auto;
+		object-fit: contain;
+		max-width: 120px;
+	}
+
+	/* CTA content */
+	.cta-content {
+		max-width: 720px;
+		margin: 0 auto;
 	}
 </style>

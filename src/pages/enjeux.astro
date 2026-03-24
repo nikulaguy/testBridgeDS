@@ -1,61 +1,123 @@
 ---
-import { getCollection } from "astro:content";
-import BusinessCases from "../components/BusinessCases.astro";
 import { Button } from "../components/Button/Button.tsx";
-import KeyFigures from "../components/KeyFigures.astro";
+import Card from "../components/Card/Card.astro";
+import CreateOpportunity from "../components/CreateOpportunity.astro";
+import List from "../components/List/List.astro";
 import MediaObject from "../components/MediaObject/MediaObject.astro";
 import Section from "../components/Section/Section.astro";
 import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
 import Stack from "../components/Stack/Stack.astro";
 import Text from "../components/Text/Text.astro";
 import Layout from "../layouts/Layout.astro";
-import { pages } from "../site.config";
+import { pages, contactExpertPath } from "../site.config";
 
-const accessibilityKeyFigures = await getCollection("accessibilityKeyFigures");
+const challengeCards = [
+	{
+		title: "Vos produits numériques manquent d’impact",
+		text: "Interfaces incohérentes, dette UI qui s’accumule, expérience dégradée à chaque release.",
+		url: "/expertise",
+	},
+	{
+		title: "Vos équipes travaillent en silo",
+		text: "Double travail, incompréhensions, production ralentie, décisions dispersées.",
+		url: "/expertise",
+	},
+	{
+		title: "Vous voulez augmenter votre vélocité",
+		text: "Retard de livraison, dette technique, manque d’innovation en continu.",
+		url: "/expertise",
+	},
+	{
+		title: "Vous avez besoin de résultats mesurables",
+		text: "Le design n’est pas cosmétique : c’est un levier business et un avantage concurrentiel.",
+		url: "/expertise",
+	},
+];
+
+const failureStats = [
+	{ value: "70%", label: "des projets digitaux dépassent budget et délais" },
+	{ value: "45%", label: "des équipes design/dev manquent d’alignement" },
+	{ value: "62%", label: "des produits souffrent de dette UI/UX non documentée" },
+];
+
+const costConsequences = [
+	"Retards de lancement et glissements budgétaires",
+	"Frustration des utilisateurs et churn accéléré",
+	"Coûts de maintenance et de refonte explosifs",
+	"Perte de compétitivité face aux acteurs agiles",
+	"Démotivation des équipes techniques",
+];
 ---
 
 <Layout page={pages.challenges}>
 	<Fragment slot="page-header-cta">
-		<Button as="a" href={pages.guideBook.path} variant="primary">Découvrez notre guide gratuit</Button>
+		<Button as="a" href={pages.contact.path} variant="primary">Demander un diagnostic</Button>
 	</Fragment>
 
-	<Section verticallyCentered={true}>
-		<SectionHeader title="L’accessibilité en chiffres" />
-		<KeyFigures items={accessibilityKeyFigures.map(({ data: { value, text, source } }) => ({ value, text, source }))} />
+	<!-- Section 1: Les enjeux qu’on connaît bien — 2×2 grid -->
+	<Section>
+		<SectionHeader title="Des enjeux que nous connaissons bien" titleVariant="heading-2">
+			<Fragment slot="subtitle">Ces défis reviennent dans presque toutes nos missions.</Fragment>
+		</SectionHeader>
+		<div class="grid grid--2x2">
+			{challengeCards.map(({ title, text, url }) => (
+				<Card variant="simple" title={title} subtitle={text} url={url} />
+			))}
+		</div>
 	</Section>
 
-	<Section color="semantic-background-default-alt" verticallyCentered={true}>
-		<Stack gap={4}>
-			<SectionHeader titleTag="h2" titleVariant="heading-6" title="Nous répondons aux besoins des utilisateurs" />
-			<Stack as="blockquote" gap={4} align="center">
-				<Text variant="heading-4" class="u-text-align:center u-text-wrap:balance">
-					&laquo; Euh… là j’entends "bouton", "bouton’, "bouton", … Je ne sais pas à quoi ça sert, peut-être que c’est quelque chose d’important mais je n’ai pas envie d’y aller. &raquo;
-				</Text>
-				<Text as="cite" variant="caption-1">Stéphanie, utilisatrice aveugle</Text>
-			</Stack>
-		</Stack>
-  </Section>
-
-	<Section>
-		<MediaObject illustration="illustration-qa" reversed={true}>
+	<!-- Section 2: Le coût de l’inaction — MediaObject + List -->
+	<Section color="semantic-background-default-alt">
+		<MediaObject illustration="illustration-qa">
 			<Stack gap={4}>
-				<SectionHeader title="Nous concrétisons vos engagements RSE" />
+				<SectionHeader title="Le coût de l’inaction" titleVariant="heading-2" />
 				<Text>
-					Transformez vos interfaces pour qu'elles reflètent vos valeurs. L'accessibilité est un droit fondamental, bien au-delà de la technique.
+					L’absence de stratégie design et de collaboration fluide entre équipes a un impact direct sur vos résultats business.
+				</Text>
+				<List
+					title="Sans changement, vous risquez :"
+					items={costConsequences}
+				/>
+			</Stack>
+		</MediaObject>
+	</Section>
+
+	<!-- Section 3: Notre approche — MediaObject reversed + methodology -->
+	<Section>
+		<MediaObject illustration="illustration-benchmark" reversed={true}>
+			<Stack gap={4}>
+				<SectionHeader title="Notre approche face à ces enjeux" titleVariant="heading-2" />
+				<Text>
+					Nous transformons ces obstacles en leviers de croissance. Notre méthode repose sur trois piliers : cadrage stratégique clair, design system modulaire, et alignement design/dev durable.
 				</Text>
 				<Text>
-					<strong>Offrez une égalité d'accès réelle à tous vos utilisateurs, quelles que soient leurs capacités.</strong>
+					<strong>Chaque intervention est structurée pour apporter des résultats mesurables dans les 90 premiers jours.</strong>
 				</Text>
 			</Stack>
 			<Button as="a" href={pages.expertise.path} variant="secondary">Découvrez notre expertise</Button>
 		</MediaObject>
 	</Section>
 
-	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Cas client, ce que nous faisons ensemble">
-			<Fragment slot="subtitle">Nous accompagnons vos équipes avec la même exigence : rendre le numérique utile à tous.</Fragment>
-		</SectionHeader>
-		<BusinessCases />
-	</Section>
+	<!-- CTA: CreateOpportunity -->
+	<CreateOpportunity />
 </Layout>
+
+<style lang="scss">
+	@use "../assets/styles/01-utils/functions" as *;
+
+	/* Grid layouts */
+	.grid {
+		display: grid;
+		width: 100%;
+		gap: var(--base-space-6);
+	}
+
+	.grid--2x2 {
+		grid-template-columns: repeat(2, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
 

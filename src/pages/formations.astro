@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import imgQualiopi from "../assets/img/qualiopi.png";
 import BadgeList from "../components/BadgeList/BadgeList.astro";
 import Card from "../components/Card/Card.astro";
+import CreateOpportunity from "../components/CreateOpportunity.astro";
 import List from "../components/List/List.astro";
 import MediaObject from "../components/MediaObject/MediaObject.astro";
 import Section from "../components/Section/Section.astro";
@@ -21,7 +22,7 @@ const trainingMethods = await getCollection("trainingMethods");
 
 <Layout page={pages.trainings}>
   <Section>
-		<SectionHeader title="Découvrez nos parcours de formation en accessibilité" />
+		<SectionHeader title="Nos parcours de formation" />
     <div class="grid" style="--max-cols-per-row: 2; --col-min-width: 500px; --row-gap: var(--col-gap);">
 			{
 				trainings.map(({ id, data: { title, level, duration, price, description, scope } }) => (
@@ -95,9 +96,9 @@ const trainingMethods = await getCollection("trainingMethods");
   <Section>
     <MediaObject img={imgQualiopi} imgAlt="Qualiopi processus certifié - République Française" imgBordered={true} reversed={true}>
       <Stack gap={4}>
-				<SectionHeader title="Profitez d'un accompagnement certifié Qualiopi" />
+				<SectionHeader title="Un accompagnement certifié Qualiopi" />
 				<Text>
-					Cette certification atteste de la rigueur de nos processus pédagogiques. Elle est le gage de notre engagement à faire monter vos équipes en compétence avec efficacité et professionnalisme.
+					Cette certification atteste de la rigueur de nos processus pédagogiques. Elle est le gage de notre engagement à faire monter vos équipes en compétence sur le design et le produit avec efficacité et professionnalisme.
 				</Text>
 				<Stack gap={2}>
 					<Text as="h3" variant="heading-6">Nous facilitons votre financement.</Text>
@@ -108,4 +109,6 @@ const trainingMethods = await getCollection("trainingMethods");
 			</Stack>
     </MediaObject>
   </Section>
+
+  <CreateOpportunity />
 </Layout>

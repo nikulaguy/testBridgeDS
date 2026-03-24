@@ -9,7 +9,11 @@ type Props<Tag extends SectionTag> = Polymorphic<{
 	color?:
 		| "semantic-background-default"
 		| "semantic-background-default-alt"
-		| "semantic-background-subtle";
+		| "semantic-background-subtle"
+		| "core-rythm-grey-90"
+		| "core-rythm-grey-80"
+		| "core-rythm-grey-70"
+		| "core-watery-green-90";
 	verticallyCentered?: boolean;
 	class?: string;
 	gap?: "static" | "fluid";
@@ -28,12 +32,14 @@ const {
 } = Astro.props;
 
 const sectionColor = Tag === "header" ? "semantic-background-subtle" : color;
+const isDark = sectionColor.startsWith("core-rythm-grey-") || sectionColor.startsWith("core-watery-green-");
 
 const mergedStyle = {
 	"--bg-color": `var(--${sectionColor})`,
 	"--max-width": condensed
 		? "var(--content-prose-max-width)"
 		: "var(--content-max-width)",
+	...(isDark ? { "--fg-color": "var(--core-rythm-grey-00)", "--fg-muted": "var(--core-rythm-grey-50)", "--fg-accent": "var(--core-watery-green-60)" } : {}),
 	...(typeof style === "object" ? style : {}),
 };
 ---
@@ -42,6 +48,7 @@ const mergedStyle = {
   class:list={[
     "l-section",
     { "l-section--vertically-centered": verticallyCentered },
+    { "l-section--dark": isDark },
     className,
   ]}
   style={mergedStyle}

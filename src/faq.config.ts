@@ -1,35 +1,35 @@
 const faq: { [item: string]: { title: string; content: string } } = {
-	accessibilityDefinition: {
-		title: "Qu'est-ce que l'accessibilité numérique ?",
+	designSystemDefinition: {
+		title: "Qu'est-ce qu'un design system ?",
 		content:
-			"L'accessibilité numérique consiste à rendre les services numériques (sites, applications web et mobiles, documents bureautiques, etc.) compréhensibles et utilisables par tous et notamment par les personnes en situation de handicap. Les règles d'accessibilité numérique permettent d'atteindre cet objectif et de garantir une expérience utilisateur sans entrave pour un maximum de personnes.",
+			"Un design system est un ensemble cohérent de composants réutilisables, de guidelines et de tokens de design qui servent de source de vérité pour les équipes produit. Il accélère la production, garantit la cohérence et facilite la collaboration entre designers et développeurs.",
 	},
-	accessibilityLaws: {
-		title: "Quelles sont les lois qui concernent l'accessibilité numérique ?",
+	designSystemCost: {
+		title: "Combien coûte la mise en place d'un design system ?",
 		content:
-			"La Loi Handicap de février 2005 est la loi fondatrice qui a introduction l'accessibilité numérique en France. Elle a été renforcé au fil des années par les transpositions des directives européennes « WAD » (2016/2102) puis « EAA » (2019/882).",
+			"Le coût varie selon la maturité de votre organisation et l'ambition du projet. Un audit et des fondations solides démarrent à partir de 15 000 € HT. Un design system complet avec gouvernance et documentation peut représenter 50 000 à 150 000 € selon le périmètre.",
 	},
-	rgaaDefinition: {
-		title: "Qu'est-ce que le RGAA ?",
+	collaborationDesignDev: {
+		title: "Comment améliorer la collaboration design/dev ?",
 		content:
-			"Le RGAA (Référentiel Général d'Amélioration de l'Accessibilité) est le référentiel français pour l'accessibilité numérique. Il se base sur les recommandations internationales WCAG (niveau AA) et fournit une liste de critères à respecter ainsi que la méthodologie d'évaluation pour être en conformité.",
+			"La clé réside dans des rituels partagés (design reviews, handoff structuré), des outils communs (Figma, Storybook, tokens partagés) et une culture de feedback continu. Nous mettons en place ces process pour réduire les frictions et accélérer la livraison.",
 	},
-	auditDefinition: {
-		title: "Qu'est-ce qu'un audit d'accessibilité ?",
+	transformationDuration: {
+		title: "Combien de temps dure une mission type ?",
 		content:
-			"L'audit d'accessibilité numérique est un moyen d'évaluer la prise en compte des règles d'accessibilité dans les contenus et services numérique. C'est une évaluation experte qui se base sur les référentiels en vigueur (ex : RGAA pour la France) et qui aboutit sur un rapport détaillé et une restitution auprès des équipes opérationnelles. Plusieurs types d'audits sont possibles mais seul l'audit de conformité RGAA permet d'obtenir une déclaration d'accessibilité au sens légal.",
+			"Une mission de cadrage ou d'audit dure généralement 2 à 4 semaines. Un accompagnement produit ou design system s'étend sur 3 à 12 mois selon la complexité. Chaque engagement est calibré à vos besoins réels.",
 	},
-	auditCost: {
-		title: "Combien coûte un audit d'accessibilité ?",
+	frontguysApproach: {
+		title: "Quelle est votre approche ?",
 		content:
-			"Le coût d'un audit dépend de la complexité et du volume de pages auditées mais aussi du niveau de détail attendu dans le rapport de non-conformités. À titre d'exemple pour un échantillon de 10 pages, un audit de conformité simple se situera aux alentours de 3 000 € HT, tandis qu'un audit exhaustif avec des recommandations personnsalisées se situera aux alentours de 6 000 €.",
+			"Nous combinons expertise stratégique et exécution opérationnelle. Nos consultants maîtrisent à la fois le design et le développement front-end, ce qui élimine les gaps entre maquette et code. Notre objectif : rendre votre équipe autonome.",
 	},
 };
 
 export const offerPageFaq = [
-	faq.accessibilityDefinition,
-	faq.accessibilityLaws,
-	faq.rgaaDefinition,
-	faq.auditDefinition,
-	faq.auditCost,
+	faq.designSystemDefinition,
+	faq.designSystemCost,
+	faq.collaborationDesignDev,
+	faq.transformationDuration,
+	faq.frontguysApproach,
 ];
