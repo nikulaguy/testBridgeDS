@@ -1,0 +1,7 @@
+---
+import "./Checkbox.scss";
+
+const { ...attrs } = Astro.props;
+---
+
+<input type="checkbox" class="m-checkbox" {...attrs} />

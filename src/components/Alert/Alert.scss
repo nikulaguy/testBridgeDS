@@ -1,0 +1,28 @@
+.o-alert {
+	--border-color: var(--semantic-border-default);
+	--bg-color: var(--semantic-background-default);
+	--text-color: var(--semantic-foreground-default);
+
+  padding: var(--base-space-3);
+	border-radius: var(--radius-medium);
+	border: 1px solid var(--border-color);
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	width: 100%;
+
+	&--success {
+		--border-color: var(--semantic-border-success);
+		--bg-color: var(--semantic-background-success);
+		--text-color: var(--semantic-foreground-success);
+	}
+
+	&--error {
+		--border-color: var(--semantic-border-error);
+		--bg-color: var(--semantic-background-error);
+		--text-color: var(--semantic-foreground-error);
+	}
+
+	a {
+		color: var(--text-color);
+	}
+}

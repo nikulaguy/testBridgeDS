@@ -1,0 +1,71 @@
+---
+import "./Section.scss";
+import type { Polymorphic } from "astro/types";
+
+type SectionTag = "section" | "header" | "aside";
+
+type Props<Tag extends SectionTag> = Polymorphic<{
+	as: Tag;
+	color?:
+		| "semantic-background-default"
+		| "semantic-background-default-alt"
+		| "semantic-background-subtle";
+	verticallyCentered?: boolean;
+	class?: string;
+	gap?: "static" | "fluid";
+	condensed?: boolean;
+}>;
+
+const {
+	as: Tag = "section",
+	class: className,
+	color = "semantic-background-default",
+	verticallyCentered = false,
+	gap = "fluid",
+	condensed = false,
+	style = {},
+	...attrs
+} = Astro.props;
+
+const sectionColor = Tag === "header" ? "semantic-background-subtle" : color;
+
+const mergedStyle = {
+	"--bg-color": `var(--${sectionColor})`,
+	"--max-width": condensed
+		? "var(--content-prose-max-width)"
+		: "var(--content-max-width)",
+	...(typeof style === "object" ? style : {}),
+};
+---
+
+<Tag
+  class:list={[
+    "l-section",
+    { "l-section--vertically-centered": verticallyCentered },
+    className,
+  ]}
+  style={mergedStyle}
+  {...attrs}
+>
+  <div class="l-section__content a-stack a-stack--vertical" style={{
+		"--align-items" : verticallyCentered ? "center" : "start",
+		"--space": gap === "static" ? "var(--base-space-8)" : "var(--section-gap)" }
+	}>
+    <slot />
+  </div>
+</Tag>
+
+
+
+<script>
+	// Add aria-labelledby for sections that have a title with an id
+	const sections = document.querySelectorAll(".l-section:has(.l-section__heading--title)");
+	sections.forEach(section => {
+		const sectionTitle = section.querySelector('.l-section__heading--title');
+		const id = sectionTitle?.getAttribute('id');
+
+		if (id) {
+			section.setAttribute('aria-labelledby', id);
+		}
+	})
+</script>

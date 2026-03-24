@@ -1,0 +1,82 @@
+---
+import Link from "../components/Link/Link.astro";
+import Stack from "../components/Stack/Stack.astro";
+import ContentLayout from "../layouts/ContentLayout.astro";
+import { pages, siteMap } from "../site.config";
+import { getCollectionSortedByOrder } from "../utils/collection.utils";
+
+const trainings = await getCollectionSortedByOrder("trainings");
+const articles = await getCollectionSortedByOrder("articles");
+const businessCases = await getCollectionSortedByOrder("businessCases");
+
+const links = siteMap.map(({ path, label }) => {
+	const link = {
+		href: path,
+		label,
+		children: [],
+	};
+
+	if (path === pages.trainings.path) {
+		return {
+			...link,
+			children: trainings.map(({ id, data: { title } }) => ({
+				href: `${pages.trainings.path}/${id}`,
+				label: title,
+			})),
+		};
+	}
+
+	if (path === pages.articles.path) {
+		return {
+			...link,
+			children: articles.map(({ id, data: { title } }) => ({
+				href: `${pages.articles.path}/${id}`,
+				label: title,
+			})),
+		};
+	}
+
+	if (path === pages.businessCases.path) {
+		return {
+			...link,
+			children: businessCases.map(({ id, data: { title } }) => ({
+				href: `${pages.businessCases.path}/${id}`,
+				label: title,
+			})),
+		};
+	}
+
+	return link;
+});
+---
+
+<ContentLayout page={pages.siteMap}>
+	<Stack as="ul" gap={4} class="u-list-reset u-list-style:none">
+		{
+			links.map((link) => (
+				<Stack as="li" gap={4}>
+					<Link
+						href={link.href}
+						label={link.label}
+						variant="standalone"
+						textStyle="body-1"
+					/>
+					{link.children.length > 0 && (
+						<Stack as="ul" gap={4}>
+							{link.children.map((child) => (
+								<li>
+									<Link
+										href={child.href}
+										label={child.label}
+										variant="standalone"
+										textStyle="body-2"
+									/>
+								</li>
+							))}
+						</Stack>
+					)}
+				</Stack>
+			))
+		}
+	</Stack>
+</ContentLayout>

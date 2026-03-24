@@ -1,0 +1,56 @@
+---
+import "./Alert.scss";
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+import VisuallyHidden from "../VisuallyHidden.astro";
+
+interface Props extends HTMLAttributes<"div"> {
+	variant: "success" | "error";
+	text: string;
+	description?: string;
+}
+
+const {
+	variant = "success",
+	text,
+	description = "",
+	class: className,
+	"aria-label": ariaLabel,
+	...props
+} = Astro.props;
+
+const role = variant === "success" ? "status" : "alert";
+const iconName = variant;
+const visuallyHiddenLabel =
+	ariaLabel ??
+	(variant === "success" ? "Message de succès :" : "Message d'erreur :");
+
+const uniqueId = crypto.randomUUID();
+---
+
+<Stack
+	axis="x"
+	gap={2}
+	class:list={["o-alert", `o-alert--${variant}`, className]}
+	align="center"
+	aria-labelledby={uniqueId}
+	role={role}
+	{...props}>
+	<Icon name={iconName} size={24} aria-hidden="true" focusable="false" />
+	<Stack axis="y" gap={1}>
+		<Text variant="caption-1" class="o-alert__text" id={uniqueId}>
+			<!--
+				An aria-labelledby is already present so we can't combine it with aria-label because it would be overridden by screen readers (accessible name priority).
+				The value of the aria-label is preseved and used as a visually hidden label.
+			-->
+			<VisuallyHidden label={visuallyHiddenLabel} />
+			{text}
+		</Text>
+		{description && (
+			<Text variant="caption-2" class="o-alert__description">{description}</Text>
+		)}
+		<slot />
+	</Stack>
+</Stack>

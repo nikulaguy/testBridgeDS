@@ -1,0 +1,109 @@
+@use "../../assets/styles/01-utils/functions" as *;
+@use "../../assets/styles/01-utils/variables/spacing" as *;
+
+// Custom Prop used in JS to detect the switch between the collapsible and the regular nav.
+@property --collapsible-nav {
+	syntax: "<boolean>";
+	inherits: false;
+	initial-value: false;
+}
+
+.l-header {
+	--collapsible-nav: false;
+	padding-inline: var(--page-padding-x);
+	background-color: var(--semantic-background-default);
+	position: relative;
+	height: var(--header-height);
+
+	@media screen and (width <= 56rem) {
+		--collapsible-nav: true;
+		position: sticky;
+		inset: 0 0 auto;
+		z-index: var(--z-index-header);
+	}
+}
+
+.l-header__content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+.l-header__nav {
+	display: flex;
+
+	a:not([class*="button"]) {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		padding: var(--base-space-3) var(--base-space-4);
+
+		&[aria-current="page"], &:hover {
+			--color: var(--semantic-foreground-interactive);
+			text-decoration-line: underline;
+		}
+	}
+}
+
+.l-header__nav-menu {
+	display: flex;
+	gap: clamp(
+					var(--base-space-2),
+					#{clamp-preferred-value($base-space-2, $base-space-6, 860px)},
+					var(--base-space-6)
+				);
+	background-color: var(--semantic-background-default);
+	
+	@media screen and (width <= 56rem) {
+		position: absolute;
+		inset: var(--header-height) 0 auto;
+		flex-direction: column;
+		padding: var(--base-space-3) var(--page-padding-x) var(--base-space-8);
+		
+		visibility: hidden;
+		height: 0;
+		overflow: clip;
+		interpolate-size: allow-keywords;
+
+		@starting-style {
+			& {
+				visibility: hidden;
+				height: 0;
+			}
+		}
+
+		[aria-expanded="true"] + &,
+		&:focus-within {
+			visibility: visible;
+			height: calc(100dvh - var(--header-height));
+			overflow: auto;
+		}
+
+		li:last-child {
+			flex: 1;
+			align-content: flex-end;
+			align-self: center;
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			& {
+					transition: height .2s ease, visibility .2s ease allow-discrete;
+			}
+		}    
+	}
+}
+
+.l-header__nav-toggle {
+	@media screen and (width > 56rem) {
+		// We repeat the l-header__nav-toggle class
+		// here to make the display:none override the
+		// display property set by the m-button class
+		// set on the <button>.
+		// Without this hack the button may be
+		// displayed on large viewports
+		&.l-header__nav-toggle {
+				display: none;
+		}
+	}
+}

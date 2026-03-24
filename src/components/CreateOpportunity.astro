@@ -1,0 +1,32 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import { pages } from "../site.config";
+import { Button } from "./Button/Button.tsx";
+import Section from "./Section/Section.astro";
+import SectionHeader from "./SectionHeader/SectionHeader.astro";
+import Stack from "./Stack/Stack.astro";
+
+type Props = {
+	altColor?: boolean;
+};
+
+const { altColor = false, ...attrs } = Astro.props;
+
+const url = new URL(Astro.url);
+const isOfferPage = url.pathname.includes(pages.offer.path);
+---
+
+<Section
+	verticallyCentered={true}
+	gap="static"
+	color={altColor ? "semantic-background-default-alt" : "semantic-background-default"}
+	{...attrs}>
+	<SectionHeader title="Nous transformons l'accessibilité en opportunité">
+		<Fragment slot="subtitle">Profitez d'un premier échange gratuit. Nous identifions vos besoins immédiats pour vous orienter vers la solution la plus efficace.</Fragment>
+	</SectionHeader>
+	<Stack gap={4} axis="x" wrap={true}>
+		{!isOfferPage && <Button as="a" href={pages.offer.path} variant="secondary">Découvrez notre offre</Button>}
+		{isOfferPage && <Button as="a" href={pages.expertise.path} variant="secondary">Découvrez notre expertise</Button>}
+		<Button as="a" href={pages.contact.path} >Contactez-nous</Button>
+	</Stack>
+</Section>

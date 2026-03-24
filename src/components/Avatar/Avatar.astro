@@ -1,0 +1,27 @@
+---
+import "./Avatar.scss";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+type Props = {
+	src: string;
+	imgAlt?: string;
+	class?: string;
+};
+
+const { src, imgAlt = "", class: className } = Astro.props;
+
+// Doc: https://docs.astro.build/en/recipes/dynamically-importing-images/
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"/src/assets/img/**/*.{jpeg,jpg,png,gif}",
+);
+
+if (!images[src])
+	throw new Error(
+		`"${src}" does not exist in glob: "src/assets/img/*.{jpeg,jpg,png,gif}"`,
+	);
+---
+
+<figure class:list={['a-avatar', className]}>
+  <Image src={images[src]()} alt={imgAlt} />
+</figure>

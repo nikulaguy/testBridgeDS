@@ -1,0 +1,13 @@
+.a-avatar {
+  @include flex-absolute-center;
+  width: var(--avatar-width);
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+	border: 1px solid var(--semantic-border-subtle);
+  color: var(--semantic-foreground-default);
+  overflow: hidden;
+
+  img {
+    object-fit: contain;
+  }
+}

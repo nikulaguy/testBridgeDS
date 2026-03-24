@@ -1,0 +1,120 @@
+---
+import "./Header.scss";
+import BurgerMenuIcon from "../../assets/icons/align-justify.svg?react";
+import CloseIcon from "../../assets/icons/x.svg?react";
+import { headerLinks, pages } from "../../site.config";
+import { getAriaCurrentValue } from "../../utils/string.utils";
+import { Button } from "../Button/Button.tsx";
+import LogoLink from "../LogoLink.astro";
+import VisuallyHidden from "../VisuallyHidden.astro";
+
+const url = new URL(Astro.request.url);
+---
+
+<header class="l-header" role="banner" aria-label="Entête de page">
+  <div class="l-header__content u-full-width u-content-centered">
+    <LogoLink />
+    <nav role="navigation" aria-label="Menu principal" class="l-header__nav" id="site-nav">
+      <Button
+        variant="ghost"
+        isSquared
+        type="button"
+        className="l-header__nav-toggle"
+        id="nav-toggle"
+        aria-controls="site-nav"
+        aria-expanded="false"
+        aria-haspopup="menu"
+      >
+				<VisuallyHidden label="Ouvrir le menu principal" data-open-state="open" />
+        <BurgerMenuIcon data-open-state="open" />
+
+				<VisuallyHidden label="Fermer le menu principal" data-open-state="close" class="u-display:none" />
+        <CloseIcon data-open-state="close" className="u-display:none" />
+      </Button>
+
+      <ul class="l-header__nav-menu u-list-reset u-list-style:none">
+        {
+          headerLinks.map(({ path, label }) => {
+            const isCurrent = getAriaCurrentValue(url, path);
+						const isContact = path === pages.contact.path;
+            return (
+              <li>
+                {
+                  isContact && <Button
+                    as="a"
+                    variant="secondary"
+										aria-current={isCurrent}
+                    data-astro-prefetch
+                    href={path}
+                  >{label}</Button>
+                }
+                {
+                  !isContact && <a
+										aria-current={isCurrent}
+                    data-astro-prefetch
+                    href={path}
+                  >{label}</a>
+                }
+              </li>
+          )})
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const header = document.querySelector(".l-header") as HTMLElement;
+    const navToggle = document.querySelector("#nav-toggle") as HTMLButtonElement;
+    const navToggleStates = navToggle?.querySelectorAll('[data-open-state]');
+    const inertElements = document.querySelectorAll(".l-skip-links, .l-main, .l-footer");
+
+    let isExpanded = false;
+
+    const isCollapsible = () =>
+      getComputedStyle(header).getPropertyValue("--collapsible-nav").trim() === "true";
+
+    const expand = () => {
+      isExpanded = true;
+      navToggle?.setAttribute("aria-expanded", "true");
+			navToggleStates.forEach((state) => {
+				state.classList.toggle("u-display:none");
+			});
+      inertElements.forEach((element) => {
+        element.setAttribute("inert", "true");
+      });
+    };
+
+    const collapse = () => {
+      isExpanded = false;
+      navToggle?.setAttribute("aria-expanded", "false");
+			navToggleStates.forEach((state) => {
+				state.classList.toggle("u-display:none");
+			});
+      inertElements.forEach((element) => {
+        element.removeAttribute("inert");
+      });
+    };
+
+    navToggle?.addEventListener("click", () => {
+      isExpanded ? collapse() : expand();
+    });
+
+    // Reset the expanded state when going back to desktop layout
+    window.addEventListener("resize", () => {
+      if (!isCollapsible() && isExpanded) {
+        collapse();
+      }
+    });
+
+    // Close the navigation when Escape is pressed while it is open on mobile
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" && event.key !== "Esc") return;
+      if (!isCollapsible() || !isExpanded) return;
+
+      collapse();
+      navToggle?.focus();
+    });
+  });
+</script>

@@ -1,0 +1,22 @@
+---
+import "./SkipLinks.scss";
+import { type MenuLink, skipLinks } from "../../site.config";
+import Link from "../Link/Link.astro";
+import Stack from "../Stack/Stack.astro";
+
+interface Props {
+	pageSkipLinks?: MenuLink[];
+}
+
+const { pageSkipLinks = [] } = Astro.props;
+
+const allSkipLinks = [...skipLinks, ...pageSkipLinks];
+---
+
+<nav class="l-skip-links u-visually-hidden-focusable" role="navigation" aria-label="Accès rapides">
+  <Stack as="ul" axis="x" gap={4} class="l-skip-links__menu u-list-reset u-list-style:none">
+    {
+      allSkipLinks.map(({ path, label}) => <li><Link variant="standalone" textStyle="caption-1" href={path} label={label} /></li>)
+    }
+  </Stack>
+</nav>

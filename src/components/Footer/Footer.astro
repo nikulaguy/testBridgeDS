@@ -1,0 +1,114 @@
+---
+import "./Footer.scss";
+import type { MenuLink } from "../../site.config";
+import {
+	footerLegalLinks,
+	footerLinks,
+	pages,
+	socialLinks,
+} from "../../site.config";
+import { getCollectionSortedByOrder } from "../../utils/collection.utils";
+import { getAriaCurrentValue } from "../../utils/string.utils";
+import { Button } from "../Button/Button.tsx";
+import Link from "../Link/Link.astro";
+import LogoLink from "../LogoLink.astro";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+import VisuallyHidden from "../VisuallyHidden.astro";
+
+const url = new URL(Astro.request.url);
+const articles = await getCollectionSortedByOrder("articles");
+const articlesLinks: MenuLink[] = articles.map(({ id, data: { title } }) => ({
+	path: `${pages.articles.path}/${id}`,
+	label: title,
+}));
+
+const year = new Date().getFullYear();
+---
+<footer class="l-footer" role="contentinfo" aria-label="Pied de page">
+  <div class="u-full-width u-content-centered l-footer__content">
+    <div class="l-footer__logo">
+      <LogoLink />
+    </div>
+
+    <Text as="blockquote" variant="heading-5" class="l-footer__blockquote">
+      Nous rendons le numérique accessible à tous.
+    </Text>
+
+    <nav role="navigation" aria-label="Menu secondaire">
+      <Stack gap={4} as="ul" class="u-list-reset u-list-style:none">
+        {
+          [...footerLinks, ...articlesLinks].map(({ path, label}) =>
+            <li>
+              <Link
+                aria-current={getAriaCurrentValue(url, path)}
+                data-astro-prefetch
+                href={path}
+                label={label}
+                variant="standalone"
+								textStyle="caption-1"
+              />
+            </li>
+					)
+        }
+				<li class="l-footer__frontguys">
+					<Link
+						href="https://frontguys.fr"
+						label="Découvrez frontguys.fr"
+						target="_blank"
+						variant="standalone"
+						textStyle="caption-1"
+					/>
+				</li>
+      </Stack>
+    </nav>
+
+    <Stack
+      as="ul"
+      axis="x"
+      gap={4}
+      class="u-list-reset u-list-style:none l-footer__social"
+      aria-label="Nos réseaux sociaux"
+    >
+      {
+        socialLinks.map(({ path, label, icon: Icon }) => (
+          <li>
+            <Button
+              as="a"
+              variant="secondary"
+              isSquared
+              data-astro-prefetch
+              href={path}
+              target="_blank"
+							title={`Suivez-nous sur ${label}`}
+            >{
+              <Icon />
+              <VisuallyHidden label={`Suivez-nous sur ${label}`} />
+            }</Button>
+          </li>
+        ))
+      }
+    </Stack>
+
+    <ul class="u-list-reset u-list-style:none l-footer__legal" aria-label="Informations réglementaires">
+      {
+        footerLegalLinks.map((link) => (
+          <li>
+            <Link
+                aria-current={getAriaCurrentValue(url, link.path)}
+                data-astro-prefetch
+                href={link.path}
+                label={link.label}
+                variant="standalone"
+                textStyle="caption-2"
+              />
+          </li>
+        ))
+      }
+    </ul>
+
+    <Text as="p" variant="caption-2" class="l-footer__copyrights">
+      © {year} Frontguys. Tous droits réservés.
+    </Text>
+  </div>
+</footer>

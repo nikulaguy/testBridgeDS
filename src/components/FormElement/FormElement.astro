@@ -1,0 +1,209 @@
+---
+import "./FormElement.scss";
+import { Icon } from "astro-icon/components";
+import { kebabify } from "../../utils/string.utils";
+import Checkbox from "../Checkbox/Checkbox.astro";
+import Input from "../Input/Input.astro";
+import Link from "../Link/Link.astro";
+import Select from "../Select/Select.astro";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+import VisuallyHidden from "../VisuallyHidden.astro";
+
+type FormElementLink = {
+	href: string;
+	label: string;
+	newWindow?: boolean;
+};
+
+interface Props extends astroHTML.JSX.InputHTMLAttributes {
+	isOptional?: boolean;
+	name: string;
+	labelText: string;
+	icon?: string;
+	element?: "input" | "textarea" | "select" | "search";
+	inputType?:
+		| "text"
+		| "number"
+		| "tel"
+		| "email"
+		| "password"
+		| "radio"
+		| "checkbox"
+		| "search";
+	hint?: string;
+	error?: string | null;
+	defaultValue?: number | string | string[] | null;
+	inputFileLabelText?: string;
+	inputFileIcon?: string;
+	inputFileAccept?: string;
+	options?: string[];
+	link?: FormElementLink;
+}
+
+const {
+	isOptional = false,
+	icon,
+	name,
+	labelText,
+	element = "input",
+	inputType = "text",
+	hint,
+	options,
+	defaultValue,
+	error,
+	inputFileLabelText,
+	inputFileIcon = "picture",
+	inputFileAccept,
+	link,
+	...attrs
+} = Astro.props;
+
+const formattedName = kebabify(name);
+const placeholder = attrs.placeholder ? attrs.placeholder : undefined;
+const value = attrs.value ? attrs.value : undefined;
+const labelIsInline = inputType === "radio" || inputType === "checkbox";
+
+const hintId = hint ? `hint-${formattedName}` : undefined;
+const errorId = error ? `error-${formattedName}` : undefined;
+const ariaDescribedby =
+	[errorId, hintId].filter(Boolean).join(" ") || undefined;
+---
+
+<Stack gap={2} class:list={["o-form-element", { "o-form-element--error": !!error }]}>
+  {
+    !labelIsInline && (
+      <Text as="label" variant="body-2" for={formattedName}>
+        <span>{labelText}</span>
+        {isOptional && (
+          <Text as="span" variant="body-2" color="grey-dark">
+            (optionnel)
+          </Text>
+        )}
+      </Text>
+    )
+  }
+  {
+    error ? (
+      <Stack as="p" gap={2} axis="x" class="o-form-element__error" align="center" id={errorId}>
+        <Icon name="error" size={20} aria-hidden="true" />
+				<VisuallyHidden label="Erreur :" />
+        <Text as="span" variant="caption-1">
+          {error}
+        </Text>
+      </Stack>
+    ) : null
+  }
+
+  {
+    element === "input" &&
+      inputType !== "radio" &&
+      inputType !== "checkbox" && (
+        <Input icon={icon}>
+          <input
+            name={name}
+            type={inputType}
+            placeholder={placeholder}
+            id={formattedName}
+            aria-required={!isOptional}
+            aria-invalid={!!error}
+            aria-describedby={ariaDescribedby}
+            value={defaultValue}
+						transition:persist
+						transition:persist-props
+            transition:name={formattedName}
+            {...attrs}
+          />
+        </Input>
+      )
+  }
+  {
+    element === "input" && labelIsInline && (
+      <Stack axis="x" gap={2} align="start">
+        {inputType === "checkbox" && (
+          <Checkbox
+            name={name}
+            id={formattedName}
+            aria-required={!isOptional}
+            aria-invalid={!!error}
+            aria-describedby={ariaDescribedby}
+						transition:persist
+						transition:persist-props
+            transition:name={formattedName}
+            {...attrs}
+          />
+        )}
+
+        <Stack axis="y" gap={1} align="start">
+          <Text as="label" variant="caption-1" for={formattedName}>
+            <span>{labelText}</span>
+          </Text>
+
+          {link && (
+            <Link
+              target={link.newWindow ? "_blank" : undefined}
+              href={link.href}
+              label={link.label}
+              textStyle="caption-2"
+            />
+          )}
+        </Stack>
+      </Stack>
+    )
+  }
+  {
+    element === "textarea" && (
+      <textarea
+        name={name}
+        placeholder={placeholder}
+        id={formattedName}
+        aria-required={!isOptional}
+        aria-invalid={!!error}
+        aria-describedby={ariaDescribedby}
+				transition:persist
+				transition:persist-props
+        transition:name={formattedName}
+        {...attrs}
+      >{defaultValue}</textarea>
+    )
+  }
+  {
+    element === "select" && (
+      <Select
+        placeholder={placeholder}
+        name={name}
+        options={options}
+        value={value}
+				transition:persist
+				transition:persist-props
+        transition:name={formattedName}
+        {...attrs}
+      />
+    )
+  }
+  {
+    hint ? (
+      <Text
+        as="p"
+        variant="caption-2"
+        class="o-form-element__hint"
+        id={hintId}
+      >
+        {hint}
+      </Text>
+    ) : null
+  }
+</Stack>
+
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const formElementsWithErrors = document.querySelectorAll(".o-form-element--error :is(input, textarea, select)");
+		formElementsWithErrors.forEach((element) => {
+			const ariaDescribedby = element.getAttribute("aria-describedby") ?? "";
+			element.setAttribute("aria-invalid", "true");
+			if (!ariaDescribedby.includes("error-")) {
+				element.setAttribute("aria-describedby", `error-${element.id} ${ariaDescribedby}`.trim());
+			}
+		});
+	});
+</script>

@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { Button } from "../components/Button/Button.tsx";
+import Card from "../components/Card/Card.astro";
+import CreateOpportunity from "../components/CreateOpportunity.astro";
+import List from "../components/List/List.astro";
+import MediaObject from "../components/MediaObject/MediaObject.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+import { getCollectionSortedByOrder } from "../utils/collection.utils";
+
+const trainings = await getCollectionSortedByOrder("trainings");
+const expertiseArguments = await getCollection("expertiseArguments");
+---
+
+<Layout page={pages.expertise}>
+	<Fragment slot="page-header-cta">
+		<Button as="a" href={pages.guideBook.path} variant="primary">Découvrez notre guide gratuit</Button>
+	</Fragment>
+	
+  <Section>
+    <MediaObject illustration="illustration-benchmark" reversed={true}>
+			<Stack gap={4}>
+				<SectionHeader title="Nous accompagnons votre transformation" />
+				<Text>Nous avons construit une expertise capable de vous épauler, pas de vous remplacer.</Text>
+				<List
+					title="Nous vous aidons à :"
+					items={[
+						"Faire évoluer votre culture.",
+						"Fluidifier vos processus.",
+						"Valoriser vos talents.",
+					]}
+				/>
+			</Stack>
+			<Button as="a" href={pages.offer.path} variant="secondary">Découvrez notre offre</Button>
+    </MediaObject>
+  </Section>
+
+	<Section color="semantic-background-default-alt" verticallyCentered={true}>
+		<SectionHeader title="Nous simplifions votre quotidien" />
+		<ul class="grid u-list-reset u-list-style:none expertise-arguments">
+			{
+				expertiseArguments.map(({ data: { icon, title, text } }) => (
+					<Stack as="li" gap={4} align="center">
+						<Icon aria-hidden="true" name={icon} size={24} />
+						<Text
+								as="h3"
+								variant="heading-5"
+								class="u-text-align:center u-text-wrap:balance"
+							>
+							{title}
+						</Text>
+						<Text
+							variant="subtitle"
+							class="u-text-align:center u-text-wrap:balance"
+							set:html={text}
+						/>
+					</Stack>
+				))
+			}
+		</ul>
+	</Section>
+
+	<Section>
+    <MediaObject illustration="illustration-audit" reversed={true}>
+			<Stack gap={4}>
+				<SectionHeader title="Nous mobilisons vos décideurs" />
+				<Text>
+					Ne portez plus le sujet seul face à la hiérarchie. Obtenez le soutien inconditionnel de votre direction grâce à une stratégie rodée.
+				</Text>
+				<List
+					title="Nous vous aidons à :"
+					items={[
+						"Structurer un discours clair et défendable.",
+						"Former vos équipes avec les bons arguments.",
+						"Installer des rituels concrets et pérennes.",
+					]}
+				/>
+			</Stack>
+			<Button as="a" href={pages.challenges.path} variant="secondary">Découvrez les enjeux</Button>
+    </MediaObject>
+  </Section>
+
+  <Section color="semantic-background-default-alt">
+		<SectionHeader title="Nous formons vos équipes">
+			<Fragment slot="subtitle">
+				Intégrez l'accessibilité numérique dans votre quotidien. 
+				<a href={pages.trainings.path}>Découvrez nos formations</a>
+				adaptées à vos besoins.
+			</Fragment>
+		</SectionHeader>
+
+    <div class="grid" style="--row-gap: var(--col-gap);">
+			{
+				trainings.map(({ id, data: { title, shortDescription } }) => (
+					<Card
+						variant="simple"
+						title={title}
+						subtitle={shortDescription}
+						url={`${pages.trainings.path}/${id}`}
+					/>
+				))
+			}
+		</div>
+  </Section>
+
+	<CreateOpportunity />
+</Layout>

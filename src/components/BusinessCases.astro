@@ -1,0 +1,22 @@
+---
+import { pages } from "../site.config";
+import { getCollectionSortedByOrder } from "../utils/collection.utils";
+import Card from "./Card/Card.astro";
+
+const businessCases = await getCollectionSortedByOrder("businessCases");
+---
+
+<div class="grid">
+	{
+		businessCases.map(({ id, data: { title, shortDescription, imgPath } }) => (
+			<Card
+				variant="photo"
+				title={title}
+				subtitle={`${shortDescription}.`}
+				url={`${pages.businessCases.path}/${id}`}
+				imgPath={imgPath}
+			/>
+		))
+	}
+</div>
+

@@ -1,0 +1,12 @@
+
+.l-section__header {
+  max-inline-size: var(--content-max-width);
+  margin-inline: auto;
+
+  .l-section--vertically-centered & {
+    & > :is(p, .l-section__heading--title) {
+      text-align: center;
+      text-wrap: balance;
+    }
+  }
+}

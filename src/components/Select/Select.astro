@@ -1,0 +1,43 @@
+---
+import "./Select.scss";
+import { Icon } from "astro-icon/components";
+import { kebabify } from "../../utils/string.utils";
+
+interface Props extends astroHTML.JSX.SelectHTMLAttributes {
+	options: string[] | undefined;
+	placeholder?: string | null | undefined;
+	name: string;
+	defaultValue?: number;
+}
+
+const {
+	options,
+	placeholder = "Sélectionnez une option",
+	name,
+	defaultValue,
+	...attrs
+} = Astro.props;
+
+const value = attrs.value;
+---
+
+<div class="m-select" {...attrs}>
+  <select name={name} id={kebabify(name)}>
+    {
+      !!defaultValue ? (
+        <option value="" disabled selected>
+          {placeholder}
+        </option>
+      ) : null
+    }
+    {
+      options &&
+        options.map((option, i) => (
+          <option value={i} selected={i === value}>
+            {option}
+          </option>
+        ))
+    }
+  </select>
+  <Icon name="chevron-down" class="m-select__icon" />
+</div>

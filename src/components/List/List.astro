@@ -1,0 +1,44 @@
+---
+import "./List.scss";
+import type { HTMLAttributes } from "astro/types";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+
+interface Props extends HTMLAttributes<"ul"> {
+	title?: string;
+	titleTag?: "p" | "h3" | "h4" | "h5" | "h6";
+	items: Array<string> | Array<{ title: string; content: string }>;
+}
+
+const {
+	title,
+	titleTag = "p",
+	items,
+	class: className,
+	...attrs
+} = Astro.props;
+---
+
+<Stack gap={2} class:list={["m-list", className]} {...attrs}>
+  {
+    title && (
+      <Text as={titleTag} variant="heading-6">
+        {title}
+      </Text>
+    )
+  }
+  <ul class="u-list-reset">
+    {
+      items.map((item) => {
+        if (typeof item === "string") {
+          return <Text as="li" set:html={item} />;
+        }
+        return (
+          <Text as="li">
+            <strong>{item.title} :</strong> {item.content}
+          </Text>
+        );
+      })
+    }
+  </ul>
+</Stack>

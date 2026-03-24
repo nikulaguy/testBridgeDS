@@ -1,0 +1,66 @@
+---
+import "./SectionHeader.scss";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+
+interface Props {
+	title: string;
+	titleTag?: "h1" | "h2" | "h3";
+	titleVariant?: "heading-2" | "heading-3" | "heading-6";
+	class?: string;
+}
+
+const {
+	class: className,
+	title,
+	titleTag = "h2",
+	titleVariant = "heading-3",
+	...attrs
+} = Astro.props;
+
+const uniqueId = crypto.randomUUID();
+
+const surtitleContent = await Astro.slots.render("surtitle");
+const subtitleContent = await Astro.slots.render("subtitle");
+---
+
+<Stack
+	class:list={[`l-section__heading`, className]}
+	gap={4}
+	{...attrs}
+>
+	{
+		<Stack
+			as={titleTag}
+			gap={4}
+			class="l-section__heading--title u-full-width"
+			id={uniqueId}>
+			{ !!surtitleContent && <Text
+						as="small"
+						variant="surtitle"
+						class="l-section__heading--surtitle">
+					<slot name="surtitle" />
+				</Text> }
+			<Text
+				as="span"
+				variant={titleTag === "h1" ? "heading-2" : titleVariant }
+				class="u-full-width">
+				{title}
+			</Text>
+		</Stack>
+	}
+
+	{
+		!!subtitleContent && (
+			<Text
+				as="p"
+				variant="subtitle"
+				class="l-section__heading--subtitle u-full-width"
+			>
+				<slot name="subtitle" />
+			</Text>
+		)
+	}
+
+</Stack>
+

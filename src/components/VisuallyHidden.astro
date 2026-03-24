@@ -1,0 +1,32 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import { externalLinkLabel } from "../site.config";
+
+type Props<Tag extends HTMLTag> = Polymorphic<
+	| {
+			// Standard case: label is required
+			as: Tag;
+			label: string;
+			newWindow?: boolean;
+	  }
+	| {
+			// External-link-only case: label can be omitted when newWindow is true
+			as: Tag;
+			label?: string;
+			newWindow: true;
+	  }
+>;
+
+const {
+	as: Tag = "span",
+	label = "",
+	class: className,
+	newWindow = false,
+	...attrs
+} = Astro.props;
+---
+
+<Tag
+  class:list={['u-visually-hidden', className]}
+  {...attrs}
+>{' '}{label}{newWindow ? externalLinkLabel : ""}{' '}</Tag>

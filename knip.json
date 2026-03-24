@@ -1,0 +1,11 @@
+{
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+	"entry": [
+		"src/pages/**/*.{astro,js,ts}",
+		"src/content/**/*.{md,yaml}",
+		"terrazzo.config.js"
+	],
+	"project": ["src/**/*.{astro,tsx,ts,jsx,js}", "!src/**/*.stories.*"],
+	"ignore": ["dist", ".astro"],
+	"ignoreDependencies": ["posthog-js", "@astrojs/check"]
+}

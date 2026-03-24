@@ -1,0 +1,13 @@
+.a-link,
+.a-link__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.a-link {
+	gap: var(--base-space-1);
+}
+
+:is(.a-link--standalone, .a-link--back):not(:hover, [aria-current="page"]) {
+  text-decoration-line: none;
+}

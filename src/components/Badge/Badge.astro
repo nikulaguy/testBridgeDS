@@ -1,0 +1,28 @@
+---
+import Text from "../Text/Text.astro";
+import VisuallyHidden from "../VisuallyHidden.astro";
+import "./Badge.scss";
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{
+	as: Tag;
+	variant?: "default"; // | "invert" | "primary" | "alternative";
+	title?: string;
+	label: string;
+	class?: string;
+}>;
+
+const {
+	as: Tag = "span",
+	variant = "default",
+	title = "",
+	label,
+	class: className,
+	...attrs
+} = Astro.props;
+---
+
+<Tag class:list={["m-badge", `m-badge--${variant}`, className]} {...attrs}>
+	{ title && (<VisuallyHidden label={`${title} :`} />)}
+	<Text as="span" variant="caption-1">{label}</Text>
+</Tag>

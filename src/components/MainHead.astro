@@ -1,0 +1,28 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { siteDescription, siteName } from "../site.config";
+
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+}
+
+const { title = siteName, description = siteDescription } = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url.href} />
+<meta property="og:title" content={title} />
+<meta property="og:image" content="/og-frontguys-a11y.png" />
+<meta name="description" property="og:description" content={description} />
+<meta name="author" content="Frontguys" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<ClientRouter />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />

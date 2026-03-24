@@ -1,0 +1,19 @@
+---
+import BusinessCases from "../components/BusinessCases.astro";
+import CreateOpportunity from "../components/CreateOpportunity.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+---
+
+<Layout page={pages.businessCases}>
+	<Section>
+		<SectionHeader title="Nos dernières collaborations">
+			<Fragment slot="subtitle">Nous accompagnons vos équipes avec la même exigence : rendre le numérique utile à tous.</Fragment>
+		</SectionHeader>
+		<BusinessCases />
+	</Section>
+	
+	<CreateOpportunity altColor={true} />
+</Layout>

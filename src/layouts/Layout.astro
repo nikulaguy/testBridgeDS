@@ -1,0 +1,63 @@
+---
+import "../assets/styles/style.scss";
+import type { HTMLAttributes } from "astro/types";
+import Footer from "../components/Footer/Footer.astro";
+import Header from "../components/Header/Header.astro";
+import MainHead from "../components/MainHead.astro";
+import MediaObject from "../components/MediaObject/MediaObject.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Section from "../components/Section/Section.astro";
+import SkipLinks from "../components/SkipLinks/SkipLinks.astro";
+import Stack from "../components/Stack/Stack.astro";
+import type { Page } from "../site.config";
+import { getPageDescription, getPageTitle } from "../utils/string.utils";
+
+interface Props extends HTMLAttributes<"main"> {
+	frontmatter?: Record<string, any>;
+	page: Page;
+	usePageHeader?: boolean;
+}
+
+const { frontmatter, page, usePageHeader = true, ...attrs } = Astro.props;
+---
+<!doctype html>
+<html lang='fr'>
+  <head>
+    <MainHead
+      title={ getPageTitle(page, frontmatter) }
+      description={ getPageDescription(page, frontmatter) }
+    />
+  </head>
+  <body>
+    <SkipLinks pageSkipLinks={page.skipLinks} />
+    <Header />
+		<main id="main" class="l-main">
+			{ (usePageHeader && page) && <Section as="header">
+				{ (page.header.img || page.header.illustration) && (
+					<MediaObject img={page.header.img} illustration={page.header.illustration}>
+						<PageHeader page={page} />
+						{ Astro.slots.has("page-header-cta") && (
+							<Stack axis="x" gap={4} wrap={true}>
+								<slot name="page-header-cta" />
+							</Stack>
+						)}
+					</MediaObject>
+				)}
+
+				{ !page.header.img && !page.header.illustration && (
+					<Fragment>
+						<PageHeader page={page} />
+						{ Astro.slots.has("page-header-cta") && (
+							<Stack axis="x" gap={4} wrap={true}>
+								<slot name="page-header-cta" />
+							</Stack>
+						)}
+					</Fragment>
+				)}
+			</Section> }
+
+			<slot />
+		</main>
+    <Footer />
+  </body>
+</html>

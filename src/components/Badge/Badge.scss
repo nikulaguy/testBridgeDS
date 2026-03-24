@@ -1,0 +1,33 @@
+.m-badge {
+    --height: var(--base-space-8);
+
+    --border-color: var(--semantic-border-default);
+    --bg-color: transparent;
+    --text-color: var(--semantic-foreground-default);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    height: var(--height);
+    border-radius: var(--height);
+    padding-inline: var(--base-space-4);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+// .m-badge--invert {
+//     --bg-color: var(--semantic-background-default);
+//     --text-color: var(--semantic-foreground-default);
+// }
+
+// .m-badge--primary {
+//     --bg-color: var(--semantic-background-accent);
+//     --text-color: var(--semantic-foreground-default-invert);
+// }
+
+// .m-badge--alternative {
+//     --bg-color: var(--semantic-background-default-alt);
+//     --text-color: var(--semantic-foreground-default);
+// }

@@ -1,0 +1,133 @@
+---
+import Alert from "../components/Alert/Alert.astro";
+import { Button } from "../components/Button/Button";
+import FormElement from "../components/FormElement/FormElement.astro";
+import Link from "../components/Link/Link.astro";
+import Stack from "../components/Stack/Stack.astro";
+import VisuallyHidden from "../components/VisuallyHidden.astro";
+import { pages } from "../site.config";
+
+const consentLink = {
+	href: pages.privacyPolicy.path,
+	label: "Lire notre politique de confidentialité",
+	newWindow: true,
+};
+
+// Mode prototype statique : pas de server actions
+const inputErrors: Record<string, string[]> = {};
+const hasErrors = false;
+const firstErrorField = undefined;
+---
+
+<form id="contact-form" aria-labelledby="contact-form-title">
+	<Stack gap={8}>
+		{!!firstErrorField && (	
+			<Alert variant="error" text="Le formulaire contient des erreurs de saisie" id="contact-form-errors" tabindex="-1">
+				<Link textStyle="caption-1" href={`#${firstErrorField}`} label="Aller à la première erreur" />
+			</Alert>
+		)}
+
+		{hasErrors && !firstErrorField && (
+			<Alert variant="error" text="L'envoi du formulaire a échoué" id="contact-form-errors" tabindex="-1">
+			</Alert>
+		)}
+
+		<FormElement
+			name="firstname"
+			labelText="Prénom"
+			autocomplete="given-name"
+			error={inputErrors?.firstname
+				? inputErrors.firstname?.join(" ")
+				: null}
+		/>
+		<FormElement
+			name="lastname"
+			labelText="Nom"
+			autocomplete="family-name"
+			error={inputErrors?.lastname ? inputErrors.lastname?.join(" ") : null}
+		/>
+		<FormElement
+			name="email"
+			labelText="Email"
+			inputType="email"
+			autocomplete="email"
+			hint="Exemple : nom.prenom@email.fr"
+			error={inputErrors?.email ? inputErrors.email?.join(" ") : null}
+		/>
+		<FormElement
+			name="phone"
+			labelText="Téléphone"
+			isOptional
+			autocomplete="tel"
+			hint="Exemple : 01 23 45 67 89"
+			error={inputErrors?.phone ? inputErrors.phone?.join(" ") : null}
+		/>
+		<FormElement
+			name="company"
+			labelText="Entreprise"
+			isOptional
+			autocomplete="organization"
+			error={inputErrors?.company ? inputErrors.company?.join(" ") : null}
+		/>
+		<FormElement
+			name="role"
+			labelText="Rôle"
+			isOptional
+			autocomplete="organization-title"
+			error={inputErrors?.role ? inputErrors.role?.join(" ") : null}
+		/>
+		<FormElement
+			name="message"
+			labelText="Message"
+			element="textarea"
+			placeholder="Parlez-nous de votre projet, vos objectifs, votre contexte..."
+			error={inputErrors?.message ? inputErrors.message?.join(" ") : null}
+		/>
+		<FormElement
+			name="consent"
+			labelText="En cochant cette case, j'accepte que Frontguys traite mes données personnelles pour m'envoyer des communications en lien avec ses services et contenus (Je peux me désinscrire à tout moment)."
+			inputType="checkbox"
+			link={consentLink}
+			error={inputErrors?.consent ? inputErrors.consent?.join(" ") : null}
+		/>
+		<Button type="submit" isFullWidth>Envoyez votre message</Button>
+	</Stack>
+</form>
+
+<VisuallyHidden label="Envoi du formulaire en cours." id="contact-form-loading" class="u-display:none" role="alert" />
+
+
+<script>
+	const form = document.querySelector("#contact-form") as HTMLFormElement;
+	const submitButton = form.querySelector("button[type='submit']") as HTMLButtonElement;
+	const loading = document.querySelector("#contact-form-loading") as HTMLElement;
+
+	const setLoading = (state: boolean = true) => {
+		if (state) {
+			submitButton.setAttribute("disabled", "true");
+			submitButton.setAttribute("aria-disabled", "true");
+			form.setAttribute("aria-busy", "true");
+			loading.classList.remove("u-display:none");
+			return;
+		} 
+		
+		submitButton.removeAttribute("disabled");
+		submitButton.removeAttribute("aria-disabled");
+		form.removeAttribute("aria-busy");
+		loading.classList.add("u-display:none");
+	}
+
+	document.addEventListener("astro:page-load", () => {
+		const formErrors = document.querySelector("#contact-form-errors") as HTMLElement;
+		if (formErrors) {
+			formErrors.focus();
+			document.title = `Le formulaire contient des erreurs de saisie - ${document.title}`;
+		}
+
+		setLoading(false);
+	});
+
+	form.addEventListener("submit", (event) => {
+		setLoading(true);
+	});
+</script>

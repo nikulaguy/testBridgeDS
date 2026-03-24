@@ -1,0 +1,123 @@
+---
+import { getCollection, render } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+import Card from "../../components/Card/Card.astro";
+import KeyFigures from "../../components/KeyFigures.astro";
+import Link from "../../components/Link/Link.astro";
+import List from "../../components/List/List.astro";
+import MediaObject from "../../components/MediaObject/MediaObject.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import type { Page } from "../../site.config";
+import { pages } from "../../site.config";
+
+export const prerender = true;
+
+export const getStaticPaths = async () => {
+	const businessCases = await getCollection("businessCases");
+
+	return businessCases.map((businessCase) => ({
+		params: { id: businessCase.id },
+		props: { businessCase },
+	}));
+};
+
+const { businessCase } = Astro.props;
+const { Content } = await render(businessCase);
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"/src/assets/img/*.{jpeg,jpg,png,gif}",
+);
+const image = await images[businessCase.data.imgPath]();
+
+const page: Page = {
+	path: businessCase.id,
+	label: businessCase.data.title,
+	meta: {
+		title: `${businessCase.data.client} : ${businessCase.data.shortDescription}`,
+	},
+	header: {
+		title: `${businessCase.data.client} : ${businessCase.data.shortDescription}`,
+		subtitle: businessCase.data.description,
+		img: image.default,
+		backLink: {
+			label: "Tous nos cas clients",
+			href: pages.businessCases.path,
+		},
+	},
+};
+---
+<Layout page={page} usePageHeader={false}>
+	<article class="l-article">
+		<Section as="header">
+			<MediaObject img={page.header.img}>
+				<PageHeader page={page} />	
+			</MediaObject>
+		</Section>
+
+		<Section>
+			<div class="grid" style="--max-cols-per-row: 2; --col-gap: var(--section-gap); --col-min-width: 450px; --cell-padding: 0;">
+				<Stack axis="y" gap={4}>
+					<SectionHeader title="Contexte et enjeux" />
+					<div class="prose">
+						<Content />
+					</div>
+
+					{ businessCase.data.clientQuote && (
+						<List titleTag="h3" title="Défis identifiés" items={businessCase.data.challenges} />
+					)}
+				</Stack>
+
+				<Stack axis="y" gap={4}>
+					{ businessCase.data.clientQuote?.quote && (
+						<Text as="h2" variant="heading-6">Témoignage client</Text>
+						<blockquote>
+							<Text>{businessCase.data.clientQuote.quote}</Text>
+							<Text as="cite">{businessCase.data.clientQuote.author}</Text>
+						</blockquote>
+					)}
+
+					{ !businessCase.data.clientQuote && (
+						<List titleTag="h3" title="Défis identifiés" items={businessCase.data.challenges} />
+					)}
+				</Stack>						
+			</div>
+		</Section>
+
+		<Section color="semantic-background-default-alt" verticallyCentered={true}>
+			<SectionHeader title="Notre approche" />
+			<ul class="grid">
+				{businessCase.data.method.map( ({ icon, title, text }) => (
+					<Stack as="li" gap={4} align="center" class="u-text-align:center u-text-wrap:balance">
+						<Icon aria-hidden="true" name={icon} size={24} />
+						<Text as="h3" variant="heading-5">{title}</Text>
+						<Text variant="subtitle">{text}</Text>
+					</Stack>
+				))}
+			</ul>
+		</Section>
+			
+		<Section verticallyCentered={true}>
+			<SectionHeader title="Résultats obtenus" />
+			<KeyFigures items={businessCase.data.results} />
+		</Section>
+
+		<Section color="semantic-background-default-alt">
+			<SectionHeader title="Impact organisationnel" />
+			<div class="grid" style="--max-cols-per-row: 2;">
+				{ businessCase.data.impact.map(({ title, text }) => (
+					<Card title={title} subtitle={text} />
+				))}
+			</div>
+			
+			<Link
+				variant="back"
+				href={pages.businessCases.path}
+				label="Tous nos cas clients" />
+		</Section>
+	</article>
+</Layout>

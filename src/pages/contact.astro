@@ -1,0 +1,64 @@
+---
+import { Icon } from "astro-icon/components";
+import ContactExpertBanner from "../components/ContactExpertBanner.astro";
+import Link from "../components/Link/Link.astro";
+import Section from "../components/Section/Section.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import ContactForm from "../layouts/ContactForm.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+
+const contactAnswserEngagements = [
+	"Nous vous recontactons sous 48h",
+	"Premier échange sans engagement",
+	"Vos données sont protégées",
+];
+---
+
+<Layout page={pages.contact}>
+	<Section condensed>
+		<Stack gap={4} class="u-full-width">
+			<Text as="h2" variant="heading-6">Échangez avec l'un de nos experts</Text>
+			<ContactExpertBanner />
+		</Stack>	
+	</Section>
+
+	<Section condensed color="semantic-background-default-alt">
+		<Stack gap={4}>
+			<Text as="h2" variant="heading-6" id="contact-form-title">Nous envoyer un message</Text>
+			<ContactForm />
+		</Stack>
+	</Section>
+
+	<Section condensed>
+		<Stack gap={4}>
+			<Text as="h2" variant="heading-6">
+				Nos engagements pour vous répondre
+			</Text>
+			<ul class="u-list-reset u-list-style:none">
+				{contactAnswserEngagements.map((engagement) => (
+					<Stack as="li" axis="x" gap={1}>
+						<Icon name="arrow-right" size="24" aria-hidden="true" />
+						<Text as="span" variant="body-2">{engagement}</Text>
+					</Stack>
+				))}
+				</ul>
+		</Stack>
+	
+		<Stack gap={4}>
+			<Text as="h2" variant="heading-6">Où nous trouver</Text>
+			<address>
+				<Link
+					href="https://www.google.com/maps/place/Front+Guys/@48.8746797,2.3301855,17z/data=!3m2!4b1!5s0x47e66e37a4d5402b:0x8131f0c40c2c7b48!4m6!3m5!1s0x47e66f9a93bdde2f:0x2c7eb2fed547bbf4!8m2!3d48.8746762!4d2.3327604!16s%2Fg%2F11j3qhw3yv?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
+					label="58 bis Rue de la Chaussée d'Antin, 75008 Paris, France"
+					complementaryLabel="(Google Maps)"
+					target="_blank"
+					variant="standalone"
+					textStyle="body-2"
+				/>	
+			</address>
+		</Stack>
+	</Section>
+
+</Layout>

@@ -1,0 +1,43 @@
+---
+import "./Accordion.scss";
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+
+type AccordionEl = {
+	title: string | null | undefined;
+	content: string | null | undefined;
+};
+
+interface Props extends HTMLAttributes<"div"> {
+	sections: AccordionEl[];
+	name?: string;
+	class?: string;
+}
+
+const { class: className, sections, name } = Astro.props;
+
+const emptyAccordionContent = sections.find((el) => el.content === "");
+if (emptyAccordionContent)
+	throw new Error(
+		`Accordion element with the title "${emptyAccordionContent.title}" doesn't have any content.`,
+	);
+---
+
+<Stack gap={3} class:list={["o-accordion", className]}>
+  {
+    sections &&
+      sections.map((section) => (
+        <details {...(name && { name })}>
+          <Text as="summary" variant="heading-6">
+            <span>{section.title}</span>
+            <Icon name="chevron-down" data-state="open" aria-hidden="true" />
+          </Text>
+          <Text as="p">
+            {section.content}
+          </Text>
+        </details>
+      ))
+  }
+</Stack>

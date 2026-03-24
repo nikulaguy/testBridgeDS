@@ -1,0 +1,71 @@
+---
+import Card from "../../components/Card/Card.astro";
+import ContactExpertBanner from "../../components/ContactExpertBanner.astro";
+import CreateOpportunity from "../../components/CreateOpportunity.astro";
+import List from "../../components/List/List.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { pages } from "../../site.config";
+import { getCollectionSortedByOrder } from "../../utils/collection.utils";
+
+const auditMethods = await getCollectionSortedByOrder("auditsMethod");
+const audits = await getCollectionSortedByOrder("audits");
+const auditsWithCompliance = audits.filter((audit) => audit.data.compliance);
+const auditsWithoutCompliance = audits.filter(
+	(audit) => !audit.data.compliance,
+);
+---
+
+<Layout page={pages.audits}>
+	<Section aria-label="Nos audits d'accessibilité">
+		<Text as="h2" variant="heading-3">Audits de conformité RGAA</Text>
+
+		<div class="grid" style="--max-cols-per-row: 2;">
+			{ auditsWithCompliance.map((audit) => (
+				<Card variant="freeform" title={audit.data.title}>
+					<Stack set:html={audit.rendered?.html} gap={4} class="text-body-1" />
+					<List title="Idéal pour :" items={audit.data.arguments} />
+				</Card>
+			))}
+		</div>
+
+		<Text as="h2" variant="heading-3">Audits complémentaires</Text>
+
+		<div class="grid">
+			{ auditsWithoutCompliance.map((audit) => (
+				<Card variant="freeform" title={audit.data.title}>
+					<Stack set:html={audit.rendered?.html} gap={4} class="text-body-1" />
+					<List title="Idéal pour :" items={audit.data.arguments} />
+				</Card>
+			))}
+		</div>
+
+		<Text as="h2" variant="heading-3">Demandez conseil à notre expert en accessibilité</Text>
+
+		<ContactExpertBanner />
+	</Section>
+
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Comment se déroule un audit d'accessibilité ?">
+			<Fragment slot="subtitle">L’audit d’accessibilité, qu’il soit pour une mise en conformité ou pour une évaluation de surface, se déroule toujours de la même manière.</Fragment>
+		</SectionHeader>
+
+		<ol class="grid">
+			{auditMethods.map((auditMethod, index) => (
+				<Stack as="li" gap={2}>
+					<Stack as="h3" gap={2} axis="y">
+						<Text as="span" variant="surtitle">Étape {index + 1} :</Text>
+						<Text as="span" variant="heading-4">{auditMethod.data.title}</Text>
+					</Stack>
+					<Text>{auditMethod.data.text}</Text>
+				</Stack>
+			))}
+		</ol>
+
+	</Section>
+
+  <CreateOpportunity />
+</Layout>

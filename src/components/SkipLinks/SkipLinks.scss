@@ -1,0 +1,10 @@
+.l-skip-links {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: var(--z-index-skip-links);
+
+  background-color: var(--semantic-background-default);
+  border: solid var(--semantic-border-subtle);
+  border-width: 0 1px 1px 0;
+	padding: var(--base-space-2) var(--base-space-4);
+}

@@ -1,0 +1,18 @@
+etape-1:
+  title: Échantillonnage
+  text: Sélection et validation d'un ensemble de pages représentatif des parcours-clés, des fonctionnalités et des contenus du service.
+etape-2:
+  title: Évaluation experte
+  text: Évaluation manuelle et objective de l'échantillon avec recommandations de réparation pour chaque non-conformité.
+etape-3:
+  title: Rapport d'audit
+  text: Rédaction d'un rapport détaillé contenant les recommandations de réparation et les impacts utilisateurs.
+etape-4:
+  title: Restitution du rapport
+  text: Restitution orale pour présenter les points critiques relevés lors de l'audit avec explications et conseils pour la réparation.
+etape-5:
+  title: Déclaration d'accessibilité
+  text: Restitution de la déclaration d'accessibilité et préparation de la publication et de la mise à jour du schéma pluriannuel.
+etape-6:
+  title: Mise en conformité
+  text: Aide à la saisie des remédiations proposées dans un outil de gestion de projet et suivi des correctifs.

@@ -1,0 +1,62 @@
+.m-input,
+textarea {
+	display: flex;
+	align-items: center;
+	border: 1px solid var(--input-border-color);
+	padding-left: var(--input-padding);
+	gap: var(--input-padding);
+	width: 100%;
+	padding-right: var(--input-padding);
+	background-color: var(--semantic-background-default);
+	border-radius: var(--interactive-element-border-radius);
+	color: var(--semantic-foreground-default);
+
+	&:has(> input) {
+		height: var(--interactive-element-height);
+	}
+
+	@include placeholder() {
+		color: var(--grey-dark);
+	}
+
+	&:focus-within,
+	&:is(textarea):focus-visible {
+		--input-border-color: var(--input-border-color-focus);
+	}
+}
+
+.m-input {
+	&:focus-within {
+		outline: var(--focus-ring);
+		outline-offset: var(--focus-ring-offset);
+	}
+
+	input {
+		display: flex;
+		align-items: center;
+		flex: 1;
+		max-width: 100%;
+		padding: 0;
+		border: none;
+		outline: none;
+		background-color: var(--semantic-background-default);
+		color: var(--semantic-foreground-default);
+		@include text-body-2;
+	}
+
+	/* WebKit and Blink */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+
+	svg {
+		fill: currentColor;
+	}
+}

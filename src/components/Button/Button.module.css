@@ -1,0 +1,139 @@
+/** Defaults */
+.button {
+	--button-background-color: initial;
+	--button-border-color: initial;
+	--button-text-color: initial;
+	--button-padding-inline: var(--base-space-4);
+	--button-padding-block: var(--base-space-3);
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	gap: var(--base-space-3);
+	background-color: var(--button-background-color);
+	border: 1px solid var(--button-border-color);
+	color: var(--button-text-color);
+	min-height: var(--interactive-element-height);
+	padding: calc(var(--button-padding-block) - 1px)
+		calc(var(--button-padding-inline) - 1px);
+	border-radius: var(--interactive-element-border-radius);
+	will-change: background-color;
+	cursor: pointer;
+	text-decoration: none;
+
+	@media (prefers-reduced-motion: no-preference) {
+		& {
+			transition: all 0.2s ease-out;
+		}
+	}
+
+	/** Prevent button children to capture click event */
+	& > * {
+		pointer-events: none;
+	}
+
+	/** Icons */
+	svg {
+		flex-shrink: 0;
+		height: 1.5em;
+	}
+
+	/*
+   Unfortunately this selector also match icon with sibling text
+   so we use .squared custom class & isSquared prop
+  &:has(svg:only-child) {}
+ */
+
+	/** States */
+	&:disabled {
+		pointer-events: none; /* avoid hover/active state overlap, disable events */
+		user-select: none; /* no text selection on double-click */
+	}
+}
+
+/** Themes */
+.primary {
+	--button-background-color: var(--semantic-background-accent);
+	--button-border-color: var(--semantic-border-interactive);
+	--button-text-color: var(--semantic-foreground-default-invert);
+
+	/** States */
+	&:disabled {
+		--button-background-color: var(--semantic-background-accent-disabled);
+	}
+	&:is(:active, :hover, [aria-current="page"]) {
+		--button-background-color: var(--semantic-background-accent-hover);
+		--button-border-color: var(--semantic-background-accent-hover);
+	}
+}
+
+.secondary {
+	--button-background-color: transparent;
+	--button-border-color: var(--semantic-border-interactive);
+	--button-text-color: var(--semantic-foreground-interactive);
+
+	/** States */
+	&:disabled {
+		--button-border-color: var(--semantic-border-interactive-disabled);
+		--button-text-color: var(--semantic-foreground-interactive-disabled);
+	}
+	&:is(:active, :hover, [aria-current="page"]) {
+		--button-border-color: var(--semantic-border-interactive-hover);
+		--button-text-color: var(--semantic-foreground-interactive-hover);
+		--button-background-color: color-mix(
+			in srgb,
+			var(--semantic-background-fade-hover) 4%,
+			transparent
+		);
+	}
+}
+
+.ghost {
+	--button-background-color: transparent;
+	--button-border-color: var(--button-background-color);
+	--button-text-color: var(--semantic-foreground-interactive);
+
+	/** States */
+	&:disabled {
+		--button-text-color: var(--semantic-foreground-interactive-disabled);
+	}
+	&:is(:active, :hover, [aria-current="page"]) {
+		--button-text-color: var(--semantic-foreground-interactive-hover);
+		--button-background-color: color-mix(
+			in srgb,
+			var(--semantic-background-fade-hover) 4%,
+			transparent
+		);
+	}
+}
+
+/** Sizes */
+.small {
+	--button-padding-block: var(--base-space-2);
+	--button-padding-inline: var(--base-space-6);
+}
+
+/** Styles */
+.full_width {
+	justify-content: center;
+	width: 100%;
+}
+
+.squared {
+	--button-padding-block: var(--base-space-3);
+	--button-padding-inline: var(--base-space-3);
+	aspect-ratio: 1;
+	align-items: center;
+	justify-content: center;
+	&.small {
+		--button-padding-block: var(--base-space-2);
+		--button-padding-inline: var(--base-space-2);
+		min-height: var(
+			--interactive-element-height-small
+		); /* ⚠️ should be 36px instead of 32px */
+		svg {
+			height: 1.25em;
+		}
+	}
+}

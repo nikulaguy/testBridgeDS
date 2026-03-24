@@ -1,0 +1,15 @@
+---
+import "./Input.scss";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	icon?: string;
+}
+
+const { icon } = Astro.props;
+---
+
+<div class="m-input">
+  {icon && <Icon name={icon} />}
+  <slot />
+</div>

@@ -1,0 +1,13 @@
+---
+import { Button } from "../components/Button/Button.tsx";
+import Stack from "../components/Stack/Stack.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+---
+
+<Layout page={pages.notFound}>
+	<Fragment slot="page-header-cta">
+		<Button as="a" href={pages.home.path} variant="primary">Retournez à la page d'accueil</Button>
+		<Button as="a" href={pages.siteMap.path} variant="secondary">Visitez le plan du site</Button>
+	</Fragment>
+</Layout>

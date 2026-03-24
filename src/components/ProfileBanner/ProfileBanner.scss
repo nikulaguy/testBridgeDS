@@ -1,0 +1,37 @@
+@use "../../assets/styles/01-utils/functions" as *;
+
+.o-profile-banner {
+	--direction: column;
+	
+	border-radius: var(--radius-medium);
+	background-color: var(--semantic-background-default);
+	border: 1px solid var(--semantic-border-subtle);
+	color: var(--semantic-foreground-default);
+
+	padding: clamp(
+							var(--base-space-4),
+							#{clamp-preferred-value($base-space-4, $base-space-8)},
+							var(--base-space-8)
+						);
+	width: 100%;
+	
+	display: flex;
+	flex-direction: var(--direction);
+	gap: var(--base-space-4);
+
+	@media screen and (width >= 47.5rem) {
+		& {
+			--direction: row;
+			align-items: flex-start;
+
+			[slot="cta"] {
+				align-self: flex-end;
+			}
+		}
+	}
+}
+
+.o-profile-banner__avatar,
+.o-profile-banner [slot="cta"] {
+	flex-shrink: 0;
+}

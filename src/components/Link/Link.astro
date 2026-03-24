@@ -1,0 +1,46 @@
+---
+import "./Link.scss";
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+import { externalLinkLabel } from "../../site.config";
+import { getExternalLinkLabel } from "../../utils/string.utils";
+import Text from "../Text/Text.astro";
+import VisuallyHidden from "../VisuallyHidden.astro";
+
+interface Props extends HTMLAttributes<"a"> {
+	label: string;
+	complementaryLabel?: string;
+	variant?: "inline" | "standalone" | "back";
+	textStyle?: "body-1" | "body-2" | "subtitle" | "caption-1" | "caption-2";
+	href: string;
+	class?: string;
+}
+
+const {
+	label,
+	complementaryLabel = "",
+	class: className,
+	variant = "inline",
+	textStyle = "body-1",
+	href,
+	...attrs
+} = Astro.props;
+
+const isExternal = href.includes("https://") || attrs.target === "_blank";
+const computedLabel = `${label} ${complementaryLabel}`.trim();
+const title = isExternal ? getExternalLinkLabel(computedLabel) : undefined;
+---
+
+<a class:list={["a-link", `a-link--${variant}`, className]} href={href} title={title} {...attrs}>
+	{variant === "back" && (
+    <Icon aria-hidden="true" name="arrow-left" color="currentColor" size="1.5em" />
+  )}
+  <Text as="span" variant={textStyle}>{label}</Text>
+	{complementaryLabel && (
+		<VisuallyHidden label={complementaryLabel} />
+	)}
+  {isExternal && (
+    <VisuallyHidden label={externalLinkLabel} />
+    <Icon aria-hidden="true" name="link-arrow" color="currentColor" size="1.5em" />
+  )}
+</a>

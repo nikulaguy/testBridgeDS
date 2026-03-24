@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import BusinessCases from "../components/BusinessCases.astro";
+import { Button } from "../components/Button/Button.tsx";
+import KeyFigures from "../components/KeyFigures.astro";
+import MediaObject from "../components/MediaObject/MediaObject.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+
+const accessibilityKeyFigures = await getCollection("accessibilityKeyFigures");
+---
+
+<Layout page={pages.challenges}>
+	<Fragment slot="page-header-cta">
+		<Button as="a" href={pages.guideBook.path} variant="primary">Découvrez notre guide gratuit</Button>
+	</Fragment>
+
+	<Section verticallyCentered={true}>
+		<SectionHeader title="L’accessibilité en chiffres" />
+		<KeyFigures items={accessibilityKeyFigures.map(({ data: { value, text, source } }) => ({ value, text, source }))} />
+	</Section>
+
+	<Section color="semantic-background-default-alt" verticallyCentered={true}>
+		<Stack gap={4}>
+			<SectionHeader titleTag="h2" titleVariant="heading-6" title="Nous répondons aux besoins des utilisateurs" />
+			<Stack as="blockquote" gap={4} align="center">
+				<Text variant="heading-4" class="u-text-align:center u-text-wrap:balance">
+					&laquo; Euh… là j’entends "bouton", "bouton’, "bouton", … Je ne sais pas à quoi ça sert, peut-être que c’est quelque chose d’important mais je n’ai pas envie d’y aller. &raquo;
+				</Text>
+				<Text as="cite" variant="caption-1">Stéphanie, utilisatrice aveugle</Text>
+			</Stack>
+		</Stack>
+  </Section>
+
+	<Section>
+		<MediaObject illustration="illustration-qa" reversed={true}>
+			<Stack gap={4}>
+				<SectionHeader title="Nous concrétisons vos engagements RSE" />
+				<Text>
+					Transformez vos interfaces pour qu'elles reflètent vos valeurs. L'accessibilité est un droit fondamental, bien au-delà de la technique.
+				</Text>
+				<Text>
+					<strong>Offrez une égalité d'accès réelle à tous vos utilisateurs, quelles que soient leurs capacités.</strong>
+				</Text>
+			</Stack>
+			<Button as="a" href={pages.expertise.path} variant="secondary">Découvrez notre expertise</Button>
+		</MediaObject>
+	</Section>
+
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Cas client, ce que nous faisons ensemble">
+			<Fragment slot="subtitle">Nous accompagnons vos équipes avec la même exigence : rendre le numérique utile à tous.</Fragment>
+		</SectionHeader>
+		<BusinessCases />
+	</Section>
+</Layout>
+

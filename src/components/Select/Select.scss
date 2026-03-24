@@ -1,0 +1,41 @@
+.m-select {
+	position: relative;
+	display: flex;
+	align-items: center;
+	border: 1px solid var(--input-border-color);
+	gap: var(--input-padding);
+	color: var(--semantic-foreground-default);
+	height: var(--interactive-element-height);
+	border-radius: var(--interactive-element-border-radius);
+	overflow: hidden;
+
+	&:focus-within {
+		--input-border-color: var(--semantic-border-interactive);
+		outline: var(--focus-ring);
+		outline-offset: var(--focus-ring-offset);
+	}
+
+	select {
+		appearance: none;
+		@include size(100%);
+		padding-block: 0;
+		padding-left: var(--input-padding);
+		padding-right: calc(
+				var(--input-padding) + var(--base-space-4) + var(--input-padding)
+		);
+		padding-bottom: 2px;
+		background-color: var(--semantic-background-default);
+		border: none;
+		outline: none;
+		@include text-body-2;
+		color: inherit;
+	}
+}
+
+.m-select__icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY((-50%));
+	right: var(--base-space-2);
+	pointer-events: none;
+}

@@ -1,0 +1,55 @@
+obligation:
+  title: Nous faisons de la réglementation un avantage
+  illustration: illustration-mountain
+  description: Saisissez les enjeux réglementaires. Nous vous aidons à transformer vos obligations légales en un puissant levier de croissance et d'image de marque.
+  items:
+    - "14 millions de personnes en situation de handicap en France."
+    - "40% des situations temporaires ou contextuelles."
+    - "European Accessibility Act depuis juin 2025"
+    - "Cadre réglementaire structuré et renforcé."
+pourquoi-investir:
+  title: Nous prouvons la valeur de l'accessibilité
+  illustration: illustration-piece-puzzle
+  description: Découvrez comment l'accessibilité élargit votre audience et renforce votre image de marque.
+  items:
+    - "Amélioration de l'expérience utilisateur globale."
+    - "Renforcement de la réputation et de l'impact."
+    - "Conformité réglementaire et réduction des risques."
+    - "Réduction des abandons et amélioration de la satisfaction."
+idees-reçues:
+  title: Nous déconstruisons les idées reçues
+  illustration: illustration-pointer
+  description: Libérez-vous des mythes qui freinent vos projets.
+  items:
+    - "C'est trop cher : L'approche préventive coûte moins cher."
+    - "Une minorité concernée : Tout le monde peut être en situation de handicap."
+    - "Sujet purement technique : Mobilise toutes les expertises."
+    - "Conformité réglementaire et réduction des risques."
+    - "Vision collaborative et systémique nécessaire."
+structurer-demarche:
+  title: Nous structurons votre démarche durable
+  illustration: illustration-zen
+  description: Découvrez les quatre piliers de l'approche Frontguys.
+  items:
+    - "Accompagner le changement et la gouvernance."
+    - "Évaluer les services numériques (audits)."
+    - "Monter en compétence (formations adaptées)."
+    - "Instaurer une dynamique collective."
+accessibilite-secteurs:
+  title: Nous adaptons l'accessibilité à votre secteur
+  illustration: illustration-write
+  description: Découvrez nos analyses et applications concrètes par domaine d'activité.
+  items:
+    - "E-commerce : taux de conversion et tunnels d'achat."
+    - "Banque/Assurance : opérations en autonomie."
+    - "Services publics : exemplarité et équité."
+    - "Transports, médias, culture, éducation."
+conformite-strategie:
+  title: Nous portons l'accessibilité au rang de stratégie
+  illustration: illustration-target
+  description: Pérennisez mise en conformité et bâtissez un modèle qui dure.
+  items:
+    - "Composante essentielle de la qualité."
+    - "Levier de performance et différenciation."
+    - "Démarche adaptée et engagée."
+    - "Avantage compétitif durable."

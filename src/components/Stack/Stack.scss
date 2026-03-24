@@ -1,0 +1,19 @@
+.a-stack {
+  display: flex;
+  gap: var(--space);
+  align-items: var(--align-items, start);
+  justify-content: var(--justify-content, start);
+	flex-wrap: var(--wrap, nowrap);
+}
+
+.a-stack--vertical {
+  flex-direction: column;
+}
+
+.a-stack--reversed {
+  flex-direction: row-reverse;
+
+	&.a-stack--vertical {
+		flex-direction: column-reverse;
+	}
+}

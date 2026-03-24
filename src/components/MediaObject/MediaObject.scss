@@ -1,0 +1,43 @@
+.o-media-object {
+	--media-object-direction: column;
+	--media-object-content-order: auto;
+	display: flex;
+	flex-direction: var(--media-object-direction);
+	align-items: flex-start;
+	gap: var(--section-gap);
+	inline-size: 100%;
+
+	& > * {
+		flex: 1;
+	}
+
+	@media screen and (width > 47.5rem) {
+		--media-object-direction: row;
+	}
+}
+
+.o-media-object__content {
+	order: var(--media-object-content-order);
+}
+
+.o-media-object--reversed {
+	@media screen and (width > 47.5rem) {
+    --media-object-content-order: 2;
+  }
+}
+
+.o-media-object__img {
+  flex-grow: 1;
+  overflow: hidden;
+	border-radius: var(--radius-medium);
+	width: 100%;
+
+  :is(img, picture, svg) {
+    aspect-ratio: var(--media-aspect-ratio);
+    object-fit: cover;
+  }
+
+	:is(img, picture) {
+		border-radius: var(--radius-medium);
+  }
+}

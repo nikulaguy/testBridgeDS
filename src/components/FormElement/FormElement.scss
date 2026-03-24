@@ -1,0 +1,27 @@
+.o-form-element {
+  inline-size: 100%;
+
+  &:has(.o-form-element__error) {
+    color: var(--semantic-foreground-error);
+
+    .m-input,
+    textarea {
+      --input-border-color: var(--semantic-border-error);
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  &:is(fieldset):has(legend) {
+    legend + label,
+    :is(label):first-of-type {
+      margin-top: var(--base-space-2);
+    }
+  }
+}
+
+.o-form-element__hint {
+  color: var(--grey-dark);
+}

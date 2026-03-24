@@ -1,0 +1,33 @@
+---
+import type { Page } from "../site.config";
+import Link from "./Link/Link.astro";
+import SectionHeader from "./SectionHeader/SectionHeader.astro";
+import Stack from "./Stack/Stack.astro";
+
+interface Props {
+	page: Page;
+}
+
+const { page } = Astro.props;
+
+if (!page.header.title) {
+	throw new Error("Page title is required");
+}
+---
+<Stack gap={4}>
+	{ page.header.backLink && (
+		<Link
+			variant="back"
+			href={page.header.backLink.href}
+			label={page.header.backLink.label} />
+	)}
+	<SectionHeader
+		titleTag="h1"
+		title={page.header.title}>
+		{ page.header.surtitle && <Fragment slot="surtitle">{page.header.surtitle}</Fragment> }
+		{ page.header.subtitle && <Fragment slot="subtitle">{page.header.subtitle}</Fragment> }
+	</SectionHeader>
+</Stack>
+
+
+

@@ -1,0 +1,20 @@
+---
+import "./Banner.scss";
+import Text from "../Text/Text.astro";
+
+interface Props {
+	type?: "alert" | "info" | "success";
+	label?: string;
+}
+
+const { type = "info", label, ...props } = Astro.props;
+---
+
+<section class="o-banner" data-type={type} {...props}>
+  <div class="o-banner__content u-full-width u-content-centered">
+    <Text as="p">
+      <slot />
+    </Text>
+    <slot name="cta" class="o-banner__action" />
+  </div>
+</section>

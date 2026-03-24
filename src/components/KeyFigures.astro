@@ -1,0 +1,30 @@
+---
+import Stack from "./Stack/Stack.astro";
+import Text from "./Text/Text.astro";
+
+interface Props {
+	items: {
+		value: string;
+		text: string;
+		source?: string;
+	}[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="grid key-figures-grid">
+	{
+		items.map(({ value, text, source }) => (
+			<Stack as="figure" role="figure" gap={4} align="center">
+				<Text as="span" variant="heading-2">
+					{value}
+				</Text>
+				<Stack as="figcaption" gap={2} align="center" class="u-text-align:center u-text-wrap:balance">
+					<Text as="span">{text}</Text>
+					{source && <Text as="cite" variant="caption-2">Source : {source}</Text>}
+				</Stack>
+			</Stack>
+		))
+	}
+</div>

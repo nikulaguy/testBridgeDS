@@ -1,0 +1,140 @@
+---
+import { getCollection, render } from "astro:content";
+import { Icon } from "astro-icon/components";
+import BadgeList from "../../components/BadgeList/BadgeList.astro";
+import { Button } from "../../components/Button/Button";
+import ContactExpertBanner from "../../components/ContactExpertBanner.astro";
+import Link from "../../components/Link/Link.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import VisuallyHidden from "../../components/VisuallyHidden.astro";
+import Layout from "../../layouts/Layout.astro";
+import { type Page, pages } from "../../site.config";
+import { formatPrice } from "../../utils/string.utils";
+
+export const prerender = true;
+
+export const getStaticPaths = async () => {
+	const trainings = await getCollection("trainings");
+
+	return trainings.map((training) => ({
+		params: { id: training.id },
+		props: { training },
+	}));
+};
+
+const { training } = Astro.props;
+const { Content } = await render(training);
+
+const trainingWithFrontguys = await getCollection("trainingWithFrontguys");
+
+const page: Page = {
+	path: training.id,
+	label: training.data.title,
+	meta: {
+		title: `Formation : ${training.data.title}`,
+	},
+	header: {
+		title: training.data.title,
+		subtitle: training.data.description,
+	},
+};
+---
+<Layout page={page} usePageHeader={false}>
+	<article class="l-article">
+		<Section as="header">
+			<Stack gap={4}>
+				<Link
+					variant="back"
+					href={pages.trainings.path}
+					label="Toutes nos formations" />
+				<Text as="h1" variant="heading-2">
+					{page.header.title}
+				</Text>
+				
+				<BadgeList
+					label="Informations pratiques"
+					badges={[
+						{
+							label: `Niveau ${training.data.level}`,
+						},
+						{
+							title: "Durée",
+							label: training.data.duration,
+						},
+						{
+							title: "Prix Hors Taxes",
+							label: `${formatPrice(training.data.price)}`,
+						},
+					]}
+				/>
+				<Text variant="subtitle">{page.header.subtitle}</Text>
+				<Button as="a" href={pages.contact.path} variant="primary">Contactez-nous</Button>
+			</Stack>	
+		</Section>
+
+		<div class="l-section--condensed">
+			<div class="prose">
+				<Content />
+			</div>
+
+			<VisuallyHidden as="h2" label="Informations pratiques"/>
+			<dl class="grid" style="--max-cols-per-row: 4; --col-min-width: 150px; --cell-padding: 0;">
+				<Stack gap={2}>
+					<Text as="dt" variant="heading-6">Niveau</Text>
+					<Text as="dd">{training.data.level}</Text>
+				</Stack>
+				<Stack gap={2}>
+					<Text as="dt" variant="heading-6">Durée</Text>
+					<Text as="dd">{training.data.duration}</Text>
+				</Stack>
+				<Stack gap={2}>
+					<Text as="dt" variant="heading-6">Prix présentiel</Text>
+					<Text as="dd">
+						{`${formatPrice(training.data.price)}`}{" "}
+						<VisuallyHidden label="Hors Taxes par personne" />
+						<span aria-hidden="true">HT/Pers.</span>
+					</Text>
+				</Stack>
+				<Stack gap={2}>
+					<Text as="dt" variant="heading-6">Prochaines sessions</Text>
+					<Text as="dd">
+						<Link href={pages.contact.path} label="Nous contacter" />
+					</Text>
+				</Stack>
+			</dl>
+			
+			<ContactExpertBanner title="Formateur" titleTag="h2" />
+
+			<Link
+					variant="back"
+					href={pages.trainings.path}
+					label="Toutes nos formations" />
+		</div>
+	</article>
+
+	<Section as="aside" verticallyCentered={true} color="semantic-background-default-alt">
+		<SectionHeader title="Pourquoi faire de Frontguys votre partenaire de formation ?" />
+		<ul class="grid u-list-reset accessibility-key-arguments">
+			{trainingWithFrontguys.map(({ data: { title, text } }) => (
+			<Stack as="li" gap={4} align="center">
+				<Icon aria-hidden="true" name="star" size={24} />
+				<Text
+						as="h3"
+						variant="heading-5"
+						class="u-text-align:center u-text-wrap:balance"
+					>
+						{title}
+					</Text>
+					<Text
+						variant="subtitle"
+						class="u-text-align:center u-text-wrap:balance"
+						set:html={text}
+					/>
+			</Stack>
+			))}
+		</ul>
+	</Section>
+</Layout>

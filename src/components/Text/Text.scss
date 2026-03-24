@@ -1,0 +1,51 @@
+.text-heading-1 {
+  @include text-heading-1;
+}
+
+.text-heading-2 {
+  @include text-heading-2;
+}
+
+.text-heading-3 {
+  @include text-heading-3;
+}
+
+.text-heading-4 {
+  @include text-heading-4;
+}
+
+.text-heading-5 {
+  @include text-heading-5;
+}
+
+.text-heading-6 {
+  @include text-heading-6;
+}
+
+.text-subtitle {
+  @include text-subtitle;
+}
+
+.text-surtitle {
+  @include text-surtitle;
+}
+
+.text-body-1 {
+  @include text-body-1;
+}
+
+.text-body-2 {
+  @include text-body-2;
+}
+
+.text-caption-1 {
+  @include text-caption-1;
+}
+
+.text-caption-2 {
+  @include text-caption-2;
+}
+
+.text-code {
+  @include text-code;
+}

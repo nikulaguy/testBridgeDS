@@ -1,0 +1,16 @@
+---
+import { homePageLabel, pages, siteName } from "../site.config";
+import Logo from "./Logo.astro";
+import VisuallyHidden from "./VisuallyHidden.astro";
+
+const url = new URL(Astro.request.url);
+---
+
+<a
+  href={pages.home.path}
+  aria-current={url.pathname === pages.home.path ? "page" : false}
+  title={`${siteName} ${homePageLabel}`}
+>
+  <Logo />
+  <VisuallyHidden label={homePageLabel} />
+</a>

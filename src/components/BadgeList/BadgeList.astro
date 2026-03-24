@@ -1,0 +1,32 @@
+---
+import Badge from "../Badge/Badge.astro";
+import "./BadgeList.scss";
+
+type Props = {
+	variant?: "default"; // | "invert" | "primary" | "alternative";
+	label?: string;
+	badges: Array<{
+		label: string;
+		title?: string;
+		variant?: "default"; // | "invert" | "primary" | "alternative";
+	}>;
+};
+
+const { variant = "default", label, badges } = Astro.props;
+---
+
+<ul
+  class="u-list-reset u-list-style:none m-badge-list"
+  aria-label={label || null}
+>
+  {
+    badges.map((badge) => (
+      <Badge
+        as="li"
+        label={badge.label}
+        title={badge.title}
+        variant={badge.variant ?? variant}
+      />
+    ))
+  }
+</ul>

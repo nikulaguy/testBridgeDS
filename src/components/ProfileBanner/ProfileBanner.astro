@@ -1,0 +1,43 @@
+---
+import "./ProfileBanner.scss";
+import type { HTMLTag, Polymorphic } from "astro/types";
+import Avatar from "../Avatar/Avatar.astro";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{
+	as: Tag;
+	avatarSrc: string;
+	title: string;
+	titleTag?: "h2" | "h3" | "h4";
+	name?: string;
+	description?: string;
+}>;
+
+const {
+	as: Tag = "div",
+	avatarSrc,
+	title,
+	titleTag = "h3",
+	name = "",
+	description = "",
+	...props
+} = Astro.props;
+
+const uniqueId = crypto.randomUUID();
+---
+
+<Tag aria-labelledby={uniqueId} class="o-profile-banner u-full-width" {...props}>
+	<Avatar src={avatarSrc} imgAlt="" class="o-profile-banner__avatar" />
+
+	<Stack gap={2} class="o-profile-banner__content u-full-width u-content-centered">
+		<Text as={titleTag} variant="caption-1" id={uniqueId}>{title}</Text>
+		<div class="o-profile-banner__name">
+			{ name && <Text variant="heading-5">{name}</Text> }
+			{ description && <Text>{description}</Text> }
+		</div>
+	</Stack>
+
+	<slot name="cta" />
+</Tag>
+

@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+import Stack from "../Stack/Stack.astro";
+import Text from "../Text/Text.astro";
+import "./Card.scss";
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{
+	as: Tag;
+	title: string;
+	titleTag?: "h2" | "h3" | "h4" | "h5" | "h6";
+	subtitle?: string;
+	subtitleTag?: "p" | "h2" | "h3" | "h4" | "h5" | "h6";
+	variant?: "photo" | "simple" | "freeform" | "illustration";
+	imgPath?: string;
+	imgAlt?: string;
+	illustration?: string;
+	url?: string;
+}>;
+
+const {
+	as: Tag = "article",
+	variant,
+	title,
+	titleTag = "h3",
+	subtitle,
+	subtitleTag = "p",
+	imgPath,
+	imgAlt = "",
+	illustration,
+	url,
+} = Astro.props;
+
+// Doc: https://docs.astro.build/en/recipes/dynamically-importing-images/
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"/src/assets/img/**/*.{jpeg,jpg,png,gif}",
+);
+
+if (variant === "photo" && !images[imgPath])
+	throw new Error(
+		`"${imgPath}" does not exist in glob: "src/assets/img/**/*.{jpeg,jpg,png,gif}"`,
+	);
+
+if (variant === "illustration" && !illustration)
+	throw new Error(`"illustration" property is required for this variant`);
+
+const isInteractive = !!url;
+---
+
+<Stack as={Tag} gap={4} class:list={["o-card", `o-card--${variant}`, { 'o-card--interactive': isInteractive }]}>
+  {variant === "photo" && <Image src={images[imgPath]()} alt={imgAlt} class="o-card__photo" />}
+
+  {variant === "illustration" && <Icon name={illustration} size="100" class="o-card__illustration" aria-hidden="true" />}
+
+  <div class="o-card__heading">
+    <Text as={titleTag} variant="heading-4" class="o-card__title">
+      { isInteractive && <a href={url}>{title}</a> }
+      { !isInteractive && title }
+    </Text>
+
+    {
+      subtitle && (
+      <Text as={subtitleTag} class="o-card__subtitle">
+        {subtitle}
+      </Text>)
+    }
+
+    {
+      variant !== "photo" && isInteractive && (
+        <Icon
+          aria-hidden="true"
+          name="link-arrow"
+          width={24}
+          height={24}
+          class="o-card__link-icon"
+        />
+      )
+    }
+  </div>
+
+  {(variant === "freeform" || variant === "illustration") && <slot />}
+</Stack>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    /**
+     * Applies block link pattern to avoid a single link with an extremely long accessible name
+     * The main link is inside the card title
+     * A click on the card triggers a click on the main link
+     * Other interactive elements are preserved from click event propagation
+     * Text selection without triggering the click event is preserved
+     * https://css-tricks.com/block-links-the-search-for-a-perfect-solution/
+     */
+    const cards = document.querySelectorAll(".o-card--interactive");
+
+    cards.forEach((card) => {
+      const mainLink = card.querySelector<HTMLAnchorElement>(".o-card__title a");
+      const interactiveElements = Array.from(card.querySelectorAll("a, button"));
+
+      interactiveElements.forEach((el) =>
+        el.addEventListener("click", (e) => e.stopPropagation())
+      );
+
+      const handleClick = () => {
+        const noTextSelected = !window.getSelection()?.toString();
+
+        if (noTextSelected) {
+          mainLink?.click();
+        }
+      } 
+
+      card.addEventListener("click", handleClick);
+    });
+  });
+</script>

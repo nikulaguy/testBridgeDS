@@ -1,0 +1,36 @@
+---
+import CalendarIcon from "../assets/icons/calendar.svg?react";
+import { contactExpertPath } from "../site.config";
+import { Button } from "./Button/Button";
+import ProfileBanner from "./ProfileBanner/ProfileBanner.astro";
+
+interface Props {
+	as: "aside" | "div";
+	title?: string;
+	titleTag?: "h2" | "h3" | "h4";
+}
+
+const {
+	as = "div",
+	title = "Contactez un expert",
+	titleTag = "h3",
+} = Astro.props;
+---
+
+<ProfileBanner
+	as={as}
+	avatarSrc="/src/assets/img/hamza-iqbal.png"
+	title={title}
+	titleTag={titleTag}
+	name="Hamza Iqbal"
+	description="Expert en accessibilité numérique">
+	<Button slot="cta"
+		as="a"
+		href={contactExpertPath}
+		target="_blank"
+		variant="secondary"
+		title="Planifiez un échange"
+	>
+		<CalendarIcon/>Planifiez un échange
+	</Button>
+</ProfileBanner>
