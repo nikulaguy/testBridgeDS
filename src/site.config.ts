@@ -87,10 +87,10 @@ export const pages: Record<string, Page> = {
 			description: "Frontguys réunit des experts stratégiques, design et développement front pour résoudre ce qui freine vraiment vos équipes.",
 		},
 		header: {
-			title: "Des objectifs clairs.\nDes organisations fluides.\nDes produits robustes.",
+			title: "Nous clarifions vos objectifs,\nfluidifions vos organisations,\nrenforçons vos produits.",
 			surtitle: "Conseil & accompagnement",
 			subtitle:
-				"Frontguys réunit des experts stratégiques, design et développement front pour résoudre ce qui freine vraiment vos équipes : cadrage stratégique, alignement, innovation et industrialisation.",
+				"Résolvez ce qui freine vraiment vos équipes. Nous réunissons stratégie, design et développement front pour accélérer votre cadrage, votre alignement et votre industrialisation.",
 			illustration: "HandHero",
 		},
 	},
@@ -98,10 +98,10 @@ export const pages: Record<string, Page> = {
 		path: "/expertise",
 		label: "Expertises",
 		header: {
-			title: "Quatre expertises\nau service de la clarté,\nla qualité, la fluidité\net l'impact.",
+			title: "Nous intervenons sur quatre leviers\npour accélérer vos équipes.",
 			surtitle: "Nos expertises",
 			subtitle:
-				"Frontguys intervient sur les leviers qui freinent vraiment vos équipes — produit, collaboration, design system, transformation.\nToujours avec des profils seniors, toujours avec un impact mesurable.",
+				"Produit, collaboration, design system, transformation. Toujours avec des profils seniors. Toujours avec un impact mesurable.",
 			illustration: "PencilHero",
 		},
 	},
@@ -157,10 +157,10 @@ export const pages: Record<string, Page> = {
 		path: "/pourquoi-frontguys",
 		label: "Pourquoi Frontguys",
 		header: {
-			title: "Pour plus de clarté, plus de confiance, plus d'efficacité, plus de d'impact.",
+			title: "Nous apportons clarté, confiance,\nefficacité et impact.",
 			surtitle: "Pourquoi Frontguys",
 			subtitle:
-				"Frontguys réunit stratégie, design et développement pour renforcer la maturité de vos équipes, industrialiser la cohérence de vos interfaces et créer des expériences durables.",
+				"Renforcez la maturité de vos équipes. Nous réunissons stratégie, design et développement pour industrialiser la cohérence de vos interfaces.",
 			illustration: "ScreenHero",
 		},
 	},
@@ -168,10 +168,10 @@ export const pages: Record<string, Page> = {
 		path: "/nos-convictions",
 		label: "Nos convictions",
 		header: {
-			title: "Ce en quoi nous croyons — et pourquoi cela change nos missions.",
+			title: "Ce en quoi nous croyons — et pourquoi cela change vos projets.",
 			surtitle: "Nos convictions",
 			subtitle:
-				"Ces quatre convictions ne sont pas des principes posés sur une slide. Elles guident chaque arbitrage dans nos missions — de la première réunion de cadrage à la dernière livraison.",
+				"Ces convictions guident chaque arbitrage de nos missions. Du cadrage initial à la dernière livraison.",
 		},
 	},
 	methods: {
@@ -181,7 +181,7 @@ export const pages: Record<string, Page> = {
 			title: "Nous pilotons par la valeur, pas par l'activité.",
 			surtitle: "Nos méthodes",
 			subtitle:
-				"Chaque mission Frontguys démarre par un objectif SMART défini ensemble, se pilote avec une gouvernance claire et se mesure avec des indicateurs partagés. Vous voyez ce qui est produit, pas seulement ce qui est livré.",
+				"Chaque mission démarre par un objectif SMART défini ensemble. Vous voyez ce qui est produit, pas seulement ce qui est livré.",
 			illustration: "ScreenHero",
 		},
 	},
@@ -199,9 +199,9 @@ export const pages: Record<string, Page> = {
 		path: "/ressources",
 		label: "Ressources",
 		header: {
-			title: "Ressources",
+			title: "Nos ressources pour accélérer\nvotre transformation",
 			subtitle:
-				"Articles, guides et outils pour accélérer votre transformation.",
+				"Articles, guides et outils pour vos équipes.",
 		},
 	},
 	expertiseProduitsNumeriques: {

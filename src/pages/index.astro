@@ -45,7 +45,7 @@ const enjeuxCards = [
 		url: "/expertise",
 	},
 	{
-		title: "Vous voulez augmentez votre vélocité",
+		title: "Vous voulez augmenter votre vélocité",
 		text: "Problème de réactivité, retard de livraison, dette technique, manque d'innovation.",
 		url: "/expertise",
 	},
@@ -126,8 +126,8 @@ const logosRow2 = [
 	<Fragment slot="page-header-cta">
 		<Text variant="caption-1"><strong>82 missions.</strong> Des résultats chiffrés.</Text>
 		<Stack axis="x" gap={4} wrap={true}>
-			<Button as="a" href={pages.contact.path}>Demander un diagnostic</Button>
-			<Button as="a" href="/pourquoi-frontguys" variant="secondary">Pourquoi Frontguys</Button>
+			<Button as="a" href={pages.contact.path}>Demandez un diagnostic</Button>
+			<Button as="a" href="/pourquoi-frontguys" variant="secondary">Découvrez Frontguys</Button>
 		</Stack>
 	</Fragment>
 
@@ -206,8 +206,8 @@ const logosRow2 = [
 			<img src={imgHand2.src ?? imgHand2} alt="" class="section-illustration__img" />
 		</div>
 
-		<SectionHeader title="Nos 4 expertises, un même objectif" titleVariant="heading-2">
-			<Fragment slot="subtitle">Impact, fluidité, qualité, durabilité.</Fragment>
+		<SectionHeader title="Nous intervenons sur 4 leviers, un même objectif" titleVariant="heading-2">
+			<Fragment slot="subtitle">Accélérer votre delivery, fluidifier vos process, renforcer vos fondations.</Fragment>
 		</SectionHeader>
 		<div class="grid grid--2x2">
 			{expertises.map(({ title, text, url }) => (
@@ -267,7 +267,7 @@ const logosRow2 = [
 			<Text as="h2" variant="heading-2">Un premier échange pour identifier <strong>vos enjeux</strong></Text>
 			<Text as="p" variant="body-1">Gratuit. Sans engagement. On identifie vos besoins en 30 minutes.</Text>
 			<Stack axis="x" gap={4} wrap={true} justify="center">
-				<Button as="a" href={pages.contact.path} variant="secondary">Parler à un expert</Button>
+				<Button as="a" href={pages.contact.path} variant="secondary">Parlez à un expert</Button>
 				<Button as="a" href={pages.contact.path}>Demandez un diagnostic</Button>
 			</Stack>
 		</Stack>
