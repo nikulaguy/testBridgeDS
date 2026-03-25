@@ -81,7 +81,7 @@ const sectorsData = [
 
 	<!-- Section 2: Case Studies Grid -->
 	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Nos dernières collaborations" titleVariant="heading-2" />
+		<SectionHeader title="Nos dernières collaborations" />
 		<div class="grid grid--3col">
 			{caseStudies.map(({ title, subtitle, imgPath, url }) => (
 				<Card
@@ -124,7 +124,7 @@ const sectorsData = [
 
 	<!-- Section 4: Sectors of Intervention -->
 	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Secteurs d'intervention" titleVariant="heading-2" />
+		<SectionHeader title="Secteurs d'intervention" />
 		<div class="grid grid--3col">
 			{sectorsData.map(({ title, text, url }) => (
 				<Card variant="simple" title={title} subtitle={text} url={url} />

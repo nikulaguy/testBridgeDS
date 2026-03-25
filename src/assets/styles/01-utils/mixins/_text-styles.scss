@@ -9,7 +9,7 @@
 
 @mixin text-heading-2 {
   font-family: "Reddit Sans Medium";
-  font-size: clamp(var(--text-heading-2-font-size), 4vw + 1rem, 3.5rem);
+  font-size: var(--text-heading-2-font-size);
   line-height: var(--text-heading-2-line-height);
   font-weight: var(--text-heading-2-font-weight);
 }
