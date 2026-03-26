@@ -1,0 +1,15 @@
+.c-blockquote {
+	padding: var(--base-space-6);
+	border: 1px solid var(--semantic-border-subtle);
+	border-radius: var(--radius-medium);
+	background-color: var(--semantic-background-default);
+}
+
+.c-blockquote__text {
+	font-style: italic;
+	line-height: 1.6;
+}
+
+.c-blockquote__author {
+	color: var(--semantic-foreground-subtle);
+}

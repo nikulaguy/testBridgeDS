@@ -37,8 +37,36 @@ import { pages } from "../site.config";
 		</div>
 	</Section>
 
-	<!-- Section 2: Formations -->
+	<!-- Section 2: Nos derniers articles -->
 	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Nos derniers articles" />
+		<div class="grid grid--3col grid--articles">
+			<Card
+				variant="photo"
+				title="Quels logiciels facilitent la collaboration designer – développeur ?"
+				subtitle="Edit : découvrez notre nouveau site dédié à l'accessibilité : Frontguys A11Y MAJ nov. 2025 – La réponse directe :..."
+				imgPath="/src/assets/img/aspectRatio.png"
+				url="/ressources"
+			/>
+			<Card
+				variant="photo"
+				title="Histoire d'une relation toxique : L'automatisation assistée par IA avec Figma Make"
+				subtitle="Au hasard d'un besoin spécifique, j'ai voulu expérimenter l'automatisation via Figma Make. J'ai eu assez vite l'impression de découvrir un..."
+				imgPath="/src/assets/img/aspectRatio-1.png"
+				url="/ressources"
+			/>
+			<Card
+				variant="photo"
+				title="IA : anticiper nos intentions sans sacrifier notre vie privée"
+				subtitle="Le vrai challenge qui attend les designers Il y a quelques jours, j'étais concentré sur un document. Vraiment concentré. Et..."
+				imgPath="/src/assets/img/aspectRatio-2.png"
+				url="/ressources"
+			/>
+		</div>
+	</Section>
+
+	<!-- Section 3: Formations -->
+	<Section>
 		<SectionHeader title="Formations">
 			<Fragment slot="subtitle">Montez en compétence avec nos parcours certifiés.</Fragment>
 		</SectionHeader>
@@ -53,6 +81,18 @@ import { pages } from "../site.config";
 				variant="simple"
 				title="Product design"
 				subtitle="Cadrage, conception et amélioration continue de vos produits numériques."
+				url="/ressources"
+			/>
+			<Card
+				variant="simple"
+				title="Accessibilité"
+				subtitle="Auditer, accompagner, former, developper."
+				url="/ressources"
+			/>
+			<Card
+				variant="simple"
+				title="Transformation"
+				subtitle="Vision, stratégie, alignement, culture produit, rituels."
 				url="/ressources"
 			/>
 		</div>
@@ -75,6 +115,10 @@ import { pages } from "../site.config";
 		@media (max-width: 768px) {
 			grid-template-columns: 1fr;
 		}
+	}
+
+	.grid--articles {
+		gap: var(--base-space-8);
 	}
 
 	.grid--2x2 {

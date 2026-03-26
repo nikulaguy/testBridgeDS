@@ -1,0 +1,176 @@
+---
+import { Button } from "../../components/Button/Button.tsx";
+import BadgeList from "../../components/BadgeList/BadgeList.astro";
+import Link from "../../components/Link/Link.astro";
+import ProfileBanner from "../../components/ProfileBanner/ProfileBanner.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { pages, contactExpertPath } from "../../site.config";
+import { formations, type Formation } from "../../data/formations";
+
+export function getStaticPaths() {
+	return formations.map((f) => ({
+		params: { slug: f.slug },
+		props: { formation: f },
+	}));
+}
+
+interface Props {
+	formation: Formation;
+}
+
+const { formation } = Astro.props;
+
+const page = {
+	...pages.formations,
+	path: `/formations/${formation.slug}`,
+	label: formation.title,
+	header: {
+		title: formation.title,
+		subtitle: formation.summary,
+		backLink: {
+			label: "Toutes nos formations",
+			href: "/formations",
+		},
+	},
+};
+---
+
+<Layout page={page}>
+	<Fragment slot="page-header-cta">
+		<BadgeList badges={formation.badges} />
+		<Button as="a" href="#programme" icon="download">Téléchargez le programme</Button>
+	</Fragment>
+
+	<!-- Section: Contenu principal -->
+	<Section color="semantic-background-default" condensed>
+		<Stack gap={12}>
+			<!-- Objectifs pédagogiques -->
+			<Stack gap={8} id="programme">
+				<Text as="h2" variant="heading-3">Objectifs pédagogiques</Text>
+				<ul class="u-list-disc">
+					{formation.detail.objectives.map((obj) => (
+						<li>
+							<Text as="span" variant="heading-6">{obj.bold}</Text>
+							{obj.rest && <Text as="span">{obj.rest}</Text>}
+						</li>
+					))}
+				</ul>
+			</Stack>
+
+			<!-- Ce que vous apprendrez -->
+			<Stack gap={8}>
+				<Text as="h2" variant="heading-3">Ce que vous apprendrez</Text>
+				<Stack gap={4}>
+					{formation.detail.program.map((section) => (
+						<Stack gap={2}>
+							<Text as="h3" variant="heading-4">{section.title}</Text>
+							<ul class="u-list-disc">
+								{section.items.map((item) => (
+									<li><Text as="span">{item}</Text></li>
+								))}
+							</ul>
+						</Stack>
+					))}
+				</Stack>
+			</Stack>
+
+			<!-- Modalités -->
+			<Stack gap={8}>
+				<Text as="h3" variant="heading-4">Modalités</Text>
+				<ul class="u-list-disc">
+					{formation.detail.modalities.map((item) => (
+						<li><Text as="span">{item}</Text></li>
+					))}
+				</ul>
+			</Stack>
+
+			<!-- Public concerné -->
+			<Stack gap={8}>
+				<Text as="h2" variant="heading-3">Public concerné</Text>
+				<Text>{formation.detail.audience}</Text>
+			</Stack>
+
+			<!-- Métadonnées -->
+			<div class="formation-meta">
+				{formation.detail.meta.map((meta) => (
+					<Stack gap={2}>
+						<Text variant="heading-6">{meta.label}</Text>
+						<Text>{meta.value}</Text>
+					</Stack>
+				))}
+				<Stack gap={2}>
+					<Text variant="heading-6">Prochaines sessions</Text>
+					<Link href="/contact" indicator="none">Nous contacter</Link>
+				</Stack>
+			</div>
+		</Stack>
+
+		<!-- Formateur -->
+		<ProfileBanner
+			avatarSrc="/img/hamza-300x300.png"
+			title="Formateur"
+			name={formation.detail.trainer.name}
+			description={formation.detail.trainer.role}
+		>
+			<Button as="a" slot="cta" href={contactExpertPath} variant="secondary" icon="calendar">Planifier un échange</Button>
+		</ProfileBanner>
+
+		<!-- Lien retour -->
+		<Link href="/formations" indicator="Left">Toutes nos formations</Link>
+	</Section>
+
+	<!-- Section: Pourquoi Frontguys -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Pourquoi faire de Frontguys votre partenaire de formation?" />
+
+		<div class="value-grid">
+			<Stack gap={4} class="value-col">
+				<Text variant="heading-5" class="value-title">Une expertise reconnue et certifiée</Text>
+				<Text variant="subtitle" class="value-desc">Apprenez auprès d'experts design et code via un parcours certifié Qualiopi.</Text>
+			</Stack>
+			<Stack gap={4} class="value-col">
+				<Text variant="heading-5" class="value-title">Nous innovons par le partage</Text>
+				<Text variant="subtitle" class="value-desc">Nous partageons notre culture de l'excellence pour un apprentissage collaboratif et durable.</Text>
+			</Stack>
+			<Stack gap={4} class="value-col">
+				<Text variant="heading-5" class="value-title">Une réponse sur-mesure</Text>
+				<Text variant="subtitle" class="value-desc">Nous alignons chaque programme sur vos objectifs opérationnels.</Text>
+			</Stack>
+		</div>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	.u-list-disc {
+		list-style: disc;
+		padding-inline-start: 1.5em;
+		margin: 0;
+
+		li {
+			margin-block-end: 0;
+		}
+	}
+
+	.formation-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
+	}
+
+	.value-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-4);
+		width: 100%;
+	}
+
+	.value-col {
+		text-align: center;
+		padding-inline: var(--base-space-4);
+	}
+</style>

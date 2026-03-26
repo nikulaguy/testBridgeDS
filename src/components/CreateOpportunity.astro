@@ -5,12 +5,26 @@ import { Button } from "./Button/Button.tsx";
 import Section from "./Section/Section.astro";
 import SectionHeader from "./SectionHeader/SectionHeader.astro";
 import Stack from "./Stack/Stack.astro";
+import Text from "./Text/Text.astro";
 
 type Props = {
 	altColor?: boolean;
+	surtitle?: string;
+	title?: string;
+	subtitle?: string;
+	ghostLabel?: string;
+	primaryLabel?: string;
 };
 
-const { altColor = false, ...attrs } = Astro.props;
+const {
+	altColor = false,
+	surtitle,
+	title = "Un premier échange pour identifier vos enjeux",
+	subtitle = "Gratuit. Sans engagement. On identifie vos besoins en 30 minutes.",
+	ghostLabel = "Parlez à un expert",
+	primaryLabel = "Demandez un diagnostic",
+	...attrs
+} = Astro.props;
 ---
 
 <Section
@@ -18,11 +32,14 @@ const { altColor = false, ...attrs } = Astro.props;
 	gap="static"
 	color={altColor ? "semantic-background-default-alt" : "semantic-background-subtle"}
 	{...attrs}>
-	<SectionHeader title="Un premier échange pour identifier vos enjeux">
-		<Fragment slot="subtitle">Gratuit. Sans engagement. On identifie vos besoins en 30 minutes.</Fragment>
+	{surtitle && (
+		<Text as="p" variant="surtitle" color="semantic-brand-primary" class="text-center">{surtitle}</Text>
+	)}
+	<SectionHeader title={title}>
+		<Fragment slot="subtitle">{subtitle}</Fragment>
 	</SectionHeader>
 	<Stack gap={4} axis="x" wrap={true} justify="center">
-		<Button as="a" href={pages.contact.path} variant="secondary">Parlez à un expert</Button>
-		<Button as="a" href={pages.contact.path}>Demandez un diagnostic</Button>
+		<Button as="a" href={pages.contact.path} variant="secondary">{ghostLabel}</Button>
+		<Button as="a" href={pages.contact.path}>{primaryLabel}</Button>
 	</Stack>
 </Section>

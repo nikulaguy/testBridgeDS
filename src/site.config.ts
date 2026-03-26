@@ -204,6 +204,17 @@ export const pages: Record<string, Page> = {
 				"Articles, guides et outils pour vos équipes.",
 		},
 	},
+	formations: {
+		path: "/formations",
+		label: "Formations",
+		header: {
+			title: "Nous accompagnons votre montée en compétence",
+			surtitle: "Formations",
+			subtitle:
+				"Accélérez votre montée en compétence avec notre organisme certifié Qualiopi. Bénéficiez d'un accompagnement sur mesure, pensé pour s'intégrer naturellement à vos process de production, vos outils et vos contextes métiers.",
+			illustration: "PencilHero",
+		},
+	},
 	expertiseProduitsNumeriques: {
 		path: "/expertise/produits-numeriques",
 		label: "Produits numériques performants",
@@ -287,6 +298,7 @@ export const headerLinks: MenuLink[] = [
 	pages.expertise,
 	pages.results,
 	pages.resources,
+	pages.formations,
 	pages.contact,
 ];
 

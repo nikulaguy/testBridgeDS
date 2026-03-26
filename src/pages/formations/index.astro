@@ -1,0 +1,146 @@
+---
+import { Image } from "astro:assets";
+import imgQualiopi from "../../assets/img/aspectRatio.png";
+import BadgeList from "../../components/BadgeList/BadgeList.astro";
+import Card from "../../components/Card/Card.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { pages } from "../../site.config";
+import { formations } from "../../data/formations";
+---
+
+<Layout page={pages.formations}>
+	<!-- Section 1: Parcours de formation -->
+	<Section color="semantic-background-default">
+		<SectionHeader title="Découvrez nos parcours de formation en accessibilité" />
+
+		<div class="formation-grid">
+			{formations.map((formation) => (
+				<Card
+					variant="freeform"
+					title={formation.title}
+					url={`/formations/${formation.slug}`}
+				>
+					<BadgeList badges={formation.badges} />
+					<Text>{formation.summary}</Text>
+					<Stack gap={2}>
+						<Text variant="heading-6">{formation.learningsTitle}</Text>
+						<ul class="u-list-disc">
+							{formation.learnings.map((item) => (
+								<li><Text as="span">{item}</Text></li>
+							))}
+						</ul>
+					</Stack>
+				</Card>
+			))}
+		</div>
+	</Section>
+
+	<!-- Section 2: Méthodologie & modalités -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Méthodologie & modalités">
+			<Fragment slot="subtitle">Bénéficiez d'un cadre structuré et stimulant, pensé pour transformer la théorie en réflexes opérationnels immédiats.</Fragment>
+		</SectionHeader>
+
+		<div class="methodology-grid">
+			<Stack gap={2} class="methodology-col">
+				<Text variant="heading-6">Lieu et format flexibles</Text>
+				<ul class="u-list-disc">
+					<li><Text as="span">Présentiel dans nos locaux Paris 9ᵉ ou dans vos locaux.</Text></li>
+					<li><Text as="span">Maximum 8 participant·es par session.</Text></li>
+					<li><Text as="span">Alternance théorie, pratique et mises en situation.</Text></li>
+				</ul>
+			</Stack>
+			<Stack gap={2} class="methodology-col">
+				<Text variant="heading-6">Une pédagogie active</Text>
+				<ul class="u-list-disc">
+					<li><Text as="span">Cas pratiques issus de projets réels.</Text></li>
+					<li><Text as="span">Ateliers collaboratifs et exercices.</Text></li>
+					<li><Text as="span">Évaluation en début et fin de session.</Text></li>
+				</ul>
+			</Stack>
+			<Stack gap={2} class="methodology-col">
+				<Text variant="heading-6">Des livrables sur-mesure</Text>
+				<ul class="u-list-disc">
+					<li><Text as="span">Supports numériques et ressources.</Text></li>
+					<li><Text as="span">Certificat de participation.</Text></li>
+					<li><Text as="span">Suivi post-formation (30 jours).</Text></li>
+				</ul>
+			</Stack>
+		</div>
+	</Section>
+
+	<!-- Section 3: Certification Qualiopi -->
+	<Section color="semantic-background-default">
+		<div class="certification-layout">
+			<div class="certification-image">
+				<Image src={imgQualiopi} alt="Certification Qualiopi" class="certification-img" />
+			</div>
+			<Stack gap={4} class="certification-content">
+				<Text as="h2" variant="heading-3">Profitez d'un accompagnement certifié Qualiopi</Text>
+				<Text>Cette certification atteste de la rigueur de nos processus pédagogiques. Elle est le gage de notre engagement à faire monter vos équipes en compétence avec efficacité et professionnalisme.</Text>
+				<Stack gap={2}>
+					<Text variant="heading-6">Nous facilitons votre financement.</Text>
+					<Text>Toutes nos formations sont éligibles à une prise en charge par votre OPCO. Nous vous guidons dans vos démarches administratives pour concrétiser vos projets sereinement.</Text>
+				</Stack>
+			</Stack>
+		</div>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	.formation-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--base-space-4);
+		width: 100%;
+	}
+
+	.methodology-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-4);
+		width: 100%;
+	}
+
+	.methodology-col {
+		padding-inline: var(--base-space-4);
+	}
+
+	.u-list-disc {
+		list-style: disc;
+		padding-inline-start: 1.5em;
+		margin: 0;
+
+		li {
+			margin-block-end: 0;
+		}
+	}
+
+	.certification-layout {
+		display: flex;
+		gap: var(--base-space-14);
+		align-items: flex-start;
+		width: 100%;
+	}
+
+	.certification-image {
+		flex: 1;
+		border-radius: var(--radius-medium);
+		overflow: hidden;
+		border: 1px solid var(--semantic-border-subtle);
+	}
+
+	.certification-img {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	.certification-content {
+		flex: 1;
+	}
+</style>
