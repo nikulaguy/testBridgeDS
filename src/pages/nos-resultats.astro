@@ -3,106 +3,71 @@ import { Image } from "astro:assets";
 import imgTestimonialPhoto from "../assets/img/image-2034.png";
 
 import { Button } from "../components/Button/Button.tsx";
-import Card from "../components/Card/Card.astro";
+import CaseStudyGrid from "../components/CaseStudyGrid/CaseStudyGrid.tsx";
 import CreateOpportunity from "../components/CreateOpportunity.astro";
-import List from "../components/List/List.astro";
 import Section from "../components/Section/Section.astro";
 import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
 import Stack from "../components/Stack/Stack.astro";
 import Text from "../components/Text/Text.astro";
 import Layout from "../layouts/Layout.astro";
 import { pages } from "../site.config";
+import {
+	caseStudies,
+	expertises,
+	sectors,
+	gains,
+} from "../data/case-studies";
 
 const stats = [
-	{ value: "82", label: "missions" },
-	{ value: "35+", label: "clients accompagnés" },
-	{ value: "98%", label: "satisfaction client" },
-];
-
-const caseStudies = [
-	{
-		title: "Lefebvre Dalloz",
-		subtitle: "Refonte de l'expérience produit — Design system + composants React",
-		imgPath: "/src/assets/img/aspectRatio.png",
-		url: "/nos-resultats/refonte-experience-produit",
-	},
-	{
-		title: "Accor Groupe",
-		subtitle: "Audit & accompagnement design — Revue UX + guidelines",
-		imgPath: "/src/assets/img/aspectRatio-1.png",
-		url: "/nos-resultats/design-system-bloque",
-	},
-	{
-		title: "ODDO BHF",
-		subtitle: "Intégration design-code — Composants accessibles et scalables",
-		imgPath: "/src/assets/img/aspectRatio-2.png",
-		url: "/nos-resultats/integration-design-code",
-	},
-];
-
-const sectorsData = [
-	{
-		title: "Finance & Assurance",
-		text: "ODDO BHF, Ardian, Generali — Design system, intégration front, produit.",
-		url: "/contact",
-	},
-	{
-		title: "Médias & Édition",
-		text: "Lefebvre Dalloz, Prisma Media — Product design, transformation, design ops.",
-		url: "/contact",
-	},
-	{
-		title: "Services & Industrie",
-		text: "Accor, Manutan, Scaleway — UX strategy, collaboration design/dev.",
-		url: "/contact",
-	},
+	{ value: "82", label: "missions réalisées" },
+	{ value: "+15", label: "clients accompagnés" },
+	{ value: "Senior", label: "uniquement" },
 ];
 ---
 
 <Layout page={pages.results}>
 	<Fragment slot="page-header-cta">
 		<Stack axis="x" gap={4} wrap={true}>
-			<Button as="a" href={pages.contact.path}>Parlez à un expert</Button>
-			<Button as="a" href={pages.resources.path} variant="secondary">Nos ressources</Button>
+			<Button as="a" href={pages.contact.path}>Demandez un diagnostic</Button>
+			<Button as="a" href={pages.contact.path} variant="secondary">Parlez à un expert</Button>
 		</Stack>
 	</Fragment>
 
-	<!-- Section 1: Stats Row -->
+	<!-- Section 1: Filterable Case Studies Grid -->
 	<Section>
-		<div class="stats-grid">
+		<CaseStudyGrid
+			client:load
+			caseStudies={caseStudies}
+			expertises={expertises}
+			sectors={sectors}
+			gains={gains}
+		/>
+	</Section>
+
+	<!-- Section 2: Stats Row -->
+	<Section color="semantic-background-default-alt">
+		<div class="stats-row">
 			{stats.map(({ value, label }) => (
-				<Stack as="figure" role="figure" gap={2} align="center">
-					<Text as="span" variant="heading-2">{value}</Text>
-					<Text as="figcaption" variant="body-1" class="u-text-align:center">{label}</Text>
+				<Stack gap={2}>
+					<Text as="span" variant="heading-2" color="semantic-foreground-default">
+						{value}
+					</Text>
+					<Text as="span" variant="body-2" color="semantic-foreground-subtle">
+						{label}
+					</Text>
 				</Stack>
 			))}
 		</div>
 	</Section>
 
-	<!-- Section 2: Case Studies Grid -->
-	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Nos dernières collaborations" />
-		<div class="grid grid--3col">
-			{caseStudies.map(({ title, subtitle, imgPath, url }) => (
-				<Card
-					variant="photo"
-					title={title}
-					subtitle={subtitle}
-					imgPath={imgPath}
-					url={url}
-				/>
-			))}
-		</div>
-	</Section>
-
-	<!-- Section 3: Testimonial Block -->
+	<!-- Section 3: Expert Profiles -->
 	<Section>
+		<SectionHeader title="Des profils seniors sur chaque mission" />
 		<div class="testimonial">
 			<Stack gap={6}>
 				<Text as="p" variant="heading-6">Lefebvre Dalloz</Text>
 				<Text as="blockquote" variant="body-1" class="testimonial__quote">
-					"Frontguys a joué un rôle clé dans la transformation digitale de Lefebvre Dalloz. Leurs consultants ont su structurer une fonction Product Design solide, aligner des équipes très diverses et apporter une vraie vision produit à l'échelle du groupe.
-					Leur leadership, leur capacité à embarquer et leur exigence sur l'UX, le design system et l'accessibilité ont eu un impact concret, rapide et durable. Ils sont à la fois stratégique, opérationnel et profondément orienté utilisateurs."
+					"Frontguys a joué un rôle clé dans la transformation digitale de Lefebvre Dalloz. Leurs consultants ont su structurer une fonction Product Design solide, aligner des équipes très diverses et apporter une vraie vision produit à l'échelle du groupe."
 				</Text>
 				<Stack gap={4} axis="x" align="center">
 					<Image
@@ -122,49 +87,31 @@ const sectorsData = [
 		</div>
 	</Section>
 
-	<!-- Section 4: Sectors of Intervention -->
-	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Secteurs d'intervention" />
-		<div class="grid grid--3col">
-			{sectorsData.map(({ title, text, url }) => (
-				<Card variant="simple" title={title} subtitle={text} url={url} />
-			))}
-		</div>
-	</Section>
-
 	<!-- CTA Section -->
-	<CreateOpportunity />
+	<CreateOpportunity
+		surtitle="Prochaine étape"
+		title="Vous avez trouvé un cas similaire au vôtre ? Parlons de votre contexte."
+		subtitle="Un premier échange pour voir si notre approche correspond à votre situation."
+		ghostLabel="Parlez à un expert"
+		primaryLabel="Demandez un diagnostic"
+	/>
 </Layout>
 
 <style lang="scss">
 	@use "../assets/styles/01-utils/functions" as *;
 
-	/* Grid layouts */
-	.grid {
-		display: grid;
-		width: 100%;
-		gap: var(--base-space-6);
-	}
-
-	.grid--3col {
-		grid-template-columns: repeat(3, 1fr);
+	/* Stats Row */
+	.stats-row {
+		display: flex;
 		gap: var(--base-space-4);
+		width: 100%;
 
-		@media (max-width: 768px) {
-			grid-template-columns: 1fr;
+		> * {
+			flex: 1;
 		}
-	}
-
-	/* Stats grid */
-	.stats-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: var(--base-space-4);
-		width: 100%;
-		text-align: center;
 
 		@media (max-width: 768px) {
-			grid-template-columns: 1fr;
+			flex-direction: column;
 		}
 	}
 

@@ -189,10 +189,10 @@ export const pages: Record<string, Page> = {
 		path: "/nos-resultats",
 		label: "Nos résultats",
 		header: {
-			title: "Nos résultats",
+			title: "Des résultats concrets, pas seulement des convictions.",
 			surtitle: "Cas & preuves",
 			subtitle:
-				"Des projets ambitieux, des équipes exigeantes, des résultats mesurables.",
+				"Chaque mission produit des livrables mesurables. Découvrez nos collaborations et leurs résultats.",
 		},
 	},
 	resources: {
