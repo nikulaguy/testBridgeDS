@@ -48,13 +48,13 @@
 
 	--section-padding-block: clamp(
 															var(--base-space-9),
-															#{clamp-preferred-value($base-space-9, $base-space-18)},
-															var(--base-space-18)
+															#{clamp-preferred-value($base-space-9, $base-space-20)},
+															var(--base-space-20)
 														);
 	--section-gap: clamp(
-										var(--base-space-8),
-										#{clamp-preferred-value($base-space-8, $base-space-14)},
-										var(--base-space-14)
+										var(--base-space-6),
+										#{clamp-preferred-value($base-space-6, $base-space-8)},
+										var(--base-space-8)
 									);
 	--logo-width: #{clamp-value(130px, 197px)};
 	--logo-frontguys-brand: var(--semantic-brand-primary);

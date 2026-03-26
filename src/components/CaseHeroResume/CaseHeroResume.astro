@@ -24,20 +24,22 @@ const { breadcrumb, surtitle, title, metaCards, class: className, ...attrs } = A
 		{breadcrumb}
 	</Text>
 
-	<Text as="p" variant="surtitle" color="semantic-brand-primary" class="c-case-hero-resume__surtitle">
-		{surtitle}
-	</Text>
+	<div class="c-case-hero-resume__title-block">
+		<Text as="p" variant="surtitle" color="semantic-brand-primary" class="c-case-hero-resume__surtitle">
+			{surtitle}
+		</Text>
 
-	<Text as="h1" variant="heading-2" color="semantic-foreground-default" class="c-case-hero-resume__title">
-		{title}
-	</Text>
+		<Text as="h1" variant="heading-2" color="semantic-foreground-default" class="c-case-hero-resume__title">
+			{title}
+		</Text>
 
-	<div class="c-case-hero-resume__meta">
-		{metaCards.map(({ label, value }) => (
-			<div class="c-case-hero-resume__meta-card">
-				<span class="c-case-hero-resume__meta-label text-surtitle">{label}</span>
-				<span class="c-case-hero-resume__meta-value text-body-2">{value}</span>
-			</div>
-		))}
+		<div class="c-case-hero-resume__meta">
+			{metaCards.map(({ label, value }) => (
+				<div class="c-case-hero-resume__meta-card">
+					<span class="c-case-hero-resume__meta-label text-surtitle">{label}</span>
+					<span class="c-case-hero-resume__meta-value text-body-2">{value}</span>
+				</div>
+			))}
+		</div>
 	</div>
 </div>

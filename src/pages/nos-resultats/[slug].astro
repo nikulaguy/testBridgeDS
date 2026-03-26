@@ -53,8 +53,8 @@ const casePage = {
 ---
 
 <Layout page={casePage} usePageHeader={false}>
-	<!-- Hero Resume -->
-	<Section color="semantic-background-default-alt" condensed={false}>
+	<!-- Hero Resume — padding base-18 (72px) per Figma -->
+	<Section color="semantic-background-default-alt" condensed={false} style={{"--section-padding-block": "var(--base-space-18)"}}>
 		<CaseHeroResume
 			breadcrumb={`Cas & preuves \u2192 ${caseStudy.category} \u2192 ${caseStudy.metaCards[0].value}`}
 			surtitle={caseStudy.category}
@@ -63,21 +63,19 @@ const casePage = {
 		/>
 	</Section>
 
-	<!-- Contexte -->
+	<!-- Contexte — all children at section gap base-8 (32px) per Figma -->
 	<Section>
 		<SectionHeader title="Le contexte" />
 		<ClientInfoBand items={caseStudy.clientInfo} />
-		<Stack gap={4}>
-			{caseStudy.context.map((paragraph) => (
-				<Text as="p" variant="body-1" color="semantic-foreground-subtle">
-					{paragraph}
-				</Text>
-			))}
-		</Stack>
+		{caseStudy.context.map((paragraph) => (
+			<Text as="p" variant="body-1" color="semantic-foreground-subtle">
+				{paragraph}
+			</Text>
+		))}
 	</Section>
 
-	<!-- Tensions -->
-	<Section>
+	<!-- Tensions — gap base-10 (40px) per Figma -->
+	<Section style={{"--section-gap": "var(--base-space-10)"}}>
 		<SectionHeader title="Ce qui bloquait vraiment" />
 		<div class="grid grid--3col">
 			{caseStudy.tensions.map(({ title, text }) => (
@@ -93,17 +91,19 @@ const casePage = {
 		</div>
 	</Section>
 
-	<!-- Intervention -->
+	<!-- Intervention — title+description groupés à base-4 (16px) per Figma -->
 	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Comment nous sommes intervenus" />
-		<Text as="p" variant="body-1" color="semantic-foreground-subtle">
-			{caseStudy.intervention.intro}
-		</Text>
+		<Stack gap={4}>
+			<SectionHeader title="Comment nous sommes intervenus" />
+			<Text as="p" variant="body-1" color="semantic-foreground-subtle">
+				{caseStudy.intervention.intro}
+			</Text>
+		</Stack>
 		<StepIndicator steps={caseStudy.intervention.steps} />
 	</Section>
 
-	<!-- Résultats -->
-	<Section>
+	<!-- Résultats — gap base-12 (48px) per Figma -->
+	<Section style={{"--section-gap": "var(--base-space-12)"}}>
 		<SectionHeader title="Ce que ça a changé" />
 		<div class="stats-row">
 			{caseStudy.results.stats.map(({ value, label }) => (
@@ -123,12 +123,14 @@ const casePage = {
 		/>
 	</Section>
 
-	<!-- Enseignements -->
+	<!-- Enseignements — title+description groupés à base-4 (16px) per Figma -->
 	<Section color="semantic-background-default-alt">
-		<SectionHeader title="Ce que ce cas nous a appris" />
-		<Text as="p" variant="body-1" color="semantic-foreground-subtle">
-			{caseStudy.learnings.intro}
-		</Text>
+		<Stack gap={4}>
+			<SectionHeader title="Ce que ce cas nous a appris" />
+			<Text as="p" variant="body-1" color="semantic-foreground-subtle">
+				{caseStudy.learnings.intro}
+			</Text>
+		</Stack>
 		<div class="grid grid--3col">
 			{caseStudy.learnings.items.map(({ number, title, text }) => (
 				<Card variant="freeform" title={number} titleTag="span">
@@ -141,8 +143,8 @@ const casePage = {
 		</div>
 	</Section>
 
-	<!-- Cas similaires -->
-	<Section>
+	<!-- Cas similaires — padding base-24 (96px) + gap base-6 (24px) per Figma -->
+	<Section style={{"--section-padding-block": "var(--base-space-24)", "--section-gap": "var(--base-space-6)"}}>
 		<Text as="h2" variant="heading-2" color="semantic-foreground-default">
 			Cas similaires
 		</Text>

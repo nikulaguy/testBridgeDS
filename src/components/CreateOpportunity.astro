@@ -29,8 +29,8 @@ const {
 
 <Section
 	verticallyCentered={true}
-	gap="static"
 	color={altColor ? "semantic-background-default-alt" : "semantic-background-subtle"}
+	style={{"--section-gap": "var(--base-space-6)"}}
 	{...attrs}>
 	{surtitle && (
 		<Text as="p" variant="surtitle" color="semantic-brand-primary" class="text-center">{surtitle}</Text>
