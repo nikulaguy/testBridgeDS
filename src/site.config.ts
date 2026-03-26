@@ -307,6 +307,7 @@ export const footerLinks: MenuLink[] = [
 	pages.expertise,
 	pages.results,
 	pages.resources,
+	pages.formations,
 	{ path: "https://accessibilite.frontguys.fr", label: "Découvrez notre offre Accessibilité", external: true },
 	pages.contact,
 ];
