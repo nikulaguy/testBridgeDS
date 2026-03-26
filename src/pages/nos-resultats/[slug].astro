@@ -185,11 +185,12 @@ const casePage = {
 	.grid {
 		display: grid;
 		width: 100%;
-		gap: var(--base-space-8);
+		gap: var(--base-space-4);
 	}
 
 	.grid--3col {
 		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-4);
 
 		@media (max-width: 768px) {
 			grid-template-columns: 1fr;
@@ -198,7 +199,7 @@ const casePage = {
 
 	.stats-row {
 		display: flex;
-		gap: var(--base-space-8);
+		gap: var(--base-space-4);
 		width: 100%;
 
 		> * {
