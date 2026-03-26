@@ -1,0 +1,24 @@
+---
+import "./ClientInfoBand.scss";
+
+export type InfoItem = {
+	label: string;
+	value: string;
+};
+
+interface Props {
+	items: InfoItem[];
+	class?: string;
+}
+
+const { items, class: className, ...attrs } = Astro.props;
+---
+
+<div class:list={["c-client-info-band", className]} {...attrs}>
+	{items.map(({ label, value }) => (
+		<div class="c-client-info-band__item">
+			<span class="c-client-info-band__label text-caption-2">{label}</span>
+			<span class="c-client-info-band__value text-heading-6">{value}</span>
+		</div>
+	))}
+</div>

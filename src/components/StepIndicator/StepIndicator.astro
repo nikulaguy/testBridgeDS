@@ -1,0 +1,37 @@
+---
+import "./StepIndicator.scss";
+
+export type Step = {
+	title: string;
+	description?: string;
+};
+
+interface Props {
+	steps: Step[];
+	showDescriptions?: boolean;
+	class?: string;
+}
+
+const { steps, showDescriptions = true, class: className, ...attrs } = Astro.props;
+---
+
+<div class:list={["c-step-indicator", className]} {...attrs}>
+	{steps.map((step, index) => (
+		<div class="c-step-indicator__step">
+			<div class="c-step-indicator__left">
+				<div class="c-step-indicator__dot">
+					<span class="c-step-indicator__number">{index + 1}</span>
+				</div>
+				{index < steps.length - 1 && (
+					<div class="c-step-indicator__connector" />
+				)}
+			</div>
+			<div class="c-step-indicator__right">
+				<p class="c-step-indicator__title text-heading-6">{step.title}</p>
+				{showDescriptions && step.description && (
+					<p class="c-step-indicator__desc text-body-2">{step.description}</p>
+				)}
+			</div>
+		</div>
+	))}
+</div>

@@ -1,0 +1,43 @@
+---
+import "./CaseHeroResume.scss";
+import Text from "../Text/Text.astro";
+
+export type MetaCard = {
+	label: string;
+	value: string;
+	isLogo?: boolean;
+};
+
+interface Props {
+	breadcrumb: string;
+	surtitle: string;
+	title: string;
+	metaCards: MetaCard[];
+	class?: string;
+}
+
+const { breadcrumb, surtitle, title, metaCards, class: className, ...attrs } = Astro.props;
+---
+
+<div class:list={["c-case-hero-resume", className]} {...attrs}>
+	<Text as="p" variant="body-2" color="semantic-foreground-subtle" class="c-case-hero-resume__breadcrumb">
+		{breadcrumb}
+	</Text>
+
+	<Text as="p" variant="surtitle" color="semantic-brand-primary" class="c-case-hero-resume__surtitle">
+		{surtitle}
+	</Text>
+
+	<Text as="h1" variant="heading-2" color="semantic-foreground-default" class="c-case-hero-resume__title">
+		{title}
+	</Text>
+
+	<div class="c-case-hero-resume__meta">
+		{metaCards.map(({ label, value }) => (
+			<div class="c-case-hero-resume__meta-card">
+				<span class="c-case-hero-resume__meta-label text-surtitle">{label}</span>
+				<span class="c-case-hero-resume__meta-value text-body-2">{value}</span>
+			</div>
+		))}
+	</div>
+</div>

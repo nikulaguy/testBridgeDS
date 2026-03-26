@@ -1,0 +1,18 @@
+---
+import "./PullQuote.scss";
+import Text from "../Text/Text.astro";
+
+interface Props {
+	quote: string;
+	author: string;
+	class?: string;
+}
+
+const { quote, author, class: className, ...attrs } = Astro.props;
+---
+
+<figure class:list={["c-pull-quote", className]} {...attrs}>
+	<Text as="span" variant="heading-1" class="c-pull-quote__mark" aria-hidden="true">&laquo;</Text>
+	<Text as="blockquote" variant="heading-5" class="c-pull-quote__text">{quote}</Text>
+	<Text as="figcaption" variant="caption-1" class="c-pull-quote__author">{author}</Text>
+</figure>

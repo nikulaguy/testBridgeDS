@@ -1,0 +1,49 @@
+.c-case-hero-resume {
+	display: flex;
+	flex-direction: column;
+	gap: var(--base-space-8);
+	width: 100%;
+}
+
+.c-case-hero-resume__breadcrumb {
+	// breadcrumb is flush, no extra margin
+}
+
+.c-case-hero-resume__surtitle {
+	text-transform: uppercase;
+}
+
+.c-case-hero-resume__title {
+	// inherits from text-heading-2
+}
+
+.c-case-hero-resume__meta {
+	display: flex;
+	gap: 1px;
+	width: 100%;
+	background-color: var(--semantic-background-default);
+	border-radius: var(--radius-medium);
+	overflow: clip;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.c-case-hero-resume__meta-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--base-space-2);
+	flex: 1;
+	padding: var(--base-space-5);
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.c-case-hero-resume__meta-label {
+	text-transform: uppercase;
+	color: var(--semantic-brand-primary);
+}
+
+.c-case-hero-resume__meta-value {
+	color: var(--semantic-foreground-subtle);
+}

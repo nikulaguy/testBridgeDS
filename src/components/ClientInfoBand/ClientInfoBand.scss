@@ -1,0 +1,35 @@
+.c-client-info-band {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	padding: var(--base-space-5) var(--base-space-6);
+	background-color: var(--semantic-background-subtle);
+	color: var(--semantic-background-accent);
+	line-height: 1.4;
+	border-radius: var(--radius-medium);
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		gap: var(--base-space-4);
+	}
+}
+
+.c-client-info-band__item {
+	display: flex;
+	flex-direction: column;
+	gap: var(--base-space-1);
+	flex: 1;
+	padding-inline: var(--base-space-6);
+
+	@media (max-width: 768px) {
+		padding-inline: 0;
+	}
+}
+
+.c-client-info-band__label {
+	color: inherit;
+}
+
+.c-client-info-band__value {
+	color: inherit;
+}

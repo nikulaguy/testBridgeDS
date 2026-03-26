@@ -1,0 +1,212 @@
+---
+import { Image } from "astro:assets";
+import imgPlaceholder from "../../assets/img/aspectRatio.png";
+import imgPlaceholder2 from "../../assets/img/aspectRatio-1.png";
+import imgPlaceholder3 from "../../assets/img/aspectRatio-2.png";
+
+import { Button } from "../../components/Button/Button.tsx";
+import Card from "../../components/Card/Card.astro";
+import CaseHeroResume from "../../components/CaseHeroResume/CaseHeroResume.astro";
+import ClientInfoBand from "../../components/ClientInfoBand/ClientInfoBand.astro";
+import CreateOpportunity from "../../components/CreateOpportunity.astro";
+import BlockQuote from "../../components/BlockQuote/BlockQuote.astro";
+import Section from "../../components/Section/Section.astro";
+import SectionHeader from "../../components/SectionHeader/SectionHeader.astro";
+import Stack from "../../components/Stack/Stack.astro";
+import StepIndicator from "../../components/StepIndicator/StepIndicator.astro";
+import Text from "../../components/Text/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { pages } from "../../site.config";
+import {
+	caseStudies,
+	getRelatedCaseStudies,
+	type CaseStudy,
+} from "../../data/case-studies";
+
+export function getStaticPaths() {
+	return caseStudies.map((cs) => ({
+		params: { slug: cs.slug },
+		props: { caseStudy: cs },
+	}));
+}
+
+interface Props {
+	caseStudy: CaseStudy;
+}
+
+const { caseStudy } = Astro.props;
+const relatedCases = getRelatedCaseStudies(caseStudy.relatedSlugs);
+
+const cardImages = [imgPlaceholder, imgPlaceholder2, imgPlaceholder3];
+
+// Build a page object compatible with Layout
+const casePage = {
+	...pages.results,
+	path: `/nos-resultats/${caseStudy.slug}`,
+	label: caseStudy.title,
+	header: {
+		title: caseStudy.title,
+		surtitle: caseStudy.category,
+		subtitle: "",
+	},
+};
+---
+
+<Layout page={casePage} usePageHeader={false}>
+	<!-- Hero Resume -->
+	<Section color="semantic-background-default-alt" condensed={false}>
+		<CaseHeroResume
+			breadcrumb={`Cas & preuves \u2192 ${caseStudy.category} \u2192 ${caseStudy.metaCards[0].value}`}
+			surtitle={caseStudy.category}
+			title={caseStudy.title}
+			metaCards={caseStudy.metaCards}
+		/>
+	</Section>
+
+	<!-- Contexte -->
+	<Section>
+		<SectionHeader title="Le contexte" />
+		<ClientInfoBand items={caseStudy.clientInfo} />
+		<Stack gap={4}>
+			{caseStudy.context.map((paragraph) => (
+				<Text as="p" variant="body-1" color="semantic-foreground-subtle">
+					{paragraph}
+				</Text>
+			))}
+		</Stack>
+	</Section>
+
+	<!-- Tensions -->
+	<Section>
+		<SectionHeader title="Ce qui bloquait vraiment" />
+		<div class="grid grid--3col">
+			{caseStudy.tensions.map(({ title, text }) => (
+				<Stack gap={3}>
+					<Text as="p" variant="heading-5" color="semantic-foreground-subtle">
+						{title}
+					</Text>
+					<Text as="p" variant="body-1" color="semantic-foreground-subtle">
+						{text}
+					</Text>
+				</Stack>
+			))}
+		</div>
+	</Section>
+
+	<!-- Intervention -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Comment nous sommes intervenus" />
+		<Text as="p" variant="body-1" color="semantic-foreground-subtle">
+			{caseStudy.intervention.intro}
+		</Text>
+		<StepIndicator steps={caseStudy.intervention.steps} />
+	</Section>
+
+	<!-- Résultats -->
+	<Section>
+		<SectionHeader title="Ce que ça a changé" />
+		<div class="stats-row">
+			{caseStudy.results.stats.map(({ value, label }) => (
+				<Stack gap={2}>
+					<Text as="span" variant="heading-2" color="semantic-foreground-default">
+						{value}
+					</Text>
+					<Text as="span" variant="body-2" color="semantic-foreground-subtle">
+						{label}
+					</Text>
+				</Stack>
+			))}
+		</div>
+		<BlockQuote
+			quote={caseStudy.results.quote.text}
+			author={caseStudy.results.quote.author}
+		/>
+	</Section>
+
+	<!-- Enseignements -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Ce que ce cas nous a appris" />
+		<Text as="p" variant="body-1" color="semantic-foreground-subtle">
+			{caseStudy.learnings.intro}
+		</Text>
+		<div class="grid grid--3col">
+			{caseStudy.learnings.items.map(({ number, title, text }) => (
+				<Card variant="freeform" title={number} titleTag="span">
+					<Stack gap={2}>
+						<Text as="p" variant="heading-6">{title}</Text>
+						<Text as="p" variant="body-1" color="semantic-foreground-subtle">{text}</Text>
+					</Stack>
+				</Card>
+			))}
+		</div>
+	</Section>
+
+	<!-- Cas similaires -->
+	<Section>
+		<Text as="h2" variant="heading-2" color="semantic-foreground-default">
+			Cas similaires
+		</Text>
+		<div class="grid grid--3col">
+			{relatedCases.map((related, i) => (
+				<Card
+					variant="photo"
+					title={related.metaCards[0].value}
+					subtitle={related.title}
+					imgPath={`/src/assets/img/aspectRatio${i > 0 ? `-${i}` : ""}.png`}
+					url={`/nos-resultats/${related.slug}`}
+				/>
+			))}
+			{/* If only 2 related, add the current case as 3rd to fill grid */}
+			{relatedCases.length < 3 && (
+				<Card
+					variant="photo"
+					title={caseStudy.metaCards[0].value}
+					subtitle={caseStudy.title}
+					imgPath="/src/assets/img/aspectRatio-2.png"
+					url={`/nos-resultats/${caseStudy.slug}`}
+				/>
+			)}
+		</div>
+	</Section>
+
+	<!-- CTA -->
+	<CreateOpportunity
+		surtitle="Prochaine étape"
+		title="Vous avez trouvé un cas similaire au vôtre ? Parlons de votre contexte."
+		subtitle="Un premier échange pour voir si notre approche correspond à votre situation."
+		ghostLabel="Parler à un expert"
+		primaryLabel="Demandez un diagnostic"
+	/>
+</Layout>
+
+<style lang="scss">
+	@use "../../assets/styles/01-utils/functions" as *;
+
+	.grid {
+		display: grid;
+		width: 100%;
+		gap: var(--base-space-8);
+	}
+
+	.grid--3col {
+		grid-template-columns: repeat(3, 1fr);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.stats-row {
+		display: flex;
+		gap: var(--base-space-8);
+		width: 100%;
+
+		> * {
+			flex: 1;
+		}
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+</style>
