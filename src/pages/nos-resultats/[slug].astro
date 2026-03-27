@@ -77,10 +77,10 @@ const casePage = {
 	<!-- Tensions — gap base-10 (40px) per Figma -->
 	<Section style={{"--section-gap": "var(--base-space-10)"}}>
 		<SectionHeader title="Ce qui bloquait vraiment" />
-		<div class="grid grid--3col">
+		<div class="tensions-grid">
 			{caseStudy.tensions.map(({ title, text }) => (
 				<Stack gap={3}>
-					<Text as="p" variant="heading-5" color="semantic-foreground-subtle">
+					<Text as="p" variant="heading-5" color="semantic-foreground-default">
 						{title}
 					</Text>
 					<Text as="p" variant="body-1" color="semantic-foreground-subtle">
@@ -193,6 +193,17 @@ const casePage = {
 	.grid--3col {
 		grid-template-columns: repeat(3, 1fr);
 		gap: var(--base-space-4);
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.tensions-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--base-space-4);
+		width: 100%;
 
 		@media (max-width: 768px) {
 			grid-template-columns: 1fr;
