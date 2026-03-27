@@ -1,0 +1,128 @@
+---
+import { Button } from "../components/Button/Button.tsx";
+import Card from "../components/Card/Card.astro";
+import List from "../components/List/List.astro";
+import Section from "../components/Section/Section.astro";
+import SectionHeader from "../components/SectionHeader/SectionHeader.astro";
+import Stack from "../components/Stack/Stack.astro";
+import Text from "../components/Text/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import { pages } from "../site.config";
+---
+
+<Layout page={pages.aboutUs}>
+	<Fragment slot="page-header-cta">
+		<Button as="a" href={pages.expertise.path}>Découvrez nos expertises</Button>
+		<Button as="a" href="/contact" variant="ghost">Rejoignez Frontguys</Button>
+	</Fragment>
+
+	<!-- B02 — Mission -->
+	<Section color="semantic-background-default">
+		<Stack gap={8}>
+			<SectionHeader title="Nous créons des expériences impactantes, des produits durables et des organisations fluides.">
+				<Fragment slot="surtitle">Notre mission</Fragment>
+			</SectionHeader>
+			<Stack gap={6}>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Frontguys réunit des profils seniors en stratégie, design et développement front. Chaque mission vise un résultat mesurable : accélérer votre delivery, renforcer la cohérence de vos interfaces, fluidifier la collaboration de vos équipes.
+				</Text>
+				<Text as="p" variant="heading-5">
+					Le design et le développement au service de la transformation.
+				</Text>
+			</Stack>
+		</Stack>
+	</Section>
+
+	<!-- B03 — Valeurs -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Trois convictions qui guident nos arbitrages.">
+			<Fragment slot="surtitle">Nos valeurs</Fragment>
+		</SectionHeader>
+		<div class="grid grid--3col">
+			<Card variant="simple" title="Humilité" subtitle="Nous écoutons avant de proposer. Chaque contexte est unique, chaque équipe a son histoire." />
+			<Card variant="simple" title="Partage" subtitle="Nous documentons, formons et transférons. Votre autonomie est notre indicateur de réussite." />
+			<Card variant="simple" title="Exigence" subtitle="Nous visons la qualité mesurable. Chaque livrable répond à un standard partagé avec vos équipes." />
+		</div>
+	</Section>
+
+	<!-- B04 — Culture de travail -->
+	<Section color="semantic-background-default">
+		<div class="two-col">
+			<div class="two-col__image">
+				<div class="image-placeholder" aria-hidden="true"></div>
+			</div>
+			<Stack gap={8} class="two-col__content">
+				<SectionHeader title="Nous cultivons l'exigence collective et la progression continue.">
+					<Fragment slot="surtitle">Notre culture</Fragment>
+				</SectionHeader>
+				<Text variant="body-1" color="semantic-foreground-subtle">
+					Chez Frontguys, la collaboration design/dev n'est pas un slogan. C'est notre mode opératoire quotidien. Chaque consultant est autonome, force de proposition et engagé sur les résultats.
+				</Text>
+				<List
+					items={[
+						"Profils seniors uniquement — autonomes et force de proposition",
+						"Collaboration design/dev intégrée à chaque mission",
+						"Progression collective — chaque mission enrichit les suivantes",
+						"Transparence totale sur les méthodes et les résultats",
+					]}
+				/>
+			</Stack>
+		</div>
+	</Section>
+
+	<!-- B05 — Guildes & expérimentation -->
+	<Section color="semantic-background-default-alt">
+		<SectionHeader title="Nous investissons dans l'expérimentation et le partage.">
+			<Fragment slot="surtitle">Nos guildes</Fragment>
+			<Fragment slot="subtitle">Nos guildes internes réunissent nos consultants autour de sujets de fond. Chaque production est partagée, testée et transformée en contenu exploitable.</Fragment>
+		</SectionHeader>
+		<div class="grid grid--3col">
+			<Card variant="simple" title="Design systems & tokens" subtitle="Exploration des architectures de tokens, des stratégies multi-marque et des workflows de synchronisation Figma/code." />
+			<Card variant="simple" title="IA & production" subtitle="Prototypage d'outils IA pour accélérer le design, le développement front et la documentation." />
+			<Card variant="simple" title="Accessibilité" subtitle="Veille WCAG, audit de conformité et intégration des critères d'accessibilité dans les process de production." />
+		</div>
+	</Section>
+
+	<!-- B06 — CTA Banner -->
+	<Section color="semantic-background-subtle" verticallyCentered={true} gap="static">
+		<SectionHeader title="Découvrez comment nous pouvons intervenir sur votre contexte." titleVariant="heading-2">
+			<Fragment slot="surtitle">Prochaine étape</Fragment>
+			<Fragment slot="subtitle">Explorez nos expertises ou rejoignez une équipe qui place l'exigence et la collaboration au centre.</Fragment>
+		</SectionHeader>
+		<Stack gap={4} axis="x" wrap={true} justify="center">
+			<Button as="a" href={pages.expertise.path} variant="secondary">Découvrez nos expertises</Button>
+			<Button as="a" href="/contact">Rejoignez Frontguys</Button>
+		</Stack>
+	</Section>
+</Layout>
+
+<style lang="scss">
+	/* Two-column layout — image left, text right */
+	.two-col {
+		display: flex;
+		flex-direction: row;
+		gap: var(--base-space-12, 48px);
+		width: 100%;
+		align-items: flex-start;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
+	}
+
+	.two-col__image {
+		flex: 0 0 45%;
+	}
+
+	.two-col__content {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.image-placeholder {
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		background-color: var(--semantic-background-default-alt, #e7e7ee);
+		border-radius: var(--radius-lg, 8px);
+	}
+</style>

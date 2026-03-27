@@ -275,6 +275,16 @@ export const pages: Record<string, Page> = {
 			},
 		},
 	},
+	aboutUs: {
+		path: "/a-propos",
+		label: "À propos",
+		header: {
+			title: "Nous mettons l'exigence et les relations humaines au cœur de la collaboration.",
+			surtitle: "À propos",
+			subtitle:
+				"Découvrez l'équipe, la culture et les convictions qui guident chaque mission Frontguys.",
+		},
+	},
 	notFound: {
 		path: "/404",
 		label: "Erreur 404",
@@ -308,6 +318,7 @@ export const footerLinks: MenuLink[] = [
 	pages.results,
 	pages.resources,
 	pages.formations,
+	pages.aboutUs,
 	{ path: "https://accessibilite.frontguys.fr", label: "Découvrez notre offre Accessibilité", external: true },
 	pages.contact,
 ];
